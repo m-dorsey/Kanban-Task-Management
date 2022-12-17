@@ -69,18 +69,52 @@
                 <div class="bubble"></div>
             </div> <!-- bubbles end -->
 
-            
 
-            <!-- top navigation -->
-            <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
-                
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                
-            </nav> <!-- top navigation -->
+            
+            <!-- body container -->
+            <div class="container-fluid">
+                <!-- row container -->
+                <div class="row flex-nowrap">
+
+                    <!-- side bar navigation -->
+                    <div class="col-auto px-0">
+                        <div id="sidebar" class="collapse collapse-horizontal border-end">
+                            
+                            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+                                <p class="add-new-board">Boards</p>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                            </div>
+                        </div>
+                    </div> <!-- side bar navigation -->
+
+                    <!-- main content -->
+                    <div class="col ps-md-2">
+
+                        <!-- top navigation -->
+                        <nav class="navbar navbar-light bg-light">
+                            <a class="navbar-brand" href="#" data-bs-target="#sidebar" data-bs-toggle="collapse">Kanban</a>
+                            
+                            <!-- search bar -->
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form> <!-- search bar -->
+
+                        </nav> <!-- top navigation -->
+                        
+                        
+                        <h1>hey</h1>
+
+                    </div> <!-- main content-->
+
+                </div> <!-- row container -->
+            </div> <!-- body container -->
+
 
 
         </div> <!-- animated background -->

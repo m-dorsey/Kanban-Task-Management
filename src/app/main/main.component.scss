@@ -4,6 +4,7 @@ body {
     // background: rgb(26, 30, 35);
     background: rgba(26, 30, 35, 0.95);
     margin: 0;
+    padding: 0;
 }
 
 $bubble-count: 50;
@@ -92,4 +93,26 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 .navbar {
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 15px;
+    margin-left: 2px;
+    width: 100%;
+
+    .navbar-brand {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+}
+
+#sidebar-nav {
+    background: white;
+    width: 250px;
+    height: 100%;
+}
+
+.add-new-board {
+    font-size: 20px;
+    padding: 20px 0px 5px 20px;
+    text-transform: lowercase;
+    font-variant: small-caps;
 }
