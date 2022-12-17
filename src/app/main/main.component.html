@@ -114,28 +114,31 @@
 
                                 <div class="board-bar">
                                     <p class="board-name">
-                                        
+                                        {{ board.name }}
                                     </p>
                                 </div> <!-- board bar -->
 
-                                <div class="board-columns">
+                                <div class="board-wrapper">
 
-                                    <div class="board-column">
+                                    <div class="board-columns">
 
-                                        <div class="column-title">
+                                        <div class="board-column" *ngFor="let column of board.columns">
 
-                                        </div> <!-- column title -->
+                                            <div class="column-title">
+                                                {{ column.name }}
+                                            </div> <!-- column title -->
 
-                                        <div class="tasks-container">
-                                            <div class="task">
+                                            <div class="tasks-container">
+                                                <div class="task" *ngFor="let item of column.tasks">
+                                                    {{ item }}
+                                                </div>
+                                            </div> <!-- tasks container -->
 
-                                            </div>
-                                        </div> <!-- tasks container -->
-
-                                    </div> <!-- board column -->
-                                </div> <!-- board columns -->
-
+                                        </div> <!-- board column -->
+                                    </div> <!-- board columns -->
                                 
+                                </div> <!-- board wrapper -->
+
 
                             </div> <!-- board -->
 
