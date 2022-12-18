@@ -12,7 +12,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 @function random_range($min, $max) {
     $rand: random();
-    $random_range: $min +floor($rand * (($max - $min) + 1));
+    $random_range: $min (+floor($rand * (($max - $min) + 1)));
     @return $random_range;
 }
 
@@ -127,6 +127,19 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .delete-board-icon:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.close-sidebar {
+    margin-left: 120px;
+    font-size: 21px;
+    vertical-align: middle;
+    color: black;
+
+}
+
+.close-sidebar:hover {
     color: red;
     cursor: pointer;
 }

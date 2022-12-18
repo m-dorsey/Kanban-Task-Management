@@ -78,9 +78,11 @@
 
                     <!-- side bar navigation -->
                     <div class="col-auto px-0">
-                        <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                        <div id="sidebar" class="collapse collapse-horizontal border-end show">
                             <div class="boards-header text-nowrap">
-                                Boards
+                                Boards <i class=" close-sidebar bi bi-x"
+                                            data-bs-target="#sidebar"
+                                            data-bs-toggle="collapse"></i>
                             </div>
                             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
                                 <a href="#" 
@@ -123,7 +125,7 @@
                         </nav> <!-- top navigation -->
                         
                         
-                        <div class="root">
+                        <div class="root" id="root">
 
                             <div class="board">
 

@@ -21,7 +21,34 @@ export class MainComponent implements OnInit {
       
   }
 
+  sidebarToggle() {
+    // var elem = (document.getElementById("sidebar")?.classList);
+    // var toggle = <HTMLElement>document.getElementById("root");
+    
+
+    // if (elem?.contains("show")) {
+      
+
+    //   toggle.dataset["bsToggle"] = "collapse";
+    //   toggle.dataset["bsTarget"] = "#sidebar";
+    //   elem.remove("show");
+
+    // }
+   
+
+  }
+
   initBoards() {
+
+    // show no columns if board not set
+    if (this.currentBoard == undefined) {
+      console.log("NO SET BOARD");
+    } else {
+      console.log("SET BOARD", this.currentBoard);
+    }
+
+    console.log(this.currentBoard);
+
     var board: Board = new Board('Test Board', [
       new Column('Ideas', [
         "Lionel",
@@ -67,6 +94,8 @@ export class MainComponent implements OnInit {
     var index = this.boards.indexOf(board);
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));
+
+    this.initBoards();
 
   }
 
