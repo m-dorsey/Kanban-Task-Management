@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
 
   // variables
   boards: Board[] = [];
+  currentBoard?: Board;
 
   constructor() {
     this.initBoards();
@@ -48,6 +49,31 @@ export class MainComponent implements OnInit {
       ])
     ]);
     this.boards.push(b);
+  }
+
+  setCurrentBoard(board: Board) {
+    console.log("set", board);
+
+    // set current board, get DOM
+    this.currentBoard = board;
+    var elements = <HTMLCollection> (document.getElementById("sidebar-nav")?.children);
+    
+    // remove active from all other children
+    for (let i = 0; i < elements.length-1; i++) {
+      (elements.item(i)?.classList.remove("active"));
+    }
+
+    // highlight list item as active
+    var index = this.boards.indexOf(board);
+    var boardElem = (elements?.item(index));
+    (boardElem?.classList.add("active"));
+
+  }
+
+  deleteBoard(board: Board) {
+    console.log("delete", board);
+    var index = (this.boards.indexOf(board));
+    (this.boards.splice(index, 1));
   }
 
   

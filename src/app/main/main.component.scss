@@ -97,9 +97,43 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
  **/
 
 
-.bi {
-    font-size: 20px;
+
+/** OVERRIDE BOOTSTRAP STYLING **/
+
+.list-group-item:hover {
+
+    .delete-board-icon {
+        visibility: visible;
+    }
+
+    color: #1b1b1b;
+    background: #e6e6e6;
 }
+
+.active {
+    background: #333;
+    border: 1px solid #333;
+}
+
+
+
+/** ICONS **/
+
+.delete-board-icon {
+    font-size: 16px;
+    color: black;
+    float: right;
+    visibility: hidden;
+}
+
+.delete-board-icon:hover {
+    color: red;
+    cursor: pointer;
+}
+
+
+
+/** NAVBAR **/
 
 .navbar {
     padding-left: 15px;
@@ -132,6 +166,10 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 }
 
+.board-name {
+    padding: 8px 120px 9px 0px;
+}
+
 .add-new-board {
     background: white;
     font-size: 18px;
@@ -146,6 +184,10 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     background: #e6e6e6;
     cursor: pointer;
 }
+
+
+
+/** BOARDS **/
 
 .root {
     display: flex;
@@ -221,6 +263,10 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     }
 
 }
+
+
+
+/** TASKS **/
 
 .tasks-container {
     flex-grow: 1;
