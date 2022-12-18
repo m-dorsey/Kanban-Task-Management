@@ -11,61 +11,72 @@ export class MainComponent implements OnInit {
 
   // variables
   boards: Board[] = [];
-  currentBoard?: Board;
+
+  modelBoard: Board = new Board("Model", [
+    new Column("Fun Facts", [
+      "Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri",
+      "The Four Corners is the only spot in the US where you can stand in four states at once: Utah, Colorado, Arizona and New Mexico.",
+      "Bats are the only mammal that can actually fly.",
+      "Flamingoes are only pink because of chemicals called carotenoids in the algae and fish (which also eat the algae) they eat.",
+    ]),
+    new Column("Words of the Day", [
+      "Oblivion",
+      "Putative",
+      "Undulate"
+    ])
+  ]);
+
+  currentBoard: Board = this.modelBoard;
+
+  // var board: Board = new Board('Test Board', [
+  //   new Column('Ideas', [
+  //     "Lionel",
+  //     "Messi"
+  //   ]),
+  //   new Column('To Do', [
+  //     "Julian",
+  //     "Alvarez"
+  //   ]),
+  //   new Column('Done', [
+  //     "Angel",
+  //     "Di Maria"
+  //   ])
+  // ]);
 
   constructor() {
     this.initBoards();
+    
   }
 
   ngOnInit(): void {
       
   }
 
-  sidebarToggle() {
-    // var elem = (document.getElementById("sidebar")?.classList);
-    // var toggle = <HTMLElement>document.getElementById("root");
-    
-
-    // if (elem?.contains("show")) {
-      
-
-    //   toggle.dataset["bsToggle"] = "collapse";
-    //   toggle.dataset["bsTarget"] = "#sidebar";
-    //   elem.remove("show");
-
-    // }
-   
-
-  }
-
   initBoards() {
 
     // show no columns if board not set
-    if (this.currentBoard == undefined) {
-      console.log("NO SET BOARD");
+    if (this.currentBoard == this.modelBoard) {
+
+      // sample board
+      console.log("MODEL BOARD SHOWING");
+      this.boards.push(this.modelBoard);
+
+
     } else {
       console.log("SET BOARD", this.currentBoard);
+
     }
 
-    console.log(this.currentBoard);
 
-    var board: Board = new Board('Test Board', [
-      new Column('Ideas', [
-        "Lionel",
-        "Messi"
-      ]),
-      new Column('To Do', [
-        "Julian",
-        "Alvarez"
-      ]),
-      new Column('Done', [
-        "Angel",
-        "Di Maria"
-      ])
-    ]);
-    
-    this.boards.push(board);
   }
+
+  // showBoards() {
+  //   if (this.currentBoard == undefined) {
+  //     console.log("no set board");
+  //     // var elem = <HTMLElement> document.getElementById("board");
+  //     // elem.style.visibility = "hidden";
+  //   }
+  // }
 
   addNewBoard() {
     console.log("Add new board");
@@ -76,9 +87,11 @@ export class MainComponent implements OnInit {
       ])
     ]);
     this.boards.push(b);
+
   }
 
   setCurrentBoard(board: Board) {
+
     console.log("set", board);
 
     // set current board, get DOM
@@ -86,7 +99,7 @@ export class MainComponent implements OnInit {
     var elements = <HTMLCollection> (document.getElementById("sidebar-nav")?.children);
     
     // remove active from all other children
-    for (let i = 0; i < elements.length-1; i++) {
+    for (let i = 0; i < elements.length; i++) {
       (elements.item(i)?.classList.remove("active"));
     }
 
@@ -94,8 +107,10 @@ export class MainComponent implements OnInit {
     var index = this.boards.indexOf(board);
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));
+    var boardDisplay = <HTMLElement> (document.getElementById("board"));
+    boardDisplay.style.visibility = "visible";
 
-    this.initBoards();
+    // this.initBoards();
 
   }
 

@@ -78,7 +78,7 @@
 
                     <!-- side bar navigation -->
                     <div class="col-auto px-0">
-                        <div id="sidebar" class="collapse collapse-horizontal border-end show">
+                        <div id="sidebar" class="collapse collapse-horizontal border-end">
                             <div class="boards-header text-nowrap">
                                 Boards <i class=" close-sidebar bi bi-x"
                                             data-bs-target="#sidebar"
@@ -127,7 +127,7 @@
                         
                         <div class="root" id="root">
 
-                            <div class="board">
+                            <div class="board" id="board">
 
                                 <!-- <div class="board-bar">
                                     <p class="board-name">
@@ -137,9 +137,36 @@
 
                                 <div class="board-wrapper">
 
-                                    <div class="board-columns" *ngFor="let board of boards">
+                                    <!-- if null current board -->
+                                    <!-- <div class="container d-flex justify-content-center" *ngIf="currentBoard == null">
 
-                                            <div class="board-column" *ngFor="let column of board.columns">
+                                        <div class="card null-current-board-card w-50 h-75 mt-5">
+                                            <div class="card-header" style="font-weight: bold; font-size: 22px;">Notice</div>
+                                            <div class="card-body">
+                                                <h5 class="card-title text-center" style="font-variant: small-caps; font-size: 30px;">
+                                                    there is no <br> board selected
+                                                </h5>
+                                                <hr>
+                                                <div class="card-text" style="font-size: 20px">
+                                                    Select a board by clicking the <i class="bi bi-kanban"></i> icon
+                                                    in the top left corner.<br>
+                                                    Proceed by performing one of the following
+                                                    options:
+                                                    <ul>
+                                                        <li>Add new board</li>
+                                                        <li>Select an existing board</li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                        </div> card
+
+                                    </div> null current board -->
+                                    
+                                    <!-- *ngFor="let board of boards" -->
+                                    <div class="board-columns">
+
+                                            <div class="board-column" *ngFor="let column of currentBoard.columns">
 
                                                 <div class="column-title">
                                                     {{ column.name }}
