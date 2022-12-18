@@ -9,27 +9,36 @@ import { Column } from '../models/column.model';
 })
 export class MainComponent implements OnInit {
 
-  constructor() {
+  // variables
+  boards: Board[] = [];
 
+  constructor() {
+    this.initBoards();
   }
 
   ngOnInit(): void {
       
   }
 
-  board: Board = new Board('Test Board', [
-    new Column('Ideas', [
-      "Lionel",
-      "Messi"
-    ]),
-    new Column('To Do', [
-      "Julian",
-      "Alvarez"
-    ]),
-    new Column('Done', [
-      "Angel",
-      "Di Maria"
-    ])
-  ]);
+  initBoards() {
+    var board: Board = new Board('Test Board', [
+      new Column('Ideas', [
+        "Lionel",
+        "Messi"
+      ]),
+      new Column('To Do', [
+        "Julian",
+        "Alvarez"
+      ]),
+      new Column('Done', [
+        "Angel",
+        "Di Maria"
+      ])
+    ]);
+    
+    this.boards.push(board);
+  }
+
+  
 
 }

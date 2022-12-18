@@ -111,6 +111,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .add-new-board {
+    background: white;
     font-size: 20px;
     padding: 20px 0px 5px 20px;
     text-transform: lowercase;
@@ -151,12 +152,15 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
         .board-columns {
             display: flex;
             flex-grow: 1;
+            height: fit-content;
+            // max-width: 300px;
 
             .board-column {
                 display: flex;
                 flex-direction: column;
                 flex-grow: 1;
                 flex-basis: 0;
+                
 
                 min-width: 300px;
                 margin: 50px;
