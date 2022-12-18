@@ -28,20 +28,18 @@ export class MainComponent implements OnInit {
 
   currentBoard: Board = this.modelBoard;
 
-  // var board: Board = new Board('Test Board', [
-  //   new Column('Ideas', [
-  //     "Lionel",
-  //     "Messi"
-  //   ]),
-  //   new Column('To Do', [
-  //     "Julian",
-  //     "Alvarez"
-  //   ]),
-  //   new Column('Done', [
-  //     "Angel",
-  //     "Di Maria"
-  //   ])
-  // ]);
+  /**
+   * model board
+   * - highlight as active
+   * 
+   * boards
+   * - rename
+   * - on delete, show model or select board notice
+   * 
+   * refactor
+   * - local storage migration
+   * - animated background
+   */
 
   constructor() {
     this.initBoards();
@@ -69,14 +67,6 @@ export class MainComponent implements OnInit {
 
 
   }
-
-  // showBoards() {
-  //   if (this.currentBoard == undefined) {
-  //     console.log("no set board");
-  //     // var elem = <HTMLElement> document.getElementById("board");
-  //     // elem.style.visibility = "hidden";
-  //   }
-  // }
 
   addNewBoard() {
     console.log("Add new board");
@@ -107,10 +97,6 @@ export class MainComponent implements OnInit {
     var index = this.boards.indexOf(board);
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));
-    var boardDisplay = <HTMLElement> (document.getElementById("board"));
-    boardDisplay.style.visibility = "visible";
-
-    // this.initBoards();
 
   }
 
