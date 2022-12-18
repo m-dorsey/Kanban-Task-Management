@@ -53,7 +53,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
         &:nth-child(#{$i}) {
             --bubble-left-offset: #{random_range(0vw, 100vw)};
             --bubble-radius: #{random_range(1vw, 10vw)};
-            --bubble-float-duration: #{random_range(6s, 18s)};
+            --bubble-float-duration: #{random_range(4s, 18s)};
             --bubble-sway-duration: #{random_range(4s, 6s)};
             --bubble-float-delay: #{random_range(0s, 4s)};
             --bubble-sway-delay: #{random_range(0s, 4s)};
@@ -113,7 +113,8 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 .add-new-board {
     background: white;
     font-size: 20px;
-    padding: 20px 0px 5px 20px;
+    padding: 20px 168px 5px 20px;
+    
     text-transform: lowercase;
     font-variant: small-caps;
 }
@@ -125,6 +126,10 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 }
 
 .board {
+
+    // scrollable bar off screen
+    height: 40rem;
+
     display: flex;
     flex-direction: column;
     flex-grow: 1;

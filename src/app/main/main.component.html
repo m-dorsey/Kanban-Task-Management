@@ -78,15 +78,20 @@
 
                     <!-- side bar navigation -->
                     <div class="col-auto px-0">
-                        <div id="sidebar" class="collapse collapse-horizontal border-end">
-                            <p class="add-new-board">Boards</p>
+                        <div id="sidebar" class="collapse collapse-horizontal show border-end">
+                            <span class="add-new-board">Boards</span>
                             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+                                <a href="#" 
+                                    class="list-group-item border-end-0 d-inline-block text-truncate" 
+                                    data-bs-parent="#sidebar"
+                                    *ngFor="let board of boards">
+                                    {{ board.name }}
+                                </a>
+                                <!-- <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
                                 <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
                                 <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
                                 <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
+                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a> -->
                             </div>
                         </div>
                     </div> <!-- side bar navigation -->
