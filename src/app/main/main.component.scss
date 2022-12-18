@@ -90,6 +90,13 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 /**************************/
 
+/**
+ * TODO
+ * sidebar nav scroll styling
+ * 
+ **/
+
+
 .bi {
     font-size: 20px;
 }
@@ -108,19 +115,36 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 }
 
+
 #sidebar-nav {
     background: white;
     width: 250px;
     height: 100%;
 }
 
-.add-new-board {
+.boards-header {
     background: white;
     font-size: 20px;
-    padding: 20px 168px 5px 20px;
+    padding: 20px;
     
     text-transform: lowercase;
     font-variant: small-caps;
+
+}
+
+.add-new-board {
+    background: white;
+    font-size: 18px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+    padding: 5px 20px 10px 20px;
+    border: 1px solid #d9d9d9;
+
+}
+
+.add-new-board:hover {
+    background: #e6e6e6;
+    cursor: pointer;
 }
 
 .root {

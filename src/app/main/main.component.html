@@ -79,7 +79,9 @@
                     <!-- side bar navigation -->
                     <div class="col-auto px-0">
                         <div id="sidebar" class="collapse collapse-horizontal show border-end">
-                            <span class="add-new-board">Boards</span>
+                            <div class="boards-header text-nowrap">
+                                Boards
+                            </div>
                             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
                                 <a href="#" 
                                     class="list-group-item border-end-0 d-inline-block text-truncate" 
@@ -87,6 +89,7 @@
                                     *ngFor="let board of boards">
                                     {{ board.name }}
                                 </a>
+                                <p class="add-new-board border-end-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
                                 <!-- <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
                                 <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
                                 <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>

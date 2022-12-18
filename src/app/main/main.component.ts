@@ -39,6 +39,17 @@ export class MainComponent implements OnInit {
     this.boards.push(board);
   }
 
+  addNewBoard() {
+    console.log("Add new board");
+    var b = new Board("Hey", [
+      new Column ("New Board", [
+        "Task 1",
+        "Task 2"
+      ])
+    ]);
+    this.boards.push(b);
+  }
+
   
 
 }
