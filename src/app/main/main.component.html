@@ -7,10 +7,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Main</title>
-
     </head>
 
     <body>
+
+        
         
         <!-- animated background -->
         <div class="bubbles">
@@ -70,38 +71,292 @@
             </div> <!-- bubbles end -->
 
 
+
+            <!-- edit board modal -->
+            <div class="modal fade" id="modifyBoardModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+
+                        <!-- modal header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" *ngIf="currentBoard != null">
+                                Modify {{currentBoard.name}}
+                            </h5>
+                            <!-- x button -->
+                            <button type="button" class="close" data-bs-dismiss="modal"></button>
+                        </div> <!-- modal header -->
+
+                        <!-- modal body -->
+                        <div class="modal-body">
+
+                            <!-- collapsible accordion -->
+                            <div id="accordion">
+
+                                <!-- edit board name -->
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                                Board Name
+                                            </button>
+                                        </h5>
+                                    </div>
+                            
+                                    <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <h5 class="card-title">
+                                                Edit Board Name
+                                            </h5>
+
+                                            <div class="card">
+                                                <div class="card-body">
+
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="newBoardName">New Board Name</label>
+                                                            <input type="text" class="form-control" id="newBoardName" placeholder="Enter new board name">
+                                                            <small id="nameHelp" class="form-text text-muted">This field cannot be left blank</small>
+                                                        </div>
+                                                    </form>
+
+                                                </div> <!-- card body -->
+
+                                                <div class="card-footer text-right">
+                                                    <!-- delete -->
+                                                    <button type="button"
+                                                        class="btn btn-success"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseOne">
+                                                        Save
+                                                    </button>
+                                                </div> <!-- card footer -->
+
+                                            </div> <!-- card -->
+
+                                        </div> <!-- card body -->
+                                    </div> <!-- collapse one -->
+
+                                </div> <!-- edit board name -->
+
+                                <!-- edit board description -->
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                                Board Description
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                                        <div class="card-body">
+
+                                            <h5 class="card-title">
+                                                Edit Board Description
+                                            </h5>
+
+                                            <div class="card">
+                                                <div class="card-body">
+
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="boardDescription">Board Description</label>
+                                                            <textarea class="form-control"
+                                                                id="boardDescription"
+                                                                rows="3"
+                                                                placeholder="Enter a description of your board"></textarea>
+                                                        </div>
+                                                    </form>
+
+                                                </div> <!-- card body -->
+
+                                                <div class="card-footer text-right">
+                                                    <!-- delete -->
+                                                    <button type="button"
+                                                        class="btn btn-success"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseTwo">
+                                                        Save
+                                                    </button>
+                                                </div> <!-- card footer -->
+
+                                            </div> <!-- card -->
+
+                                        </div> <!-- card body -->
+                                    </div> <!-- collapse two -->
+
+                                </div> <!-- edit board description -->
+
+                                <!-- edit board template -->
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                                Board Template
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            Edit Board Template
+                                        </div> <!-- card body -->
+                                    </div> <!-- collapse three -->
+
+                                </div> <!-- edit board template -->
+
+                                <!-- clear board contents -->
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h5 class="mb-0">
+                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                                Clear Board Contents
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                Clear Board Contents
+                                            </h5>
+
+                                            <div class="card">
+                                                <div class="card-header">
+
+                                                    <ul class="nav nav-tabs card-header-tabs">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-bs-toggle="tab" href="#clearTasks">Tasks</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearLists">Lists</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearAll">Clear All</a>
+                                                        </li>
+                                                    </ul> <!-- nav tabs -->
+
+                                                </div> <!-- card header -->
+
+                                                <div class="card-body">
+                                                    
+                                                    <div class="tab-content d-flex justify-content-center text-center">
+                                                        <div id="clearTasks" class="tab-pane active bg-white border-0">
+                                                            <p>
+                                                                Clear all # tasks. <br>
+                                                                <small><i>This action cannot be reversed</i></small>
+                                                            </p>
+                                                        </div> <!-- clear tasks -->
+                                                        <div id="clearLists" class="tab-pane bg-white border-0">
+                                                            <p>
+                                                                Clear all # lists. <br>
+                                                                <small><i>This action cannot be reversed</i></small>
+                                                            </p>
+                                                        </div> <!-- clear lists -->
+                                                        <div id="clearAll" class="tab-pane bg-white border-0">
+                                                            <p>
+                                                                Clear all board content. <br>
+                                                                <small><i>This action cannot be reversed</i></small>
+                                                            </p>
+                                                        </div> <!-- clear all -->
+                                                    </div> <!-- tab content -->
+                                                    
+                                                </div> <!-- card body -->
+
+                                                <!-- card footer -->
+                                                <div class="card-footer text-right">
+                                                    <!-- delete -->
+                                                    <button type="button" 
+                                                        class="btn btn-danger"
+                                                        data-bs-toggle="collapse"
+                                                        data-bs-target="#collapseFour">
+                                                        Delete
+                                                    </button>
+                                                </div> <!-- card footer -->
+                                                
+                                            </div> <!-- card -->
+
+
+
+                                        </div> <!-- card body -->
+                                    </div> <!-- collapse four-->
+
+                                </div> <!-- clear board contents -->
+
+                            </div> <!-- accordion -->
+
+                        </div> <!-- modal body -->
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <!-- close -->
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                                (click)="closeModifyBoardModal()">
+                                Close
+                            </button>
+                        </div> <!-- model footer -->
+
+                    </div> <!-- modal content -->
+                </div> <!-- modal dialog -->
+            </div> <!-- edit board modal -->
+
+
             
             <!-- body container -->
             <div class="container-fluid">
                 <!-- row container -->
                 <div class="row flex-nowrap">
 
-                    <!-- side bar navigation -->
+                    
+
+                    <!-- sidebar navigation col-->
                     <div class="col-auto px-0 menu">
-                        <div id="sidebar" class="collapse collapse-horizontal border-end">
+                        <div id="sidebar" class="show collapse collapse-horizontal border-end">
                             
-                            <!-- menu header -->
                             <div class="menu-header text-nowrap">
-                                Menu <i class=" close-sidebar bi bi-x"
+                                Menu <i class="close-sidebar-icon bi bi-x"
                                             data-bs-target="#sidebar"
                                             data-bs-toggle="collapse"></i>
-                            </div>
+                            </div> <!-- menu-header -->
                             
                             <!-- sidebar nav -->
                             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
                                 
                                 <!-- boards subheader -->
                                 <div class="menu-subheader">Boards</div>
-                                <!-- boards -->
+                                <!-- boards for-->
                                 <a href="#" 
                                     class="list-group-item border-end-0 d-inline-block text-truncate" 
                                     data-bs-parent="#sidebar"
                                     *ngFor="let board of boards">
-                                    <span class="board-name" (click)="setCurrentBoard(board)">{{ board.name }}</span>
-                                    <span class="delete-board-icon" (click)="deleteBoard(board)">
-                                        <i class="bi bi-trash3"></i>
+                                    
+                                    <span class="board-name"
+                                        (click)="setCurrentBoard(board)"
+                                        (dblclick)="renameBoard(board)">
+                                        {{ board.name }}
                                     </span>
-                                </a>
+                                    
+                                    <span class="board-icons">
+
+                                        <i class="bi bi-pencil-square rename-board-icon"
+                                            (click)="setCurrentBoard(board)"
+                                            title="Edit"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modifyBoardModal"></i>
+
+                                        <span style="padding:4px"></span>
+
+                                        <i class="bi bi-trash3 delete-board-icon"
+                                            (click)="deleteBoard(board)"
+                                            title="Delete"></i>
+
+                                    </span>
+                                    
+                                </a> <!-- boards for -->
+                            
                                 <p class="add-new-board border-end-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
                                 
                                 
@@ -113,73 +368,78 @@
                                     <span class="board-name">About</span>                                   
                                 </div>
                                 <div href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
-                                    <span class="board-name">Information</span>
+                                    <span class="board-name">Notifications</span>
                                 </div>
                                 <div href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <span class="board-name">Activity</span>
                                 </div>
                                 
                             </div> <!-- sidebar nav -->
-                        </div> <!-- sidebar js -->
+
+                        </div> <!-- sidebar -->
                     </div> <!-- sidebar navigation col -->
+
+
 
                     <!-- main content -->
                     <div class="col ps-md-2">
 
                         <!-- top navigation -->
                         <nav class="navbar navbar-light bg-light">
+                            
                             <a class="navbar-brand"
                                 href="#" 
                                 data-bs-target="#sidebar" 
                                 data-bs-toggle="collapse">
                                 <i class="bi bi-kanban"></i> Kanban
-                            </a>
+                            </a> <!-- navbar logo/icon -->
                             
-                            <!-- search bar -->
                             <form class="form-inline">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form> <!-- search bar -->
-
+                            
                         </nav> <!-- top navigation -->
                         
-                        
-                        <div class="root" id="root">
 
-                            <div class="board" id="board">
 
-                                <!-- <div class="board-bar">
-                                    <p class="board-name">
-                                        {{ board.name }}
-                                    </p>
-                                </div> board bar -->
-
+                        <!-- root -->
+                        <div class="root">
+                            <!-- board -->
+                            <div class="board">
+                                <!-- board wrapper -->
                                 <div class="board-wrapper">
 
-                                    <!-- (MODAL) if null current board -->
+                                    <!-- (MODAL/CARD) if null current board -->
                                     <div class="container null-current-board-container d-flex align-items-center justify-content-center" *ngIf="currentBoard == null">
                                         <div class="card null-current-board-card">
-                                            <!-- card header -->
+                                            
                                             <div class="card-header">
                                                 <i class="bi bi-kanban"></i> <strong> Kanban</strong>
                                             </div>
+
                                             <!-- image and overlay text -->
                                             <div class="img-container">
                                                 <img class="card-img-top" src="../assets/idea-lightbulb.jpg" alt="Lightbulb with paperclips and crumbled sticky notes surrounding it - Image by Freepik">
                                                 <div class="card-overlay-text">
                                                     Hello!
-                                                </div>
-                                                
+                                                </div>   
                                             </div>
+
+                                            <!-- card body -->
                                             <div class="card-body">
                                                 <h5 class="card-title">
                                                     Select a board to continue
                                                 </h5>
+
+                                                <!-- card text -->
                                                 <p class="card-text">
                                                     Currently, there is no board selected to display.
                                                     <span *ngIf="this.boards.length == 0"> Add a new board to your collection to continue.</span>
                                                     <span *ngIf="this.boards.length != 0"> Add a new board or select an existing one from your collection to continue.</span>
                                                 </p>
+
+                                                <!-- card buttons -->
                                                 <div class="text-center">
 
                                                     <a href="#"
@@ -198,34 +458,16 @@
                                                         Select Existing Board
                                                     </a>
 
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </div> <!-- card buttons -->
 
-                                        <!-- <div class="card null-current-board-card w-50 h-75 mt-5">
-                                            <div class="card-header" style="font-weight: bold; font-size: 22px;">Notice</div>
-                                            <div class="card-body">
-                                                <h5 class="card-title text-center" style="font-variant: small-caps; font-size: 30px;">
-                                                    there is no <br> board selected
-                                                </h5>
-                                                <hr>
-                                                <div class="card-text" style="font-size: 20px">
-                                                    Select a board by clicking the <i class="bi bi-kanban"></i> icon
-                                                    in the top left corner.<br>
-                                                    Proceed by performing one of the following
-                                                    options:
-                                                    <ul>
-                                                        <li>Add new board</li>
-                                                        <li>Select an existing board</li>
-                                                    </ul>
-                                                </div>
-                                                
-                                            </div>
-                                        </div> card -->
+                                            </div> <!-- card body -->
 
-                                    </div> <!-- null current board -->
+                                        </div> <!-- card -->
+                                    </div> <!-- null current board container -->
                                     
-                                    <!-- *ngFor="let board of boards" -->
+
+
+                                    <!-- board-columns -->
                                     <div class="board-columns" *ngIf="currentBoard != null">
 
                                             <div class="board-column" *ngFor="let column of currentBoard.columns">
@@ -244,12 +486,14 @@
 
                                     </div> <!-- board columns -->
                                 
+
+
                                 </div> <!-- board wrapper -->
-
-
                             </div> <!-- board -->
-
                         </div> <!-- root -->
+
+
+
 
                     </div> <!-- main content-->
 

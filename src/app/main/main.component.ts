@@ -32,13 +32,10 @@ export class MainComponent implements OnInit {
 
   /**
    * modal
-   * - on load, create new board
-   *   or select existing
    * - refactor: load last board clicked
    * 
    * boards
-   * - rename
-   * - on delete, show model or select board notice
+   * - modification impl
    * 
    * refactor
    * - local storage migration
@@ -73,14 +70,18 @@ export class MainComponent implements OnInit {
 
   addNewBoard() {
     console.log("Add new board");
-    var b = new Board("Hey", [
-      new Column ("New Board", [
+    var b = new Board("New Board", [
+      new Column ("New List", [
         "Task 1",
         "Task 2"
       ])
     ]);
     this.boards.push(b);
 
+  }
+
+  renameBoard(board: Board) {
+    console.log("rename\n", this.boards, this.boards.indexOf(board));
   }
 
   setCurrentBoard(board: Board) {
@@ -113,6 +114,13 @@ export class MainComponent implements OnInit {
       this.currentBoard = undefined;
     }
 
+  }
+
+  closeModifyBoardModal() {
+    var elements = <HTMLCollection> (document.getElementById("accordion")?.children);
+    for (let i = 0; i < elements.length; i++) {
+      (elements[i].children[1].classList.remove('show'));
+    }
   }
 
   

@@ -5,6 +5,7 @@ body {
     background: rgba(26, 30, 35, 0.95);
     margin: 0;
     padding: 0;
+    min-width: 600px;
 }
 
 $bubble-count: 50;
@@ -90,11 +91,6 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 /**************************/
 
-/**
- * TODO
- * sidebar nav scroll styling
- * 
- **/
 
 
 
@@ -102,7 +98,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 .list-group-item:hover {
 
-    .delete-board-icon {
+    .delete-board-icon, .rename-board-icon {
         visibility: visible;
     }
 
@@ -119,10 +115,11 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 /** ICONS **/
 
-.delete-board-icon {
+.board-icons {
+    position: absolute;
+    right: 5px;
     font-size: 16px;
     color: black;
-    float: right;
     visibility: hidden;
 }
 
@@ -131,15 +128,20 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     cursor: pointer;
 }
 
-.close-sidebar {
-    margin-left: 120px;
-    font-size: 21px;
-    vertical-align: middle;
-    color: black;
-
+.rename-board-icon:hover {
+    color: grey;
+    cursor: pointer;
 }
 
-.close-sidebar:hover {
+.close-sidebar-icon {
+    color: black;
+    font-size: 24px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.close-sidebar-icon:hover {
     color: red;
     cursor: pointer;
 }
@@ -157,6 +159,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
         background: white;
         width: 70%;
         height: fit-content;
+        min-width: 300px;
     }
 
     .img-container {
@@ -198,6 +201,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
     background: white;
     height: 100vh;
+    max-width: 275px;
     overflow-y: auto;
 
 }
