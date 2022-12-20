@@ -80,8 +80,101 @@ export class MainComponent implements OnInit {
 
   }
 
-  renameBoard(board: Board) {
-    console.log("rename\n", this.boards, this.boards.indexOf(board));
+  modifyBoard(board: Board, mod: string) {
+
+    if (mod == "board name") {
+
+      var input = <HTMLInputElement> (document.getElementById("new-board-name"));
+      // save board name 
+      board.name = input.value;
+      // reset input
+      input.value = "";
+
+    } else if (mod == "board description") {
+
+      var desc = <HTMLInputElement> (document.getElementById('board-description'));
+      console.log(desc.value);
+      desc.value = "";
+
+    } else if (mod == "clear all") {
+      
+      var delBtnText = <string> (document.getElementById('delete-board-contents')?.textContent);
+
+      switch (delBtnText) {
+        case "Delete Tasks":
+          console.log("Delete tasks");
+          break;
+
+        case "Delete Lists":
+          console.log("delete lists");
+          break;
+
+        case "Clear All":
+          console.log("clear all");
+          break;
+
+      }
+    
+    }
+
+    
+  }
+
+  modifyBoardToggleValidation(section: string) {
+    
+    switch (section) {
+      case "board name":
+        
+        var input = <HTMLInputElement> (document.getElementById("new-board-name"));
+        var saveBtnDisable = <HTMLElement> document.getElementById("save-board-name");
+
+        if (input.value == "") {
+          saveBtnDisable.classList.add('disabled');
+        } else {
+          saveBtnDisable.classList.remove('disabled');
+        }
+
+        break;
+
+      case "board description":
+        
+        var desc = <HTMLInputElement> document.getElementById('board-description');
+        var saveBtnDisable = <HTMLElement>document.getElementById("save-board-description");
+        
+        if (desc.value == "") {
+          saveBtnDisable.classList.add('disabled');
+        } else {
+          saveBtnDisable.classList.remove('disabled');
+        }
+
+        break;
+
+      case "board template":
+        
+        console.log("board template");
+        
+        break;
+
+      case "clear all":
+        
+        var tabs = <HTMLCollection> (document.getElementById('clear-board-tabs')?.children);
+        for (let i = 0; i < tabs.length; i++) {
+          if (tabs[i].children[0].classList.contains('active')) {
+            
+            var delBtn = <HTMLElement> document.getElementById('delete-board-contents');
+            if (tabs[i].textContent == "Clear All") {
+              (delBtn.innerText) = "" + tabs[i].textContent;
+            } else {
+              (delBtn.innerText) = "Delete " + tabs[i].textContent;
+            }
+          
+          }
+        }
+        
+        break;
+
+    }
+
   }
 
   setCurrentBoard(board: Board) {

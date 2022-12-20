@@ -73,7 +73,7 @@
 
 
             <!-- edit board modal -->
-            <div class="modal fade" id="modifyBoardModal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="modifyBoardModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
 
@@ -89,14 +89,25 @@
                         <!-- modal body -->
                         <div class="modal-body">
 
+                            <!-- success alert -->
+                            <!-- <div id="modify-board-success" class="alert alert-success alert-dismissible fade" role="alert">
+                                <i class="bi bi-check2-all"></i>
+                                A simple success alert—check it out!
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div> success alert -->
+
                             <!-- collapsible accordion -->
-                            <div id="accordion">
+                            <div id="accordion" *ngIf="currentBoard != null">
 
                                 <!-- edit board name -->
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                            <button class="btn dropdown-toggle"
+                                                id="edit-board-name-btn"
+                                                data-bs-toggle="collapse" 
+                                                data-bs-target="#collapseOne"
+                                                (click)="modifyBoardToggleValidation('board name')">
                                                 Board Name
                                             </button>
                                         </h5>
@@ -112,11 +123,11 @@
                                             <div class="card">
                                                 <div class="card-body">
 
-                                                    <form>
+                                                    <form class="needs-validation">
                                                         <div class="form-group">
-                                                            <label for="newBoardName">New Board Name</label>
-                                                            <input type="text" class="form-control" id="newBoardName" placeholder="Enter new board name">
-                                                            <small id="nameHelp" class="form-text text-muted">This field cannot be left blank</small>
+                                                            <label for="new-board-name">New Board Name</label>
+                                                            <input type="text" class="form-control" id="new-board-name" placeholder="Enter new board name" (keyup)="modifyBoardToggleValidation('board name')">
+                                                            <small id="board-name-feedback" class="form-text text-muted">This field cannot be left blank</small>
                                                         </div>
                                                     </form>
 
@@ -125,10 +136,12 @@
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
                                                     <button type="button"
+                                                        (click)="modifyBoard(currentBoard, 'board name')"
                                                         class="btn btn-success"
+                                                        id="save-board-name"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapseOne">
-                                                        Save
+                                                        Update
                                                     </button>
                                                 </div> <!-- card footer -->
 
@@ -143,7 +156,10 @@
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                            <button class="btn dropdown-toggle collapsed"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseTwo"
+                                                (click)="modifyBoardToggleValidation('board description')">
                                                 Board Description
                                             </button>
                                         </h5>
@@ -161,9 +177,10 @@
 
                                                     <form>
                                                         <div class="form-group">
-                                                            <label for="boardDescription">Board Description</label>
+                                                            <label for="board-description">Board Description</label>
                                                             <textarea class="form-control"
-                                                                id="boardDescription"
+                                                                (keyup)="modifyBoardToggleValidation('board description')"
+                                                                id="board-description"
                                                                 rows="3"
                                                                 placeholder="Enter a description of your board"></textarea>
                                                         </div>
@@ -174,7 +191,9 @@
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
                                                     <button type="button"
+                                                        (click)="modifyBoard(currentBoard, 'board description')"
                                                         class="btn btn-success"
+                                                        id="save-board-description"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapseTwo">
                                                         Save
@@ -192,7 +211,10 @@
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                            <button class="btn dropdown-toggle collapsed"
+                                                (click)="modifyBoardToggleValidation('board template')"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapseThree">
                                                 Board Template
                                             </button>
                                         </h5>
@@ -200,7 +222,33 @@
 
                                     <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
-                                            Edit Board Template
+                                            <h5 class="card-title">
+                                                Edit Board Template
+                                            </h5>
+
+                                            <!-- card -->
+                                            <div class="card">
+
+                                                <!-- card body -->
+                                                <div class="card-body">
+
+                                                </div> <!-- card body -->
+
+                                                <!-- card footer -->
+                                                <div class="card-footer text-right">
+                                                    <!-- install -->
+                                                    <button type="button"
+                                                        (click)="modifyBoard(currentBoard, 'board template')" 
+                                                        class="btn btn-success" 
+                                                        id="install-board-template"
+                                                        data-bs-toggle="collapse" 
+                                                        data-bs-target="#collapseThree">
+                                                        Install
+                                                    </button>
+                                                </div> <!-- card footer -->
+
+                                            </div> <!-- card -->
+                                        
                                         </div> <!-- card body -->
                                     </div> <!-- collapse three -->
 
@@ -210,7 +258,10 @@
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                            <button class="btn dropdown-toggle collapsed"
+                                                (click)="modifyBoardToggleValidation('clear all')"
+                                                data-bs-toggle="collapse" 
+                                                data-bs-target="#collapseFour">
                                                 Clear Board Contents
                                             </button>
                                         </h5>
@@ -225,15 +276,15 @@
                                             <div class="card">
                                                 <div class="card-header">
 
-                                                    <ul class="nav nav-tabs card-header-tabs">
+                                                    <ul id="clear-board-tabs" class="nav nav-tabs card-header-tabs">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-bs-toggle="tab" href="#clearTasks">Tasks</a>
+                                                            <a class="nav-link active" data-bs-toggle="tab" href="#clearTasks" (click)="modifyBoardToggleValidation('clear all')">Tasks</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearLists">Lists</a>
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearLists" (click)="modifyBoardToggleValidation('clear all')">Lists</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearAll">Clear All</a>
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearAll" (click)="modifyBoardToggleValidation('clear all')">Clear All</a>
                                                         </li>
                                                     </ul> <!-- nav tabs -->
 
@@ -267,8 +318,10 @@
                                                 <!-- card footer -->
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
-                                                    <button type="button" 
+                                                    <button type="button"
+                                                        (click)="modifyBoard(currentBoard, 'clear all')"
                                                         class="btn btn-danger"
+                                                        id="delete-board-contents"
                                                         data-bs-toggle="collapse"
                                                         data-bs-target="#collapseFour">
                                                         Delete
@@ -334,8 +387,7 @@
                                     *ngFor="let board of boards">
                                     
                                     <span class="board-name"
-                                        (click)="setCurrentBoard(board)"
-                                        (dblclick)="renameBoard(board)">
+                                        (click)="setCurrentBoard(board)">
                                         {{ board.name }}
                                     </span>
                                     
