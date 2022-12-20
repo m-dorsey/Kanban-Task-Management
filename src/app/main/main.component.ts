@@ -12,7 +12,7 @@ export class MainComponent implements OnInit {
   // variables
   boards: Board[] = [];
 
-  modelBoard: Board = new Board("Model", [
+  infoBoard: Board = new Board("Info", [
     new Column("Fun Facts", [
       "Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri",
       "The Four Corners is the only spot in the US where you can stand in four states at once: Utah, Colorado, Arizona and New Mexico.",
@@ -23,14 +23,17 @@ export class MainComponent implements OnInit {
       "Oblivion",
       "Putative",
       "Undulate"
-    ])
+    ]),
+    new Column("To Do", ["hi"])
   ]);
 
-  currentBoard: Board = this.modelBoard;
+  currentBoard: Board = this.infoBoard;
 
   /**
-   * model board
-   * - highlight as active
+   * modal
+   * - on load, create new board
+   *   or select existing
+   * - refactor: load last board clicked
    * 
    * boards
    * - rename
@@ -53,11 +56,10 @@ export class MainComponent implements OnInit {
   initBoards() {
 
     // show no columns if board not set
-    if (this.currentBoard == this.modelBoard) {
+    if (this.currentBoard == this.infoBoard) {
 
-      // sample board
-      console.log("MODEL BOARD SHOWING");
-      this.boards.push(this.modelBoard);
+      // info board
+      this.boards.push(this.infoBoard);
 
 
     } else {

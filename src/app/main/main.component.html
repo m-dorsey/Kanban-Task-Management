@@ -77,39 +77,35 @@
                 <div class="row flex-nowrap">
 
                     <!-- side bar navigation -->
-                    <div class="col-auto px-0">
-                        <div id="sidebar" class="collapse collapse-horizontal border-end">
+                    <div class="col-auto px-0 menu">
+                        <div id="sidebar" class="show collapse collapse-horizontal border-end">
                             <div class="boards-header text-nowrap">
                                 Boards <i class=" close-sidebar bi bi-x"
                                             data-bs-target="#sidebar"
                                             data-bs-toggle="collapse"></i>
                             </div>
-                            <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
-                                <a href="#" 
-                                    class="list-group-item border-end-0 d-inline-block text-truncate" 
-                                    data-bs-parent="#sidebar"
-                                    *ngFor="let board of boards">
-                                    <span class="board-name" (click)="setCurrentBoard(board)">{{ board.name }}</span>
-                                    <span class="delete-board-icon" (click)="deleteBoard(board)">
-                                        <i class="bi bi-trash3"></i>
-                                    </span>
-                                </a>
-                                <p class="add-new-board border-end-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
-                                <!-- <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">Item</a> -->
-                            </div>
-                        </div>
-                    </div> <!-- side bar navigation -->
+                                <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
+                                    <a href="#" 
+                                        class="list-group-item border-end-0 d-inline-block text-truncate" 
+                                        data-bs-parent="#sidebar"
+                                        *ngFor="let board of boards">
+                                        <span class="board-name" (click)="setCurrentBoard(board)">{{ board.name }}</span>
+                                        <span class="delete-board-icon" (click)="deleteBoard(board)">
+                                            <i class="bi bi-trash3"></i>
+                                        </span>
+                                    </a>
+                                    <p class="add-new-board border-end-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
+                                    
+                                </div>
+                        </div> <!-- sidebar -->
+                    </div> <!-- side bar navigation col -->
 
                     <!-- main content -->
                     <div class="col ps-md-2">
 
                         <!-- top navigation -->
                         <nav class="navbar navbar-light bg-light">
-                            <a class="navbar-brand" 
+                            <a class="navbar-brand"
                                 href="#" 
                                 data-bs-target="#sidebar" 
                                 data-bs-toggle="collapse">

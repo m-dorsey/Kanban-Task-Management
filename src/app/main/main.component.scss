@@ -166,11 +166,12 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 
 }
 
+.menu {
 
-#sidebar-nav {
     background: white;
-    width: 250px;
-    height: 100%;
+    height: 100vh;
+    overflow-y: auto;
+
 }
 
 .boards-header {
@@ -209,13 +210,16 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
 .root {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 90vh;
+    overflow-x: auto;
 }
 
 .board {
 
     // scrollable bar off screen
-    height: 40rem;
+    // min-height: 0vh;
+    // height: 0;
+    // height: 30rem; //40 rem
 
     display: flex;
     flex-direction: column;
@@ -239,19 +243,21 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     .board-wrapper {
         display: flex;
         flex-grow: 1;
-        overflow-x: auto;
+        // overflow-x: auto;
 
         .board-columns {
             display: flex;
             flex-grow: 1;
-            height: fit-content;
-            // max-width: 300px;
+            // height: fit-content;
+            max-width: 300px;
 
             .board-column {
                 display: flex;
                 flex-direction: column;
                 flex-grow: 1;
                 flex-basis: 0;
+
+                height: fit-content;
                 
 
                 min-width: 300px;
