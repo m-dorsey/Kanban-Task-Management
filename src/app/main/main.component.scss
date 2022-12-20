@@ -144,8 +144,36 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     cursor: pointer;
 }
 
-.null-current-board-card {
-    background: rgba(white, 0.75);
+
+
+/** MODALS **/
+
+.null-current-board-container {
+    // background: rgba(white, 0.75);
+    background: rgba(26, 30, 35, 0.2);
+    width: 70%;
+
+    .null-current-board-card {
+        background: white;
+        width: 70%;
+        height: fit-content;
+    }
+
+    .img-container {
+        position: relative;
+
+        .card-overlay-text {
+            position: absolute;
+            bottom: 8px;
+            left: 16px;
+            font-weight: bold;
+            font-size: 36px;
+            color: white;
+            text-shadow: 2px 2px 2.5px #fee41d;
+        }
+
+    } 
+
 }
 
 
@@ -191,7 +219,7 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
     font-variant: small-caps;
 
     padding-left: 20px;
-    background-color: #d9d9d9;
+    background-color: #e9e9e9;
 
 }
 

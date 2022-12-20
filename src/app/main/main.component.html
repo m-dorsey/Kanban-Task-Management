@@ -78,19 +78,21 @@
 
                     <!-- side bar navigation -->
                     <div class="col-auto px-0 menu">
-                        <div id="sidebar" class="show collapse collapse-horizontal border-end">
-                            <!-- MENU HEADER -->
+                        <div id="sidebar" class="collapse collapse-horizontal border-end">
+                            
+                            <!-- menu header -->
                             <div class="menu-header text-nowrap">
                                 Menu <i class=" close-sidebar bi bi-x"
                                             data-bs-target="#sidebar"
                                             data-bs-toggle="collapse"></i>
                             </div>
                             
+                            <!-- sidebar nav -->
                             <div id="sidebar-nav" class="list-group border-0 rounded-0 text-sm-start min-vh-100">
                                 
-                                <!-- BOARDS SUBHEADER -->
+                                <!-- boards subheader -->
                                 <div class="menu-subheader">Boards</div>
-                                <!-- BOARDS -->
+                                <!-- boards -->
                                 <a href="#" 
                                     class="list-group-item border-end-0 d-inline-block text-truncate" 
                                     data-bs-parent="#sidebar"
@@ -104,22 +106,22 @@
                                 
                                 
 
-                                <!-- SETTINGS SUBHEADER -->
+                                <!-- settings subheader -->
                                 <div class="menu-subheader" style="margin-top: -15px; border-top:1px solid #d9d9d9">Settings</div>
-                                <!-- SETTINGS -->
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                <!-- settings -->
+                                <div href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <span class="board-name">About</span>                                   
-                                </a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                </div>
+                                <div href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <span class="board-name">Information</span>
-                                </a>
-                                <a href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                </div>
+                                <div href="#" class="list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <span class="board-name">Activity</span>
-                                </a>
+                                </div>
                                 
-                            </div>
-                        </div> <!-- sidebar -->
-                    </div> <!-- side bar navigation col -->
+                            </div> <!-- sidebar nav -->
+                        </div> <!-- sidebar js -->
+                    </div> <!-- sidebar navigation col -->
 
                     <!-- main content -->
                     <div class="col ps-md-2">
@@ -154,10 +156,53 @@
 
                                 <div class="board-wrapper">
 
-                                    <!-- if null current board -->
-                                    <!-- <div class="container d-flex justify-content-center" *ngIf="currentBoard == null">
+                                    <!-- (MODAL) if null current board -->
+                                    <div class="container null-current-board-container d-flex align-items-center justify-content-center" *ngIf="currentBoard == null">
+                                        <div class="card null-current-board-card">
+                                            <!-- card header -->
+                                            <div class="card-header">
+                                                <i class="bi bi-kanban"></i> <strong> Kanban</strong>
+                                            </div>
+                                            <!-- image and overlay text -->
+                                            <div class="img-container">
+                                                <img class="card-img-top" src="../assets/idea-lightbulb.jpg" alt="Lightbulb with paperclips and crumbled sticky notes surrounding it - Image by Freepik">
+                                                <div class="card-overlay-text">
+                                                    Hello!
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    Select a board to continue
+                                                </h5>
+                                                <p class="card-text">
+                                                    Currently, there is no board selected to display.
+                                                    <span *ngIf="this.boards.length == 0"> Add a new board to your collection to continue.</span>
+                                                    <span *ngIf="this.boards.length != 0"> Add a new board or select an existing one from your collection to continue.</span>
+                                                </p>
+                                                <div class="text-center">
 
-                                        <div class="card null-current-board-card w-50 h-75 mt-5">
+                                                    <a href="#"
+                                                        class="btn btn-light"
+                                                        data-bs-target="#sidebar" 
+                                                        data-bs-toggle="collapse"
+                                                        (click)="addNewBoard()">
+                                                        Add New Board
+                                                    </a>
+                                                    <span style="padding: 5px"></span>
+                                                    <a href="#"
+                                                        class="btn btn-light"
+                                                        data-bs-target="#sidebar" 
+                                                        data-bs-toggle="collapse"
+                                                        *ngIf="this.boards.length != 0">
+                                                        Select Existing Board
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="card null-current-board-card w-50 h-75 mt-5">
                                             <div class="card-header" style="font-weight: bold; font-size: 22px;">Notice</div>
                                             <div class="card-body">
                                                 <h5 class="card-title text-center" style="font-variant: small-caps; font-size: 30px;">
@@ -176,12 +221,12 @@
                                                 </div>
                                                 
                                             </div>
-                                        </div> card
+                                        </div> card -->
 
-                                    </div> null current board -->
+                                    </div> <!-- null current board -->
                                     
                                     <!-- *ngFor="let board of boards" -->
-                                    <div class="board-columns">
+                                    <div class="board-columns" *ngIf="currentBoard != null">
 
                                             <div class="board-column" *ngFor="let column of currentBoard.columns">
 

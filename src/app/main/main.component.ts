@@ -11,23 +11,24 @@ export class MainComponent implements OnInit {
 
   // variables
   boards: Board[] = [];
+  currentBoard?: Board;
 
-  infoBoard: Board = new Board("Info", [
-    new Column("Fun Facts", [
-      "Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri",
-      "The Four Corners is the only spot in the US where you can stand in four states at once: Utah, Colorado, Arizona and New Mexico.",
-      "Bats are the only mammal that can actually fly.",
-      "Flamingoes are only pink because of chemicals called carotenoids in the algae and fish (which also eat the algae) they eat.",
-    ]),
-    new Column("Words of the Day", [
-      "Oblivion",
-      "Putative",
-      "Undulate"
-    ]),
-    new Column("To Do", ["hi"])
-  ]);
+  // infoBoard: Board = new Board("Info", [
+  //   new Column("Fun Facts", [
+  //     "Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri",
+  //     "The Four Corners is the only spot in the US where you can stand in four states at once: Utah, Colorado, Arizona and New Mexico.",
+  //     "Bats are the only mammal that can actually fly.",
+  //     "Flamingoes are only pink because of chemicals called carotenoids in the algae and fish (which also eat the algae) they eat.",
+  //   ]),
+  //   new Column("Words of the Day", [
+  //     "Oblivion",
+  //     "Putative",
+  //     "Undulate"
+  //   ]),
+  //   new Column("To Do", ["hi"])
+  // ]);
 
-  currentBoard: Board = this.infoBoard;
+  // currentBoard: Board = this.infoBoard;
 
   /**
    * modal
@@ -56,16 +57,16 @@ export class MainComponent implements OnInit {
   initBoards() {
 
     // show no columns if board not set
-    if (this.currentBoard == this.infoBoard) {
+    // if (this.currentBoard == this.infoBoard) {
 
-      // info board
-      this.boards.push(this.infoBoard);
+    //   // info board
+    //   this.boards.push(this.infoBoard);
 
 
-    } else {
-      console.log("SET BOARD", this.currentBoard);
+    // } else {
+    //   console.log("SET BOARD", this.currentBoard);
 
-    }
+    // }
 
 
   }
@@ -96,7 +97,7 @@ export class MainComponent implements OnInit {
     }
 
     // highlight list item as active
-    var index = this.boards.indexOf(board);
+    var index = this.boards.indexOf(board) + 1;
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));
 
@@ -104,8 +105,14 @@ export class MainComponent implements OnInit {
 
   deleteBoard(board: Board) {
     console.log("delete", board);
+
     var index = (this.boards.indexOf(board));
     (this.boards.splice(index, 1));
+
+    if (board == this.currentBoard) {
+      this.currentBoard = undefined;
+    }
+
   }
 
   
