@@ -516,7 +516,8 @@
                                                         <div class="col-auto">
                                                             
                                                             <div class="column-actions d-flex justify-content-center"
-                                                                data-bs-toggle="dropdown">
+                                                                data-bs-toggle="dropdown"
+                                                                (click)="setCurrentColumn(currentBoard, column)">
                                                                 <i class="bi bi-three-dots"></i>
                                                             </div> <!-- ellipses icon -->
                                                             
@@ -533,8 +534,7 @@
                                                                 data-target="#renameColumnModal" -->
                                                                 <a class="dropdown-item column-action-item"
                                                                     data-bs-toggle="modal"
-                                                                    data-bs-target="#renameColumnModal"
-                                                                    (click)="setCurrentColumn(currentBoard, column)">
+                                                                    data-bs-target="#renameColumnModal">
                                                                     Rename
                                                                 </a>
                                                                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
@@ -553,7 +553,8 @@
                                                 <!-- tasks container -->
                                                 <div class="tasks-container">
                                                     <div class="task" *ngFor="let item of column.tasks">
-                                                        {{ item }}
+                                                        {{ item.name }}
+                                                        <span><i class="bi bi-trash3"></i></span>
                                                     </div>
                                                     <div class="task-creator" (click)="addTask(currentBoard, column)">
                                                         Add Task

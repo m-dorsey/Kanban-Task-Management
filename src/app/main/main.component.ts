@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from '../models/board.model';
 import { Column } from '../models/column.model';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-main',
@@ -56,8 +57,8 @@ export class MainComponent implements OnInit {
 
     var b = new Board("New Board", [
       new Column("New List", [
-        "Task 1",
-        "Task 2"
+        new Task("Task 1"),
+        new Task("Task 2")
       ])
     ]);
     this.boards.push(b);
@@ -81,8 +82,8 @@ export class MainComponent implements OnInit {
     console.log("Add new board");
     var b = new Board("New Board", [
       new Column ("New List", [
-        "Task 1",
-        "Task 2"
+        new Task("Task 1"),
+        new Task("Task 2")
       ])
     ]);
     this.boards.push(b);
@@ -226,13 +227,15 @@ export class MainComponent implements OnInit {
   }
 
   addTask(board: Board, column: Column) {
-    column.tasks.push("New Task");
+    column.tasks.push(
+      new Task("New Task")
+      );
   }
 
-  // renameColumn(board: Board, column: Column) {  
-  //   console.log(board, column);
-  //   this.currentColumn = column;
-  // }
+  deleteTask(board: Board, column: Column, task: Task) {
+
+  }
+
 
   setCurrentColumn(board: Board, column:Column) {
     this.currentColumn = column;
@@ -273,26 +276,6 @@ export class MainComponent implements OnInit {
     }
 
   }
-
-  // renameColumnModalValidation(flag: boolean = false) {
-  //   var elem = <HTMLInputElement>(document.getElementById('rename-column'));
-    
-  //   if (!flag) {
-  //     var saveBtnDisable = <HTMLElement> (document.getElementById('rename-column-save'));
-      
-  //     if (elem.value == "") {
-  //       saveBtnDisable.classList.add('disabled');
-  //     } else {
-  //       saveBtnDisable.classList.remove('disabled');
-  //     }
-
-  //   } else {
-
-  //     console.log(elem.value);
-  //     elem.value = "";
-  //   }
-
-  // }
 
   addColumn(board: Board) {
     board.columns.push(
