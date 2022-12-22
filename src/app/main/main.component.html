@@ -24,7 +24,9 @@
                                 Modify {{currentBoard.name}}
                             </h5>
                             <!-- x button -->
-                            <button type="button" class="close" data-bs-dismiss="modal"></button>
+                            <button type="button" class="close"data-bs-dismiss="modal">
+                                <span><i class="bi bi-x"></i></span>
+                            </button>
                         </div> <!-- modal header -->
 
                         <!-- modal body -->
@@ -297,6 +299,42 @@
                 </div> <!-- modal dialog -->
             </div> <!-- edit board modal -->
 
+            
+
+            <!-- rename column modal -->
+            <div class="modal fade" id="renameColumnModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <!-- modal header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title">Rename Column</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal">
+                                <span><i class="bi bi-x"></i></span>
+                            </button>
+                        </div> <!-- modal header -->
+
+                        <!-- modal body -->
+                        <div class="modal-body" (keyup)="renameColumn()">
+                            <form>
+                                <div class="form-group">
+                                    <label>Enter Column Name</label>
+                                    <input type="text" class="form-control" id="rename-column" placeholder="New List">
+                                    <small id="rename-column-feedback" class="form-text text-muted">This field cannot be blank</small>
+                                </div>
+                            </form>
+                        </div> <!-- modal body -->
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="rename-column-close" data-bs-dismiss="modal" (click)="renameColumn('close')">Close</button>
+                            <button type="button" class="btn btn-success disabled" id="rename-column-save" data-bs-dismiss="modal" (click)="renameColumn('save')">Save</button>
+                        </div> <!-- modal footer -->
+
+                    </div> <!-- modal content -->
+                </div> <!-- modal dialog -->
+            </div> <!-- rename column modal -->
+
 
             
             <!-- body container -->
@@ -465,33 +503,20 @@
 
                                             <div class="board-column" *ngFor="let column of currentBoard.columns">
 
-                                                <!-- <div class="column-title" id="column-title">
-                                                    <span (click)="renameColumn(currentBoard, column)">{{ column.name }}</span>
-                                                    <span>
-                                                        <button type="button"
-                                                            class="btn column-actions"
-                                                            data-toggle="dropdown">
-                                                            <i class="bi bi-three-dots"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            ...
-                                                        </div>
-                                                    </span>
-                                                </div> column title -->
-
                                                 <!-- column title -->
                                                 <div class="container-fluid">
                                                     <div class="row">
 
                                                         <!-- column name -->
-                                                        <div class="col column-title">
+                                                        <div class="col column-title"
+                                                            id="column-title">
                                                             {{column.name}}
                                                         </div> <!-- column name -->
                                                         <!-- column actions -->
                                                         <div class="col-auto">
                                                             
                                                             <div class="column-actions d-flex justify-content-center"
-                                                                data-toggle="dropdown">
+                                                                data-bs-toggle="dropdown">
                                                                 <i class="bi bi-three-dots"></i>
                                                             </div> <!-- ellipses icon -->
                                                             
@@ -503,8 +528,16 @@
                                                                     (click)="addTask(currentBoard, column)">
                                                                     Add Task
                                                                 </a>
-                                                                <!-- <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a> -->
+                                                                <!-- (click)="renameColumn(currentBoard, column)"
+                                                                data-toggle="modal"
+                                                                data-target="#renameColumnModal" -->
+                                                                <a class="dropdown-item column-action-item"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#renameColumnModal"
+                                                                    (click)="setCurrentColumn(currentBoard, column)">
+                                                                    Rename
+                                                                </a>
+                                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item column-action-item"
                                                                     (click)="deleteColumn(currentBoard, column)">

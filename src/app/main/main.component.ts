@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
   // variables
   boards: Board[] = [];
   currentBoard?: Board;
+  currentColumn?: Column;
 
   // infoBoard: Board = new Board("Info", [
   //   new Column("Fun Facts", [
@@ -228,9 +229,70 @@ export class MainComponent implements OnInit {
     column.tasks.push("New Task");
   }
 
-  renameColumn(board: Board, column: Column) {
-    console.log(board, column, column.name);
+  // renameColumn(board: Board, column: Column) {  
+  //   console.log(board, column);
+  //   this.currentColumn = column;
+  // }
+
+  setCurrentColumn(board: Board, column:Column) {
+    this.currentColumn = column;
   }
+
+  renameColumn(event?: string) {
+
+    var input = <HTMLInputElement> (document.getElementById('rename-column'));
+    var saveBtn = <HTMLElement> (document.getElementById('rename-column-save'));
+
+    switch(event) {
+
+      case "close":
+          input.value = "";
+        break;
+
+      case "save":
+
+          if (this.currentColumn != null) {
+            this.currentColumn.name = input.value;
+            
+          }
+          input.value = "";
+
+        break;
+
+      default:
+
+        if (input.value == "") {
+          saveBtn.classList.add('disabled');
+        } else {
+          saveBtn.classList.remove('disabled');
+        }
+
+
+        break;
+
+    }
+
+  }
+
+  // renameColumnModalValidation(flag: boolean = false) {
+  //   var elem = <HTMLInputElement>(document.getElementById('rename-column'));
+    
+  //   if (!flag) {
+  //     var saveBtnDisable = <HTMLElement> (document.getElementById('rename-column-save'));
+      
+  //     if (elem.value == "") {
+  //       saveBtnDisable.classList.add('disabled');
+  //     } else {
+  //       saveBtnDisable.classList.remove('disabled');
+  //     }
+
+  //   } else {
+
+  //     console.log(elem.value);
+  //     elem.value = "";
+  //   }
+
+  // }
 
   addColumn(board: Board) {
     board.columns.push(
