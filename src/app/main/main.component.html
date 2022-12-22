@@ -553,8 +553,8 @@
                                                 <!-- tasks container -->
                                                 <div class="tasks-container">
                                                     <div class="task" *ngFor="let item of column.tasks">
-                                                        {{ item.name }}
-                                                        <span><i class="bi bi-trash3"></i></span>
+                                                        <span class="task-name">{{ item.name }}</span>
+                                                        <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, item)"></i></span>
                                                     </div>
                                                     <div class="task-creator" (click)="addTask(currentBoard, column)">
                                                         Add Task

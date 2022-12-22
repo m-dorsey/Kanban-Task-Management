@@ -233,7 +233,8 @@ export class MainComponent implements OnInit {
   }
 
   deleteTask(board: Board, column: Column, task: Task) {
-
+    var index = (column.tasks.indexOf(task));
+    column.tasks.splice(index, 1);
   }
 
 
