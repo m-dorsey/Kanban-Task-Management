@@ -465,9 +465,44 @@
 
                                             <div class="board-column" *ngFor="let column of currentBoard.columns">
 
-                                                <div class="column-title" id="column-title" (click)="renameColumn(currentBoard, column)">
-                                                    {{ column.name }}
-                                                </div> <!-- column title -->
+                                                <!-- <div class="column-title" id="column-title">
+                                                    <span (click)="renameColumn(currentBoard, column)">{{ column.name }}</span>
+                                                    <span>
+                                                        <button type="button"
+                                                            class="btn column-actions"
+                                                            data-toggle="dropdown">
+                                                            <i class="bi bi-three-dots"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            ...
+                                                        </div>
+                                                    </span>
+                                                </div> column title -->
+
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col column-title">
+                                                            {{column.name}}
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="column-actions d-flex justify-content-center"
+                                                                data-toggle="dropdown">
+                                                                <i class="bi bi-three-dots"></i>
+                                                            </div>
+                                                            <div class="dropdown-menu">
+                                                                <h6 class="dropdown-header">List Actions</h6>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="#">Add Task</a>
+                                                                <!-- <a class="dropdown-item" href="#">Another action</a>
+                                                                <a class="dropdown-item" href="#">Something else here</a> -->
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="#">Delete List</a>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
 
                                                 <div class="tasks-container">
                                                     <div class="task" *ngFor="let item of column.tasks">

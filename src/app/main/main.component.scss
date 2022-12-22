@@ -259,11 +259,31 @@ body {
                 }
 
                 .column-title {
+                    display: flex;
                     font-size: 20px;
                     font-weight: 800;
                     font-family: 'Lato', sans-serif;
                     text-transform: uppercase;
                     margin-bottom: 20px;
+                    // background: red;
+                }
+
+                .column-title:hover {
+                    cursor: pointer;
+                }
+
+                .column-actions {
+                    color: rgba(0, 0, 0, 0.5);
+                    font-size: 20px;                   
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 4px;
+                    
+                }
+
+                .column-actions:hover {
+                    background: rgba(white, 0.3);
+                    cursor: pointer;
                 }
 
                 &:last-child{
@@ -284,6 +304,8 @@ body {
     }
 
 }
+
+
 
 
 
