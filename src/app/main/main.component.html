@@ -479,31 +479,45 @@
                                                     </span>
                                                 </div> column title -->
 
+                                                <!-- column title -->
                                                 <div class="container-fluid">
                                                     <div class="row">
+
+                                                        <!-- column name -->
                                                         <div class="col column-title">
                                                             {{column.name}}
-                                                        </div>
+                                                        </div> <!-- column name -->
+                                                        <!-- column actions -->
                                                         <div class="col-auto">
+                                                            
                                                             <div class="column-actions d-flex justify-content-center"
                                                                 data-toggle="dropdown">
                                                                 <i class="bi bi-three-dots"></i>
-                                                            </div>
+                                                            </div> <!-- ellipses icon -->
+                                                            
+                                                            <!-- column actions dropdown -->
                                                             <div class="dropdown-menu">
                                                                 <h6 class="dropdown-header">List Actions</h6>
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Add Task</a>
+                                                                <a class="dropdown-item column-action-item"
+                                                                    (click)="addTask(currentBoard, column)">
+                                                                    Add Task
+                                                                </a>
                                                                 <!-- <a class="dropdown-item" href="#">Another action</a>
                                                                 <a class="dropdown-item" href="#">Something else here</a> -->
                                                                 <div class="dropdown-divider"></div>
-                                                                <a class="dropdown-item" href="#">Delete List</a>
-                                                            </div>
+                                                                <a class="dropdown-item column-action-item"
+                                                                    (click)="deleteColumn(currentBoard, column)">
+                                                                    Delete List
+                                                                </a>
+                                                            </div> <!-- column actions dropdown -->
                                                             
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
+                                                        </div> <!-- column actions -->
 
+                                                    </div> <!-- row -->
+                                                </div> <!-- column title -->
+
+                                                <!-- tasks container -->
                                                 <div class="tasks-container">
                                                     <div class="task" *ngFor="let item of column.tasks">
                                                         {{ item }}

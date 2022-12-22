@@ -286,6 +286,15 @@ body {
                     cursor: pointer;
                 }
 
+                .column-action-item:hover {
+                    background: #e6e6e6;
+                    cursor: pointer;
+                }
+
+                .column-action-item:active {
+                    background: grey;
+                }
+
                 &:last-child{
                     background: rgba(white, 0.15);
                     font-size: 20px;

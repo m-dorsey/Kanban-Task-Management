@@ -238,6 +238,11 @@ export class MainComponent implements OnInit {
     );
   }
 
+  deleteColumn(board: Board, column: Column) {
+    var index = (board.columns.indexOf(column));
+    board.columns.splice(index, 1);
+  }
+
   
 
 }
