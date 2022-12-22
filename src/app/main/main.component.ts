@@ -53,6 +53,14 @@ export class MainComponent implements OnInit {
 
   initBoards() {
 
+    var b = new Board("New Board", [
+      new Column("New List", [
+        "Task 1",
+        "Task 2"
+      ])
+    ]);
+    this.boards.push(b);
+
     // show no columns if board not set
     // if (this.currentBoard == this.infoBoard) {
 
@@ -214,6 +222,10 @@ export class MainComponent implements OnInit {
     for (let i = 0; i < elements.length; i++) {
       (elements[i].children[1].classList.remove('show'));
     }
+  }
+
+  addTask(board: Board, column: Column) {
+    column.tasks.push("New Task");
   }
 
   

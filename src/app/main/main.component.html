@@ -308,7 +308,7 @@
 
                     <!-- sidebar navigation col-->
                     <div class="col-auto px-0 menu">
-                        <div id="sidebar" class="collapse collapse-horizontal border-end">
+                        <div id="sidebar" class="show collapse collapse-horizontal border-end">
                             
                             <div class="menu-header text-nowrap">
                                 Menu <i class="close-sidebar-icon bi bi-x"
@@ -472,6 +472,10 @@
                                                 <div class="tasks-container">
                                                     <div class="task" *ngFor="let item of column.tasks">
                                                         {{ item }}
+                                                    </div>
+                                                    <div class="task-creator" (click)="addTask(currentBoard, column)">
+                                                        Add Task
+                                                        <span class="add-task-icon"><i class="bi bi-plus"></i></span>
                                                     </div>
                                                 </div> <!-- tasks container -->
 

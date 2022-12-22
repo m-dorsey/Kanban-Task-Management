@@ -85,6 +85,10 @@ body {
     cursor: pointer;
 }
 
+.add-task-icon {
+    font-size: 16px;
+}
+
 
 
 /** MODALS **/
@@ -245,7 +249,7 @@ body {
 
                 min-width: 300px;
                 margin: 50px;
-                padding: 25px;
+                padding: 15px;
 
                 border-radius: 4px;
                 background: rgba(white, 0.5);
@@ -277,6 +281,22 @@ body {
 .tasks-container {
     flex-grow: 1;
     overflow-y: auto;
+
+    .task-creator {
+        display: flex;
+        font-size: 16px;
+        // background: red;
+        border-radius: 4px;
+        padding: 7px 12px;
+        position: relative;
+        bottom: 0;
+    }
+
+    .task-creator:hover {
+        background: rgba(white, 0.3);
+        cursor: pointer;
+    }
+
 }
 
 .task {
@@ -289,4 +309,9 @@ body {
     margin-bottom: 15px;
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.05),
         0 3px 14px 2px rgba(0, 0, 0, 0.05);
+}
+
+.task:hover {
+    background: #e6e6e6;
+    cursor: pointer;
 }
