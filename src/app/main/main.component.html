@@ -465,7 +465,7 @@
 
                                             <div class="board-column" *ngFor="let column of currentBoard.columns">
 
-                                                <div class="column-title">
+                                                <div class="column-title" id="column-title" (click)="renameColumn(currentBoard, column)">
                                                     {{ column.name }}
                                                 </div> <!-- column title -->
 
@@ -480,6 +480,12 @@
                                                 </div> <!-- tasks container -->
 
                                             </div> <!-- board column -->
+
+                                            <div class="board-column" (click)="addColumn(currentBoard)">
+                                                <p>Add New List
+                                                <span class="add-task-icon"><i class="bi bi-plus"></i></span>
+                                                </p>
+                                            </div>
 
                                     </div> <!-- board columns -->
                                 

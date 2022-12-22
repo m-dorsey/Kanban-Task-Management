@@ -228,6 +228,16 @@ export class MainComponent implements OnInit {
     column.tasks.push("New Task");
   }
 
+  renameColumn(board: Board, column: Column) {
+    console.log(board, column, column.name);
+  }
+
+  addColumn(board: Board) {
+    board.columns.push(
+      new Column ('New List', [])
+    );
+  }
+
   
 
 }
