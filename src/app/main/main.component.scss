@@ -37,6 +37,8 @@ body {
 
 .list-group-item:hover {
 
+    cursor: pointer;
+
     .delete-board-icon, .rename-board-icon {
         visibility: visible;
     }
@@ -86,8 +88,24 @@ body {
     font-size: 16px;
 }
 
+.edit-task-title-icon {
+    font-size: 24px;
+    width: fit-content;
+}
+
 .delete-task-icon {
     visibility: hidden;
+}
+
+.edit-task-x-icon,
+.edit-task-description-icon,
+.edit-task-activity-icon {
+    font-size: 20px;
+}
+
+.edit-task-x-icon:hover {
+    color: grey;
+    cursor: pointer;
 }
 
 
@@ -124,6 +142,40 @@ body {
     } 
 
 }
+
+.edit-task-description,
+.edit-task-activity {
+    padding-left: 15px;
+
+    .edit-task-description-title,
+    .edit-task-activity-title {
+        font-weight: 500;
+        padding-bottom: 10px;
+    }
+
+    .edit-task-description-content {
+        padding-left: 25px;
+        padding-bottom: 25px;
+        min-width: 100%;
+
+        .edit-task-description-input {
+            background: rgba(white, 0.3);
+        }
+
+        .edit-task-description-input:hover {
+            background-color: rgba(#e6e6e6, 0.3);
+            cursor: pointer;
+        }
+
+    }
+
+    
+
+    
+
+}
+
+
 
 
 
@@ -369,3 +421,5 @@ body {
     }
 
 }
+
+

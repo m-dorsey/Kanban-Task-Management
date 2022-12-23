@@ -343,23 +343,91 @@
                     <div class="modal-content">
                         
                         <!-- modal header -->
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
+                        <div class="modal-header" *ngIf="currentTask != null">                      
+
+                            <h5 class="modal-title">
+                                <span><i class="bi bi-card-text"></i></span>
+                                <span> {{currentTask.name}}</span>
+                            </h5>
+                                                            
+                            <!-- x button -->
+                            <button type="button" class="close" data-bs-dismiss="modal">
+                                <i class="bi bi-x"></i>
                             </button>
+                            
                         </div> <!-- modal header -->
 
-                        <!-- modal body -->
-                        <div class="modal-body">
-                            ...
-                        </div> <!-- modal body-->
+                        <!-- modal body container -->
+                        <div class="container">                                    
+                            <div class="modal-body">
+
+                                <!-- row -->
+                                <div class="row">
+
+                                    <!-- left col -->
+                                    <div class="col-lg-8">
+
+                                        <!-- edit task description -->
+                                        <!-- style="background:green" -->
+                                        <div class="edit-task-description">
+                                            
+                                            <!-- title -->
+                                            <div class="edit-task-description-title">
+                                                <span><i class="edit-task-description-icon bi bi-justify-left"></i></span>
+                                                <span> Description</span>
+                                            </div> <!-- title -->
+
+                                            <!-- content text area -->
+                                            <div class="edit-task-description-content">
+                                                <div class="form-group">
+                                                    <textarea class="form-control edit-task-description-input" id="edit-task-description-input" placeholder="Add a description"></textarea>
+                                                </div>
+                                                <div class="text-right">
+                                                    <button type="button" class="btn btn-light">Cancel</button>
+                                                    <span>&nbsp;</span>
+                                                    <button type="button" class="btn btn-success">Save</button>
+                                                </div>
+                                            </div> <!-- content text area -->
+
+                                        </div> <!-- edit-task-description -->
+
+                                        <!-- edit task activity -->
+                                        <!-- <div class="edit-task-activity" style="background:teal">
+                                            
+                                            title
+                                            <div class="edit-task-activity-title">
+                                                <span><i class="edit-task-activity-icon bi bi-card-checklist"></i></span>
+                                                <span> Activity</span>
+                                            </div> title
+
+                                            input
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Write a comment">
+                                                <button type="button" class="btn btn-success">Save</button>
+                                            </div> input
+                                            
+                                        </div> edit task activity -->
+
+                                    </div> <!-- left col -->
+
+                                    <!-- right col-->
+                                    <!-- style="background:red" -->
+                                    <div class="col-lg-4">
+                                        <small>Add to Task</small>
+                                        <div class="list-group border-0 rounded-0 text-sm-start">
+                                            <a class="list-group-item">Labels</a>
+                                            <a class="list-group-item disabled">Checklist</a>
+                                            <a class="list-group-item disabled">Dates</a>
+                                        </div>
+                                    </div> <!-- right col -->
+
+                                </div> <!-- row -->
+
+                            </div> <!-- modal body -->
+                        </div> <!-- modal body container -->
 
                         <!-- modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Save changes</button>
-                        </div> <!-- modal footer -->
+                        <div class="modal-footer"></div>
 
                     </div> <!-- modal content -->
                 </div> <!--modal dialog -->
@@ -584,8 +652,8 @@
                                                 <div class="tasks-container">
                                                     <div class="task"
                                                         (click)="setCurrentTask(currentBoard, column, item)"
-                                                        data-toggle="modal"
-                                                        data-target="#editTaskModal"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editTaskModal"
                                                         *ngFor="let item of column.tasks">
                                                         <span class="task-name">{{ item.name }}</span>
                                                         <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, item)"></i></span>
