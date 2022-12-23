@@ -14,6 +14,7 @@ export class MainComponent implements OnInit {
   boards: Board[] = [];
   currentBoard?: Board;
   currentColumn?: Column;
+  currentTask?: Task;
 
   // infoBoard: Board = new Board("Info", [
   //   new Column("Fun Facts", [
@@ -36,8 +37,11 @@ export class MainComponent implements OnInit {
    * modal
    * - refactor: load last board clicked
    * 
-   * boards
-   * - modification impl
+   * features
+   * - edit tasks modal
+   * - universal styling
+   * - search feature
+   * - settings menu functionality (routes? modals?)
    * 
    * refactor
    * - local storage migration
@@ -287,6 +291,14 @@ export class MainComponent implements OnInit {
   deleteColumn(board: Board, column: Column) {
     var index = (board.columns.indexOf(column));
     board.columns.splice(index, 1);
+  }
+
+  setCurrentTask(board: Board, column: Column, task: Task) {
+    this.currentTask = task;
+  }
+
+  editTask() {
+
   }
 
   

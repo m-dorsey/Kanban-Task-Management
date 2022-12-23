@@ -336,6 +336,36 @@
             </div> <!-- rename column modal -->
 
 
+
+            <!-- edit task modal -->
+            <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        
+                        <!-- modal header -->
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div> <!-- modal header -->
+
+                        <!-- modal body -->
+                        <div class="modal-body">
+                            ...
+                        </div> <!-- modal body-->
+
+                        <!-- modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-success">Save changes</button>
+                        </div> <!-- modal footer -->
+
+                    </div> <!-- modal content -->
+                </div> <!--modal dialog -->
+            </div> <!-- edit task modal -->
+
+
             
             <!-- body container -->
             <div class="container-fluid">
@@ -552,7 +582,11 @@
 
                                                 <!-- tasks container -->
                                                 <div class="tasks-container">
-                                                    <div class="task" *ngFor="let item of column.tasks">
+                                                    <div class="task"
+                                                        (click)="setCurrentTask(currentBoard, column, item)"
+                                                        data-toggle="modal"
+                                                        data-target="#editTaskModal"
+                                                        *ngFor="let item of column.tasks">
                                                         <span class="task-name">{{ item.name }}</span>
                                                         <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, item)"></i></span>
                                                     </div>
