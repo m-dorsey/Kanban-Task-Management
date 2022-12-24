@@ -9,4 +9,11 @@ export class Task {
     setDescription(str: string) {
         this.description = str;
     }
+
+    hasDescription() {
+        if (this.description != "") {
+            return true;
+        }
+        return false;
+    }
 }

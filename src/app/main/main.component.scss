@@ -158,9 +158,14 @@ body {
             padding-bottom: 10px;
         }
 
+        .edit-task-description-clear:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
         .edit-task-description-content {
             padding-left: 25px;
-            padding-bottom: 25px;
+            padding-bottom: 15px;
             min-width: 100%;
 
             .edit-task-description-input {

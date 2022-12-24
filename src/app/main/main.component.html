@@ -378,6 +378,8 @@
                                             <div class="edit-task-description-title">
                                                 <span><i class="edit-task-description-icon bi bi-justify-left"></i></span>
                                                 <span> Description</span>
+                                                <span style="padding:5px"></span>
+                                                <small class="text-right edit-task-description-clear" id="edit-task-description-clear" (click)="editTask('clear')">clear</small>
                                             </div> <!-- title -->
 
                                             <!-- content text area -->
@@ -390,7 +392,7 @@
                                                         id="edit-task-description-input" 
                                                         placeholder="Add a description"
                                                         rows="3"
-                                                        (keyup)="editTask('description', $event.key)"
+                                                        (keyup)="editTask('description')"
                                                         *ngIf="currentTask.description == '' "></textarea>
                                                    
                                                     <!-- keyup.Enter="console.log('enter')"
@@ -399,10 +401,11 @@
                                                         id="edit-task-description-input"
                                                         placeholder="Add a description" 
                                                         rows="3"
-                                                        (keyup)="editTask('description', $event.key)"
+                                                        (keyup)="editTask('description')"
                                                         *ngIf="currentTask.description != '' ">{{currentTask.description}}</textarea>
-
+                                                   
                                                 </div>
+                                                
                                                 <div class="text-right">
                                                     <button type="button" id="edit-task-description-cancel" (click)="editTask('cancel')" class="btn btn-light">Cancel</button>
                                                     <span>&nbsp;</span>
@@ -440,7 +443,15 @@
                                             <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
                                             <div class="collapse" id="label-assignment">
                                                 <div class="card card-body label-assignment">
-                                                    ...
+                                                    <div class="form-group">
+
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                            <input class="form-control-sm">
+                                                            <small><a href='#'>change color</a></small>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                             <a class="list-group-item disabled">Checklist</a>
@@ -685,9 +696,15 @@
                                                         data-bs-target="#editTaskModal"
                                                         *ngFor="let item of column.tasks">
 
-                                                        <span class="task-name">{{ item.name }}</span>
+                                                        <span class="task-name">{{ item.name }}
+                                                            <div *ngIf="item.hasDescription()">
+                                                                <small><i class="bi bi-justify-left"></i></small>
+                                                            </div>
+                                                        </span>
+                                                        
                                                         <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, item)"></i></span>
-                                                    
+                                                        
+                                                        
                                                     </div>
 
                                                     <div class="task-creator" (click)="addTask(currentBoard, column)">

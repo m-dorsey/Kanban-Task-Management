@@ -297,7 +297,7 @@ export class MainComponent implements OnInit {
     this.currentTask = task;
   }
 
-  editTask(event: string, key?: string) {
+  editTask(event: string) {
 
     var txtArea = <HTMLElement>document.getElementById('edit-task-description-input');
     var elem = <HTMLInputElement> document.getElementById('edit-task-description-input');
@@ -306,9 +306,6 @@ export class MainComponent implements OnInit {
     switch (event) {
 
       case 'description':
-
-      console.log(key);
-
         
         if (elem.value != "") {
           saveBtn.classList.remove('disabled');
@@ -344,7 +341,17 @@ export class MainComponent implements OnInit {
         if (title.textContent?.trim() != "" && this.currentTask != null) {
           this.currentTask.name = <string>title.textContent?.trim();
         }
-        
+
+        break;
+
+      case 'clear':
+
+        elem.value = '';
+        if (this.currentTask != null ) {
+          this.currentTask.description = '';
+        }
+        saveBtn.classList.add('disabled');
+
         break;
 
     }
