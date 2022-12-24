@@ -159,11 +159,17 @@ body {
 
         .edit-task-description-input {
             background: rgba(white, 0.3);
+            resize: none;
         }
 
         .edit-task-description-input:hover {
             background-color: rgba(#e6e6e6, 0.3);
             cursor: pointer;
+        }
+
+        .edit-task-description-save:focus {
+            outline: none;
+            box-shadow: none;
         }
 
     }

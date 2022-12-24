@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
    * - refactor: load last board clicked
    * 
    * features
-   * - edit tasks modal
+   * - edit tasks modal impl
    * - universal styling
    * - search feature
    * - settings menu functionality (routes? modals?)
@@ -297,7 +297,47 @@ export class MainComponent implements OnInit {
     this.currentTask = task;
   }
 
-  editTask() {
+  editTask(event: string, key?: string) {
+
+    var txtArea = <HTMLElement>document.getElementById('edit-task-description-input');
+    var elem = <HTMLInputElement> document.getElementById('edit-task-description-input');
+    var saveBtn = <HTMLElement> document.getElementById('edit-task-description-save');
+
+    switch (event) {
+
+      case 'description':
+
+      console.log(key);
+
+        
+        if (elem.value != "") {
+          saveBtn.classList.remove('disabled');
+        } else {
+          saveBtn.classList.add('disabled');
+        }
+        break;
+
+      case 'cancel':
+
+        elem.value = <string> this.currentTask?.description;
+
+        break;
+
+      case 'save':
+        this.currentTask?.setDescription(elem.value);
+        console.log(this.currentTask);
+        break;
+
+      case 'resize':
+        console.log('enter');
+        // txtArea.style.cssText = 'height:' + txtArea.scrollHeight + 'px';
+        // console.log(txtArea.clientHeight);
+        // console.log(txtArea.scrollHeight);
+        
+
+        break;
+
+    }
 
   }
 
