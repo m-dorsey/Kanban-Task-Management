@@ -338,7 +338,7 @@
 
 
             <!-- edit task modal -->
-            <div class="modal fade" id="editTaskModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
+            <div class="modal fade edit-task-modal" id="editTaskModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         
@@ -347,11 +347,14 @@
 
                             <h5 class="modal-title">
                                 <span><i class="bi bi-card-text"></i></span>
-                                <span> {{currentTask.name}}</span>
+                                <span style="padding: 5px"></span>
+                                <span class="edit-task-title" id="edit-task-title" 
+                                    contenteditable="true">{{currentTask.name}}
+                                </span>
                             </h5>
                                                             
                             <!-- x button -->
-                            <button type="button" class="close" data-bs-dismiss="modal">
+                            <button type="button" class="close" (click)="editTask('name')" data-bs-dismiss="modal">
                                 <i class="bi bi-x"></i>
                             </button>
                             
@@ -432,11 +435,18 @@
                                     <!-- style="background:red" -->
                                     <div class="col-lg-4">
                                         <small>Add to Task</small>
+
                                         <div class="list-group border-0 rounded-0 text-sm-start">
-                                            <a class="list-group-item">Labels</a>
+                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
+                                            <div class="collapse" id="label-assignment">
+                                                <div class="card card-body label-assignment">
+                                                    ...
+                                                </div>
+                                            </div>
                                             <a class="list-group-item disabled">Checklist</a>
                                             <a class="list-group-item disabled">Dates</a>
                                         </div>
+                                        
                                     </div> <!-- right col -->
 
                                 </div> <!-- row -->
@@ -689,9 +699,9 @@
 
                                             </div> <!-- board column -->
 
-                                            <div class="board-column" (click)="addColumn(currentBoard)">
+                                            <div class="d-flex board-column add-new-list pb-5" (click)="addColumn(currentBoard)">
                                                 <p>Add New List
-                                                <span class="add-task-icon"><i class="bi bi-plus"></i></span>
+                                                    <span class="add-task-icon"><i class="bi bi-plus"></i></span>
                                                 </p>
                                             </div>
 

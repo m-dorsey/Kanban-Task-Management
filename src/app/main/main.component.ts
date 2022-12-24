@@ -337,6 +337,16 @@ export class MainComponent implements OnInit {
 
         break;
 
+      case "name":
+        
+        var title = <HTMLElement> document.getElementById('edit-task-title');
+
+        if (title.textContent?.trim() != "" && this.currentTask != null) {
+          this.currentTask.name = <string>title.textContent?.trim();
+        }
+        
+        break;
+
     }
 
   }

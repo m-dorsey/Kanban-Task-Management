@@ -143,45 +143,54 @@ body {
 
 }
 
-.edit-task-description,
-.edit-task-activity {
+.edit-task-modal {
 
-    .edit-task-description-title,
-    .edit-task-activity-title {
-        font-weight: 500;
-        padding-bottom: 10px;
+    .edit-task-title {
+        width: 25vw;
     }
 
-    .edit-task-description-content {
-        padding-left: 25px;
-        padding-bottom: 25px;
-        min-width: 100%;
+    .edit-task-description,
+    .edit-task-activity {
 
-        .edit-task-description-input {
-            background: rgba(white, 0.3);
-            resize: none;
+        .edit-task-description-title,
+        .edit-task-activity-title {
+            font-weight: 500;
+            padding-bottom: 10px;
         }
 
-        .edit-task-description-input:hover {
-            background-color: rgba(#e6e6e6, 0.3);
-            cursor: pointer;
-        }
+        .edit-task-description-content {
+            padding-left: 25px;
+            padding-bottom: 25px;
+            min-width: 100%;
 
-        .edit-task-description-save:focus {
-            outline: none;
-            box-shadow: none;
+            .edit-task-description-input {
+                background: rgba(white, 0.3);
+                resize: none;
+            }
+
+            .edit-task-description-input:hover {
+                background-color: rgba(#e6e6e6, 0.3);
+                cursor: pointer;
+            }
+
+            .edit-task-description-save:focus {
+                outline: none;
+                box-shadow: none;
+            }
+
         }
+        
 
     }
 
-    
+    .label-assignment {
+        border-radius: 0;
+        border: 0.5px solid #d9d9d9;
+        border-bottom: 0;
+    }
 
-    
 
 }
-
-
-
 
 
 /** NAVBAR **/
@@ -294,7 +303,6 @@ body {
         .board-columns {
             display: flex;
             flex-grow: 1;
-            // height: fit-content;
             max-width: 300px;
 
             .board-column {
@@ -312,6 +320,8 @@ body {
 
                 border-radius: 4px;
                 background: rgba(white, 0.5);
+
+                
 
                 &:not(:first-child) {
                     margin-left: 0;
