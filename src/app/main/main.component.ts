@@ -41,12 +41,12 @@ export class MainComponent implements OnInit {
    * - refactor: load last board clicked
    * 
    * features
-   * - edit tasks modal impl
    * - universal styling
    * - search feature
-   * - settings menu functionality (routes? modals?)
+   * - settings menu activity
    * 
    * refactor
+   * - separation of concerns
    * - local storage migration
    * - animated background
    */
@@ -468,6 +468,10 @@ export class MainComponent implements OnInit {
     var completed = checklist.getNumCompleted();
     var total = checklist.items.length;
     var progress = <HTMLElement> document.getElementById(`checklist-${index}-progress`);
+
+    if (total == 0) {
+      return;
+    }
 
     if (completed == total) {
       // console.log('100%');
