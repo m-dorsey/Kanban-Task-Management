@@ -428,6 +428,38 @@
 
                                         </div> <!-- edit-task-description -->
 
+                                        <!-- edit task checklist -->
+                                        <div class="edit-task-checklist">
+
+                                            <!-- title -->
+                                            <div class="edit-task-checklist-title">
+                                                <span><i class="edit-task-checklist-icon bi bi-list-check"></i></span>
+                                                <span> Checklist</span>
+                                                <span style="padding:5px"></span>
+                                                <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete">clear</small>
+                                            </div> <!-- title -->
+
+                                            <div class="edit-task-checklist-progress">
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progress-bar"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group edit-task-checklist-items">
+                                                <div class="form-check">
+                                                    <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-item">
+                                                    <p class="form-check-label">Checklist Item</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group edit-task-checklist-new">
+                                                <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-item-input" placeholder="New Item">
+                                                <button type="button" class="disabled btn btn-sm btn-success checklist-item-save">Add</button>
+                                            </div>
+
+                                            
+                                        </div>
+
                                         <!-- edit task activity -->
                                         <!-- <div class="edit-task-activity" style="background:teal">
                                             
@@ -747,8 +779,11 @@
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editTaskModal"
                                                         *ngFor="let item of column.tasks">
-
-                                                        <span class="task-name">{{ item.name }}
+                                                        
+                                                        <span class="task-name">
+                                                            <small *ngIf="item.labels.length == 1"><i class="bi bi-tag"></i></small>
+                                                            <small *ngIf="item.labels.length > 1"><i class="bi bi-tags"></i></small>
+                                                            {{ item.name }}
                                                             <div *ngIf="item.hasDescription()">
                                                                 <small><i class="bi bi-justify-left"></i></small>
                                                             </div>
