@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from '../models/board.model';
 import { Column } from '../models/column.model';
 import { Task } from '../models/task.model';
+import { Label } from '../models/label.model';
 
 @Component({
   selector: 'app-main',
@@ -80,6 +81,13 @@ export class MainComponent implements OnInit {
     // }
 
 
+  }
+
+  adjustSidebar() {
+    var sidebarCol = <HTMLElement> (document.getElementById('sidebar-col'));
+    var sidebar = <HTMLElement> document.getElementById('sidebar');
+    console.log(sidebarCol.classList);
+    console.log(sidebar.classList);
   }
 
   addNewBoard() {
@@ -371,6 +379,23 @@ export class MainComponent implements OnInit {
 
     }
 
+  }
+
+  addLabel(task: Task) {
+    var input = <HTMLInputElement> document.getElementById('label-input');
+    
+    if (input.value.trim() != "") {
+      task.addLabel(input.value);
+      // console.log(task);
+    }
+
+    input.value = '';
+
+  }
+
+  deleteLabel(task: Task, label: Label) {
+    var index = (task.labels.indexOf(label));
+    task.labels.splice(index, 1);
   }
 
   

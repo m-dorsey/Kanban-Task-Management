@@ -456,15 +456,19 @@
                                             <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
                                             <div class="collapse" id="label-assignment">
                                                 <div class="card card-body label-assignment">
-                                                    <div class="form-group">
+                                                    <form class="form-inline" onsubmit="return false">
+                                                        <div class="form-group" *ngIf="currentTask != null">
 
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                                            <input class="form-control-sm">
-                                                            <small><a href='#'>change color</a></small>
+                                                            <!-- <div class="form-check"> -->
+                                                                <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
+                                                            <input type="text" class="form-control form-control-sm" id="label-input" placeholder="Add Label" (keyup.Enter)="addLabel(currentTask)">
+                                                            <span style="padding:5px"></span>
+                                                            <span (click)="addLabel(currentTask)"><i class="add-label-icon bi bi-check2-circle"></i></span>
+                                                                <!-- <small><a href='#'>change color</a></small> -->
+                                                            <!-- </div> -->
+
                                                         </div>
-
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <a class="list-group-item disabled">Checklist</a>
@@ -479,8 +483,15 @@
                         </div> <!-- modal body container -->
 
                         <!-- modal footer -->
-                        <div class="modal-footer"></div>
-
+                        <div class="modal-footer container justify-content-start" *ngIf="currentTask != null">
+                            <span class="badge badge-pill badge-secondary label"
+                                *ngFor="let label of currentTask.labels">
+                                {{label.name}}
+                                <span class="delete-label-icon" id="delete-label" (click)="deleteLabel(currentTask, label)"><i class="bi bi-x"></i></span>
+                            </span>
+                        </div>
+                        
+                        
                     </div> <!-- modal content -->
                 </div> <!--modal dialog -->
             </div> <!-- edit task modal -->
@@ -495,7 +506,7 @@
                     
 
                     <!-- sidebar navigation col-->
-                    <div class="col-4 px-0 menu">
+                    <div class="col-auto px-0 menu" id="sidebar-col">
                         <div id="sidebar" class="show collapse collapse-horizontal border-end">
                             
                             <div class="menu-header text-nowrap">
@@ -598,7 +609,8 @@
                             <a class="navbar-brand"
                                 href="#" 
                                 data-bs-target="#sidebar" 
-                                data-bs-toggle="collapse">
+                                data-bs-toggle="collapse"
+                                (click)="adjustSidebar()">
                                 <i class="bi bi-kanban"></i> Kanban
                             </a> <!-- navbar logo/icon -->
                             
