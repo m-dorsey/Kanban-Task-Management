@@ -495,7 +495,7 @@
                     
 
                     <!-- sidebar navigation col-->
-                    <div class="col-auto px-0 menu">
+                    <div class="col-4 px-0 menu">
                         <div id="sidebar" class="show collapse collapse-horizontal border-end">
                             
                             <div class="menu-header text-nowrap">
@@ -544,7 +544,7 @@
 
                                 <!-- settings subheader -->
                                 <div class="menu-subheader" style="margin-top: -15px; border-top:1px solid #d9d9d9">Settings</div>
-                                <!-- settings -->
+                                <!-- about -->
                                 <div class="about list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#about">About</a>
                                     <div class="collapse" id="about">
@@ -561,11 +561,25 @@
                                         </div>
                                     </div>                                   
                                 </div>
-                                <div href="#" class="disabled list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
-                                    <span class="board-name">Notifications</span>
+                                <!-- notifications -->
+                                <div class="notifications list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                    <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#notifications">Notifications</a>
+                                    <div class="collapse" id="notifications">
+                                        <div class="card card-body notifications">
+                                            <small>Notifications</small>
+                                            <p class="text-wrap">There are no notifications to display</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div href="#" class="disabled list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
-                                    <span class="board-name">Activity</span>
+                                <!-- activity -->
+                                <div class="activity list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                    <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#activity">Activity</a>
+                                    <div class="collapse" id="activity">
+                                        <div class="card card-body activity">
+                                            <small>Activity</small>
+                                            <p class="text-wrap">No activity</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                             </div> <!-- sidebar nav -->
@@ -588,10 +602,10 @@
                                 <i class="bi bi-kanban"></i> Kanban
                             </a> <!-- navbar logo/icon -->
                             
-                            <form class="form-inline">
+                            <!-- <form class="form-inline">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form> <!-- search bar -->
+                            </form> search bar -->
                             
                         </nav> <!-- top navigation -->
                         

@@ -202,7 +202,9 @@ body {
     cursor: pointer;
 }
 
-.about {
+.about,
+.notifications,
+.activity {
     border-radius: 0;
     border: 0.5px solid #d9d9d9;
     border-bottom: 0;
