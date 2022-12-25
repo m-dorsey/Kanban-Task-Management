@@ -429,32 +429,40 @@
                                         </div> <!-- edit-task-description -->
 
                                         <!-- edit task checklist -->
-                                        <div class="edit-task-checklist">
+                                        <div class="edit-task-checklist" *ngIf="currentTask != null">
 
-                                            <!-- title -->
-                                            <div class="edit-task-checklist-title">
-                                                <span><i class="edit-task-checklist-icon bi bi-list-check"></i></span>
-                                                <span> Checklist</span>
-                                                <span style="padding:5px"></span>
-                                                <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete">clear</small>
-                                            </div> <!-- title -->
+                                            <div class="pb-3" *ngFor="let checklist of currentTask.checklists">
+                                                <!-- title -->
+                                                <div class="edit-task-checklist-title">
+                                                    <span><i class="edit-task-checklist-icon bi bi-list-check"></i></span>
+                                                    <span> {{checklist.name}}</span>
+                                                    <span style="padding:5px"></span>
+                                                    <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete" (click)="deleteChecklist(currentTask, checklist)">delete</small>
+                                                </div> <!-- title -->
 
-                                            <div class="edit-task-checklist-progress">
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progress-bar"></div>
+                                                <div class="edit-task-checklist-progress">
+                                                    <div class="progress">
+                                                        <div class="progress-bar" id="checklist-progress" style="width:0%"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="form-group edit-task-checklist-items">
-                                                <div class="form-check">
-                                                    <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-item">
-                                                    <p class="form-check-label">Checklist Item</p>
+                                                <div class="form-group edit-task-checklist-items" *ngFor="let item of checklist.items">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-item" (click)="item.toggleComplete(); updateProgressBar(currentTask, checklist)">
+                                                        <p class="form-check-label" *ngIf="!item.isComplete">
+                                                            {{item.name}}
+                                                            <!-- <span><i class="text-right bi bi-trash3"></i></span> -->
+                                                        </p>
+                                                        <p class="form-check-label" *ngIf="item.isComplete">
+                                                            <s>{{item.name}}</s>
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="form-group edit-task-checklist-new">
-                                                <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-item-input" placeholder="New Item">
-                                                <button type="button" class="disabled btn btn-sm btn-success checklist-item-save">Add</button>
+                                                
+                                                <div class="form-group edit-task-checklist-new mt-2">
+                                                    <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-item-input" placeholder="New Item" (keydown)="validateChecklistInput()" (keyup.Enter)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">
+                                                    <button type="button" id="checklist-item-save" class="disabled btn btn-sm btn-success checklist-item-save" (click)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">Add</button>
+                                                </div>
                                             </div>
 
                                             
@@ -503,8 +511,41 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <a class="list-group-item disabled">Checklist</a>
-                                            <a class="list-group-item disabled">Dates</a>
+                                        
+                                        <div class="list-group border-0 rounded-0 text-sm-start">
+                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#checklist-assignment">Checklist</a>
+                                            <div class="collapse" id="checklist-assignment">
+                                                <div class="card card-body checklist-assignment">
+                                                    <small>Title</small>
+                                                    <form class="form-inline" onsubmit="return false">
+                                                        <div class="form-group" *ngIf="currentTask != null">
+                                                    
+                                                            <!-- <div class="form-check"> -->
+                                                            <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
+                                                            
+                                                            <input type="text" class="form-control form-control-sm" id="checklist-title-input" placeholder="Checklist"
+                                                                (keyup.Enter)="addChecklist(currentTask)">
+                                                            <span style="padding:5px"></span>
+                                                            <span (click)="addChecklist(currentTask)"><i class="add-checklist-icon bi bi-check2-circle"></i></span>
+                                                            <!-- <small><a href='#'>change color</a></small> -->
+                                                            <!-- </div> -->
+                                                    
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="list-group border-0 rounded-0 text-sm-start">
+                                            <a class="list-group-item disabled" data-bs-toggle="collapse" data-bs-target="#date-assignment">Dates</a>
+                                            <!-- <div class="collapse" id="date-assignment">
+                                                <div class="card card-body date-assignment">
+                                                    ...
+                                                </div>
+                                            </div> -->
+                                        </div>
+
                                         </div>
                                         
                                     </div> <!-- right col -->

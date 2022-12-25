@@ -3,6 +3,8 @@ import { Board } from '../models/board.model';
 import { Column } from '../models/column.model';
 import { Task } from '../models/task.model';
 import { Label } from '../models/label.model';
+import { Checklist } from '../models/checklist.model';
+import { ChecklistItem } from '../models/checklistItem.model';
 
 @Component({
   selector: 'app-main',
@@ -66,6 +68,17 @@ export class MainComponent implements OnInit {
         new Task("Task 2")
       ])
     ]);
+
+    b.columns[0].tasks[0].checklists = [
+      new Checklist('Checklist')
+    ];
+
+    b.columns[0].tasks[0].checklists[0].items = [
+      new ChecklistItem('Item 1'),
+      new ChecklistItem('Item 2'),
+      new ChecklistItem('Item 3')
+    ];
+    
     this.boards.push(b);
 
     // show no columns if board not set
@@ -94,10 +107,12 @@ export class MainComponent implements OnInit {
     console.log("Add new board");
     var b = new Board("New Board", [
       new Column ("New List", [
-        new Task("Task 1"),
+        new Task("Task 1",),
         new Task("Task 2")
       ])
     ]);
+
+    
     this.boards.push(b);
 
   }
@@ -385,7 +400,7 @@ export class MainComponent implements OnInit {
     var input = <HTMLInputElement> document.getElementById('label-input');
     
     if (input.value.trim() != "") {
-      task.addLabel(input.value);
+      task.addLabel(input.value.trim());
       // console.log(task);
     }
 
@@ -398,6 +413,64 @@ export class MainComponent implements OnInit {
     task.labels.splice(index, 1);
   }
 
+  addChecklist(task: Task) {
+    var input = <HTMLInputElement>document.getElementById('checklist-title-input');
+    if (input.value.trim() != "") {
+      task.addChecklist(input.value.trim());
+      // console.log(input.value);
+      console.log(task);
+    }
+
+    input.value = '';
+  }
+
+  deleteChecklist(task: Task, checklist: Checklist) {
+    var index = (task.checklists.indexOf(checklist));
+    task.checklists.splice(index, 1);
+  }
+
+  validateChecklistInput() {
+    var input = <HTMLInputElement> document.getElementById('checklist-item-input');
+    var saveBtn = <HTMLElement> document.getElementById('checklist-item-save');
+
+    if (input.value.trim() != '') {
+      saveBtn.classList.remove('disabled');
+    } else {
+      saveBtn.classList.add('disabled');
+    }
+
+  }
+
+  addChecklistItem(task: Task, checklist: Checklist) {
+    var input = <HTMLInputElement> document.getElementById('checklist-item-input');
+    // console.log(input.value);
+    checklist.addItem(input.value);
+    console.log(task);
+    input.value = '';
+
+    this.validateChecklistInput();
+  }
+
+  updateProgressBar(task: Task, checklist: Checklist) {
+    
+    var completed = checklist.getNumCompleted();
+    var total = checklist.items.length;
+    var progress = <HTMLElement> document.getElementById('checklist-progress');
+
+    if (completed == total) {
+      // console.log('100%');
+      progress.style.width = '100%';
+      setTimeout(() => {
+        progress.classList.add('bg-success');
+      }, 500);
+    } else {
+      progress.classList.remove('bg-success');
+      // console.log(completed, total);
+      var perc = ( ((completed / total)*100).toFixed(3) + "%" );
+      // console.log(perc);
+      progress.style.width = perc;
+    }
+  }
   
 
 }
