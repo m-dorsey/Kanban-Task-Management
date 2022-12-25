@@ -24,7 +24,7 @@
                                 Modify {{currentBoard.name}}
                             </h5>
                             <!-- x button -->
-                            <button type="button" class="close"data-bs-dismiss="modal">
+                            <button type="button" class="close" data-bs-dismiss="modal" (click)="closeModifyBoardModal()">
                                 <span><i class="bi bi-x"></i></span>
                             </button>
                         </div> <!-- modal header -->
@@ -121,12 +121,25 @@
                                                     <form>
                                                         <div class="form-group">
                                                             <label for="board-description">Board Description</label>
+                                                            <span style="padding:5px"></span>
+                                                            <small class="text-right board-description-clear" id="board-description-clear"
+                                                                (click)="modifyBoardToggleValidation('clear board description')">clear</small>
+                                                            
                                                             <textarea class="form-control"
                                                                 (keyup)="modifyBoardToggleValidation('board description')"
                                                                 id="board-description"
                                                                 rows="3"
-                                                                placeholder="Enter a description of your board"></textarea>
-                                                        </div>
+                                                                placeholder="Enter a description of your board"
+                                                                *ngIf="!currentBoard.hasDescription()"></textarea>
+                                                            
+                                                            <textarea class="form-control" 
+                                                                (keyup)="modifyBoardToggleValidation('board description')" 
+                                                                id="board-description"
+                                                                rows="3" 
+                                                                placeholder="Enter a description of your board"
+                                                                *ngIf="currentBoard.hasDescription()">{{currentBoard.description}}</textarea>
+                                                        
+                                                            </div>
                                                     </form>
 
                                                 </div> <!-- card body -->
@@ -532,8 +545,21 @@
                                 <!-- settings subheader -->
                                 <div class="menu-subheader" style="margin-top: -15px; border-top:1px solid #d9d9d9">Settings</div>
                                 <!-- settings -->
-                                <div href="#" class="disabled list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
-                                    <span class="board-name">About</span>                                   
+                                <div class="about list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                    <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#about">About</a>
+                                    <div class="collapse" id="about">
+                                        <div class="card card-body about" *ngIf="currentBoard == null">
+                                            <small>Board Description</small>
+                                            <p class="text-wrap">Select a board to see its description</p>
+                                        </div>
+                                        <div class="card card-body about" *ngIf="currentBoard != null">
+                                            <small>Board Description</small>
+                                            <p class="text-wrap" *ngIf="currentBoard.hasDescription()">{{currentBoard.description}}</p>
+                                            <div *ngIf="!currentBoard.hasDescription()">
+                                                <p class="text-wrap">Modify this board to add a description</p>
+                                            </div>
+                                        </div>
+                                    </div>                                   
                                 </div>
                                 <div href="#" class="disabled list-group-item border-end-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <span class="board-name">Notifications</span>

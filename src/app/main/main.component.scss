@@ -197,6 +197,17 @@ body {
 
 }
 
+.board-description-clear:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.about {
+    border-radius: 0;
+    border: 0.5px solid #d9d9d9;
+    border-bottom: 0;
+}
+
 
 /** NAVBAR **/
 

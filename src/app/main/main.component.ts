@@ -107,8 +107,9 @@ export class MainComponent implements OnInit {
     } else if (mod == "board description") {
 
       var desc = <HTMLInputElement> (document.getElementById('board-description'));
-      console.log(desc.value);
-      desc.value = "";
+      // console.log(desc.value);
+      this.currentBoard?.setDescription(desc.value);
+      // desc.value = "";
 
     } else if (mod == "clear all") {
       
@@ -161,6 +162,20 @@ export class MainComponent implements OnInit {
           saveBtnDisable.classList.remove('disabled');
         }
 
+        break;
+
+      case "clear board description":
+
+        var desc = <HTMLInputElement>document.getElementById('board-description');
+        var saveBtnDisable = <HTMLElement>document.getElementById("save-board-description");
+        
+        desc.value = "";
+        if (this.currentBoard != null) {
+          this.currentBoard.description = "";
+          saveBtnDisable.classList.add('disabled');
+        }
+        console.log("clear board desc", this.currentBoard);
+        
         break;
 
       case "board template":
