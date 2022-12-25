@@ -457,6 +457,11 @@ export class MainComponent implements OnInit {
 
   }
 
+  deleteChecklistItem(task: Task, checklist: Checklist, item: ChecklistItem) {
+    var index = checklist.items.indexOf(item);
+    checklist.items.splice(index, 1);
+  }
+
   updateProgressBar(task: Task, checklist: Checklist) {
     
     var index = task.checklists.indexOf(checklist);

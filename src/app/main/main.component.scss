@@ -72,7 +72,8 @@ button:focus {
 
 .delete-board-icon:hover, 
 .delete-task-icon:hover,
-.close-sidebar-icon:hover {
+.close-sidebar-icon:hover,
+.delete-checklist-item-icon:hover {
     color: red;
     cursor: pointer;
 }
@@ -230,6 +231,15 @@ button:focus {
 
     .checklist-item-input {
         padding-bottom: 5px;
+    }
+
+    .checklist-item-name {
+        width: 90%;
+    }
+
+    .delete-checklist-item {
+        position: absolute;
+        right: 0px;
     }
 
     .checklist-checkbox:focus,

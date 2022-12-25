@@ -450,12 +450,13 @@
                                                     <div class="form-check">
                                                         <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-{{currentTask.checklists.indexOf(checklist)}}-item" (click)="item.toggleComplete(); updateProgressBar(currentTask, checklist); updateChecklists(currentTask)">
                                                         <!-- <span style="display: none" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">{{item.name}}</span> -->
-                                                        <p class="form-check-label" contenteditable="true" *ngIf="!item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
+                                                        <p class="d-flex form-check-label checklist-item-name" contenteditable="true" *ngIf="!item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
                                                             {{item.name}}
-                                                            <!-- <span><i class="text-right bi bi-trash3"></i></span> -->
+                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="deleteChecklistItem(currentTask, checklist, item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
                                                         </p>
-                                                        <p class="form-check-label" contenteditable="true" *ngIf="item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
+                                                        <p class="d-flex form-check-label checklist-item-name" contenteditable="true" *ngIf="item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
                                                             <s>{{item.name}}</s>
+                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="deleteChecklistItem(currentTask, checklist, item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
                                                         </p>
                                                     </div>
                                                     
