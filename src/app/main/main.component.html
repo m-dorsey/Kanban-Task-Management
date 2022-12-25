@@ -442,7 +442,7 @@
 
                                                 <div class="edit-task-checklist-progress">
                                                     <div class="progress">
-                                                        <div class="progress-bar" id="checklist-progress" style="width:0%"></div>
+                                                        <div class="progress-bar" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-progress" style="width:0%"></div>
                                                     </div>
                                                 </div>
 
@@ -457,11 +457,12 @@
                                                             <s>{{item.name}}</s>
                                                         </p>
                                                     </div>
+                                                    
                                                 </div>
                                                 
-                                                <div class="form-group edit-task-checklist-new mt-2">
-                                                    <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-item-input" placeholder="New Item" (keydown)="validateChecklistInput()" (keyup.Enter)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">
-                                                    <button type="button" id="checklist-item-save" class="disabled btn btn-sm btn-success checklist-item-save" (click)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">Add</button>
+                                                <div class="form-group edit-task-checklist-new mt-2" id="edit-task-checklist-new">
+                                                    <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-input" placeholder="New Item" (keyup.Enter)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">
+                                                    <button type="button" id="checklist-item-save" class="btn btn-sm btn-success checklist-item-save" (click)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">Add</button>
                                                 </div>
                                             </div>
 
@@ -816,21 +817,29 @@
                                                 <div class="tasks-container">
 
                                                     <div class="task"
-                                                        (click)="setCurrentTask(currentBoard, column, item)"
+                                                        (click)="setCurrentTask(currentBoard, column, task)"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editTaskModal"
-                                                        *ngFor="let item of column.tasks">
+                                                        *ngFor="let task of column.tasks">
                                                         
                                                         <span class="task-name">
-                                                            <small *ngIf="item.labels.length == 1"><i class="bi bi-tag"></i></small>
-                                                            <small *ngIf="item.labels.length > 1"><i class="bi bi-tags"></i></small>
-                                                            {{ item.name }}
-                                                            <div *ngIf="item.hasDescription()">
-                                                                <small><i class="bi bi-justify-left"></i></small>
+                                                            <small *ngIf="task.labels.length == 1"><i class="bi bi-tag"></i></small>
+                                                            <small *ngIf="task.labels.length > 1"><i class="bi bi-tags"></i></small>
+                                                            {{ task.name }}
+                                                            <div class="d-flex justify-content-start align-items-center">
+                                                                <div *ngIf="task.hasDescription()">
+                                                                    <small><i class="bi bi-justify-left"></i></small>
+                                                                </div>
+                                                                <span style="padding: 4px" *ngIf="task.hasDescription() && task.checklists.length > 0"></span>
+                                                                <div *ngIf="task.checklists.length > 0" style="font-size: 13px">
+                                                                    <span><i class="bi bi-check2-square"></i></span>
+                                                                    <span> {{task.getChecklistStatus().complete}}/{{task.getChecklistStatus().total}}</span>
+                                                                </div>
                                                             </div>
+                                                            
                                                         </span>
                                                         
-                                                        <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, item)"></i></span>
+                                                        <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, task)"></i></span>
                                                         
                                                         
                                                     </div>

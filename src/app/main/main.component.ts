@@ -69,6 +69,8 @@ export class MainComponent implements OnInit {
       ])
     ]);
 
+    b.setDescription("hi");
+
     b.columns[0].tasks[0].checklists = [
       new Checklist('Checklist')
     ];
@@ -333,6 +335,7 @@ export class MainComponent implements OnInit {
 
   setCurrentTask(board: Board, column: Column, task: Task) {
     this.currentTask = task;
+    console.log(task.getChecklistStatus());
   }
 
   editTask(event: string) {
@@ -429,33 +432,37 @@ export class MainComponent implements OnInit {
     task.checklists.splice(index, 1);
   }
 
-  validateChecklistInput() {
-    var input = <HTMLInputElement> document.getElementById('checklist-item-input');
-    var saveBtn = <HTMLElement> document.getElementById('checklist-item-save');
+  // validateChecklistInput() {
+  //   var input = <HTMLInputElement> document.getElementById('checklist-item-input');
+  //   var saveBtn = <HTMLElement> document.getElementById('checklist-item-save');
 
-    if (input.value.trim() != '') {
-      saveBtn.classList.remove('disabled');
-    } else {
-      saveBtn.classList.add('disabled');
-    }
+  //   if (input.value.trim() != '') {
+  //     saveBtn.classList.remove('disabled');
+  //   } else {
+  //     saveBtn.classList.add('disabled');
+  //   }
 
-  }
+  // }
 
   addChecklistItem(task: Task, checklist: Checklist) {
-    var input = <HTMLInputElement> document.getElementById('checklist-item-input');
-    // console.log(input.value);
-    checklist.addItem(input.value);
-    console.log(task);
+
+    var index = task.checklists.indexOf(checklist);
+    var input = <HTMLInputElement> document.getElementById(`checklist-${index}-item-input`);
+    // console.log(input);
+    if (input.value != '') {
+      checklist.addItem(input.value);
+      console.log(task);
+    }
     input.value = '';
 
-    this.validateChecklistInput();
   }
 
   updateProgressBar(task: Task, checklist: Checklist) {
     
+    var index = task.checklists.indexOf(checklist);
     var completed = checklist.getNumCompleted();
     var total = checklist.items.length;
-    var progress = <HTMLElement> document.getElementById('checklist-progress');
+    var progress = <HTMLElement> document.getElementById(`checklist-${index}-progress`);
 
     if (completed == total) {
       // console.log('100%');
@@ -463,13 +470,16 @@ export class MainComponent implements OnInit {
       setTimeout(() => {
         progress.classList.add('bg-success');
       }, 500);
+
     } else {
+
       progress.classList.remove('bg-success');
       // console.log(completed, total);
       var perc = ( ((completed / total)*100).toFixed(3) + "%" );
       // console.log(perc);
       progress.style.width = perc;
     }
+
   }
   
 
