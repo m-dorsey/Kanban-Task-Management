@@ -448,7 +448,7 @@
 
                                                 <div class="form-group edit-task-checklist-items" *ngFor="let item of checklist.items">
                                                     <div class="form-check">
-                                                        <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-{{currentTask.checklists.indexOf(checklist)}}-item" (click)="item.toggleComplete(); updateProgressBar(currentTask, checklist)">
+                                                        <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-{{currentTask.checklists.indexOf(checklist)}}-item" (click)="item.toggleComplete(); updateProgressBar(currentTask, checklist); updateChecklists(currentTask)">
                                                         <!-- <span style="display: none" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">{{item.name}}</span> -->
                                                         <p class="form-check-label" contenteditable="true" *ngIf="!item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
                                                             {{item.name}}
