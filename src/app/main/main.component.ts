@@ -451,7 +451,7 @@ export class MainComponent implements OnInit {
     // console.log(input);
     if (input.value != '') {
       checklist.addItem(input.value);
-      console.log(task);
+      // console.log(task);
     }
     input.value = '';
 
@@ -478,6 +478,28 @@ export class MainComponent implements OnInit {
       var perc = ( ((completed / total)*100).toFixed(3) + "%" );
       // console.log(perc);
       progress.style.width = perc;
+    }
+
+  }
+
+  updateChecklists(task: Task) {
+
+    for (let i = 0; i < task.checklists.length; i++) {
+      // console.log("checklist", i);
+      var checklistId = (`edit-task-checklist-${i}-title`);
+      var checklist = <HTMLElement> document.getElementById(checklistId);
+      // console.log( `\tname: ${checklist.textContent}`);
+      (task.checklists[i].name) = <string> checklist.textContent;
+
+      for (let j = 0; j < task.checklists[i].items.length; j++) {
+        // console.log("item", j);
+        var itemId = (`checklist-${i}-item-${j}-name`);
+        var item = <HTMLElement> document.getElementById(itemId);
+        // console.log(`\tname: ${item.textContent}`);
+        (task.checklists[i].items[j].name = <string> item.textContent);
+
+      }
+
     }
 
   }
