@@ -367,7 +367,7 @@
                             </h5>
                                                             
                             <!-- x button -->
-                            <button type="button" class="close" (click)="editTask('name'); updateChecklists(currentTask)" data-bs-dismiss="modal">
+                            <button type="button" class="close" (click)="editTask('name'); updateChecklists(currentTask); toggleTaskActions('all')" data-bs-dismiss="modal">
                                 <i class="bi bi-x"></i>
                             </button>
                             
@@ -513,78 +513,84 @@
                                     <!-- style="background:red" -->
                                     <div class="col-lg-4">
                                         <small>Add to Task</small>
+                                        <!-- accordian -->
+                                        <div id="accordian">
 
-                                        <div class="list-group border-0 rounded-0 text-sm-start">
-                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
-                                            <div class="collapse" id="label-assignment">
-                                                <div class="card card-body label-assignment">
-                                                    <form class="form-inline" onsubmit="return false">
-                                                        <div class="form-group" *ngIf="currentTask != null">
-
-                                                            <!-- <div class="form-check"> -->
-                                                                <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
-                                                            <input type="text" class="form-control form-control-sm" id="label-input" placeholder="Add Label" (keyup.Enter)="addLabel(currentTask)">
-                                                            <span style="padding:5px"></span>
-                                                            <span (click)="addLabel(currentTask)"><i class="add-label-icon bi bi-check2-circle"></i></span>
-                                                                <!-- <small><a href='#'>change color</a></small> -->
-                                                            <!-- </div> -->
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        
-                                        <div class="list-group border-0 rounded-0 text-sm-start">
-                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#checklist-assignment">Checklist</a>
-                                            <div class="collapse" id="checklist-assignment">
-                                                <div class="card card-body checklist-assignment">
-                                                    <small>Title</small>
-                                                    <form class="form-inline" onsubmit="return false">
-                                                        <div class="form-group" *ngIf="currentTask != null">
-                                                    
-                                                            <!-- <div class="form-check"> -->
-                                                            <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
-                                                            
-                                                            <input type="text" class="form-control form-control-sm" id="checklist-title-input" placeholder="Checklist"
-                                                                (keyup.Enter)="addChecklist(currentTask)">
-                                                            <span style="padding:5px"></span>
-                                                            <span (click)="addChecklist(currentTask)"><i class="add-checklist-icon bi bi-check2-circle"></i></span>
-                                                            <!-- <small><a href='#'>change color</a></small> -->
-                                                            <!-- </div> -->
-                                                    
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="list-group border-0 rounded-0 text-sm-start" *ngIf="currentTask != null">
-                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#date-assignment" (click)="setDateInput(currentTask)">Date</a>
-                                            <div class="collapse" id="date-assignment">
-                                                <div class="card card-body border date-assignment">
-
-                                                    <small>Due Date</small>
-                                                    <div class="form-group">
+                                            <!-- label -->
+                                            <div class="list-group border-0 rounded-0 text-sm-start" (click)="toggleTaskActions('label')">
+                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
+                                                <div class="collapse" id="label-assignment">
+                                                    <div class="card card-body label-assignment">
                                                         <form class="form-inline" onsubmit="return false">
-                                                            <div class="form-group">
-                                                                <input class="mt-2 mb-2 form-control form-control-sm" type="date" id='task-date'>
-                                                                <input class="mt-2 mb-2 form-control form-control-sm" type="time" id='task-time'>
-                                                            </div> 
-                                                        </form>
-                                                        <form class="form-inline" onsubmit="return false">
-                                                            <button class="btn btn-sm btn-success" id="task-date-save" (click)="addTaskDate(currentTask)">Save</button>
-                                                            <span style="padding: 5px"></span>
-                                                            <button class="btn btn-sm btn-light" id="task-date-remove" (click)="removeTaskDate(currentTask)">Remove</button>
+                                                            <div class="form-group" *ngIf="currentTask != null">
+
+                                                                <!-- <div class="form-check"> -->
+                                                                    <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
+                                                                <input type="text" class="form-control form-control-sm" id="label-input" placeholder="Add Label" (keyup.Enter)="addLabel(currentTask)">
+                                                                <span style="padding:5px"></span>
+                                                                <span (click)="addLabel(currentTask)"><i class="add-label-icon bi bi-check2-circle"></i></span>
+                                                                    <!-- <small><a href='#'>change color</a></small> -->
+                                                                <!-- </div> -->
+
+                                                            </div>
                                                         </form>
                                                     </div>
-                                                    
-
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> <!-- label -->
+                                        
+                                            <!-- checklist -->
+                                            <div class="list-group border-0 rounded-0 text-sm-start" (click)="toggleTaskActions('checklist')">
+                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#checklist-assignment">Checklist</a>
+                                                <div class="collapse" id="checklist-assignment">
+                                                    <div class="card card-body checklist-assignment">
+                                                        <small>Title</small>
+                                                        <form class="form-inline" onsubmit="return false">
+                                                            <div class="form-group" *ngIf="currentTask != null">
+                                                        
+                                                                <!-- <div class="form-check"> -->
+                                                                <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
+                                                                
+                                                                <input type="text" class="form-control form-control-sm" id="checklist-title-input" placeholder="Checklist"
+                                                                    (keyup.Enter)="addChecklist(currentTask)">
+                                                                <span style="padding:5px"></span>
+                                                                <span (click)="addChecklist(currentTask)"><i class="add-checklist-icon bi bi-check2-circle"></i></span>
+                                                                <!-- <small><a href='#'>change color</a></small> -->
+                                                                <!-- </div> -->
+                                                        
+                                                            </div>
+                                                        </form>
 
-                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- checklist -->
+
+                                            <!-- date -->
+                                            <div class="list-group border-0 rounded-0 text-sm-start" *ngIf="currentTask != null" (click)="toggleTaskActions('date')">
+                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#date-assignment" (click)="setDateInput(currentTask)">Date</a>
+                                                <div class="collapse" id="date-assignment">
+                                                    <div class="card card-body border date-assignment">
+
+                                                        <small>Due Date</small>
+                                                        <form onsubmit="return false">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-12">
+                                                                    <input class="mt-2 mb-2 form-control form-control-sm" type="date" id='task-date'>
+                                                                    <input class="mt-2 form-control form-control-sm" type="time" id='task-time'>
+                                                                </div>
+                                                                <div class="form-group col-auto">
+                                                                    <button class="btn btn-sm btn-success" id="task-date-save" (click)="addTaskDate(currentTask)">Save</button>
+                                                                    <span style="padding: 5px"></span>
+                                                                    <button class="btn btn-sm btn-light" id="task-date-remove" (click)="removeTaskDate(currentTask)">Remove</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div> <!-- date -->
+
+                                        
+                                        </div> <!-- task action accordian -->
                                         
                                     </div> <!-- right col -->
 

@@ -401,6 +401,68 @@ export class MainComponent implements OnInit {
 
   }
 
+  toggleTaskActions(section: string) {
+
+    var label = <HTMLElement> document.getElementById('label-assignment');
+    var checklist = <HTMLElement> document.getElementById('checklist-assignment');
+    var date = <HTMLElement> document.getElementById('date-assignment');
+
+    switch(section) {
+
+      case "label":
+
+        checklist.classList.add('collapsing');
+        date.classList.add('collapsing');
+        checklist.classList.remove('show');
+        date.classList.remove('show');
+
+        setTimeout(() => {
+          checklist.classList.remove('collapsing');
+          date.classList.remove('collapsing');
+        }, 2500);
+
+        
+        
+        break;
+
+      case "checklist":
+
+        label.classList.add('collapsing');
+        date.classList.add('collapsing');
+        label.classList.remove('show');
+        date.classList.remove('show');
+
+        setTimeout(() => {
+          label.classList.remove('collapsing');
+          date.classList.remove('collapsing');
+        }, 2500);
+
+        break;
+
+      case "date":
+
+        label.classList.add('collapsing');
+        checklist.classList.add('collapsing');
+        label.classList.remove('show');
+        checklist.classList.remove('show');
+
+        setTimeout(() => {
+          label.classList.remove('collapsing');
+          checklist.classList.remove('collapsing');
+        }, 3500);
+
+        break;
+
+        default:
+          label.classList.remove('show');
+          checklist.classList.remove('show');
+          date.classList.remove('show');
+          break;
+
+    }
+
+  }
+
   addLabel(task: Task) {
     var input = <HTMLInputElement> document.getElementById('label-input');
     
