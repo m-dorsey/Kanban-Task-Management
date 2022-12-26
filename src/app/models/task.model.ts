@@ -41,10 +41,20 @@ export class Task {
         );
     }
 
+    deleteLabel(label: Label) {
+        var index = (this.labels.indexOf(label));
+        this.labels.splice(index, 1);
+    }
+
     addChecklist(str: string) {
         this.checklists.push(
             new Checklist(str)
         );
+    }
+
+    deleteChecklist(checklist: Checklist) {
+        var index = (this.checklists.indexOf(checklist));
+        this.checklists.splice(index, 1);
     }
 
     getChecklistStatus() {
@@ -219,11 +229,13 @@ export class Task {
     }
 
     completeTask() {
-        this.isComplete = true;
-    }
 
-    incompleteTask() {
-        this.isComplete = false;
+        if (!this.isComplete) {
+            this.isComplete = true;
+        } else {
+            this.isComplete = false;
+        }
+        
     }
 
 }

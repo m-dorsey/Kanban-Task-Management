@@ -389,9 +389,9 @@
                                                 <span> Due Date</span>
 
                                                 <span class="d-inline ml-3" style="font-size:13px">
-                                                    <span *ngIf="!currentTask.isComplete" (click)="completeTask(currentTask)"><i class="task-complete-icon bi bi-square"></i></span>
+                                                    <span *ngIf="!currentTask.isComplete" (click)="currentTask.completeTask()"><i class="task-complete-icon bi bi-square"></i></span>
                                                     <!-- <span><i class="bi bi-check-square"></i></span> -->
-                                                    <span *ngIf="currentTask.isComplete" (click)="completeTask(currentTask)"><i class="task-complete-icon bi bi-check-square-fill"></i></span>
+                                                    <span *ngIf="currentTask.isComplete" (click)="currentTask.completeTask()"><i class="task-complete-icon bi bi-check-square-fill"></i></span>
                                                     <p id="task-date-str" class="d-inline ml-1 p-1 rounded font-weight-normal" style="background:#f1f1f1; font-size:13px">
                                                         <span>{{ currentTask.getDateString('long') }}
                                                             <small class="rounded align-items-start" [style.background]="currentTask.getDateStatus().color" style="padding: 0.5px 3px; font-size: 9px">{{ currentTask.getDateStatus().type }}</small>
@@ -456,7 +456,7 @@
                                                     <span><i class="edit-task-checklist-icon bi bi-list-check"></i></span>
                                                     <span id="edit-task-checklist-{{currentTask.checklists.indexOf(checklist)}}-title" contenteditable="true"> {{checklist.name}}</span>
                                                     <span style="padding:5px"></span>
-                                                    <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete" (click)="deleteChecklist(currentTask, checklist)">delete</small>
+                                                    <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete" (click)="currentTask.deleteChecklist(checklist)">delete</small>
                                                 </div> <!-- title -->
 
                                                 <div class="edit-task-checklist-progress">
@@ -471,11 +471,11 @@
                                                         <!-- <span style="display: none" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">{{item.name}}</span> -->
                                                         <p class="d-flex form-check-label checklist-item-name p-0" contenteditable="true" *ngIf="!item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
                                                             {{item.name}}
-                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="deleteChecklistItem(currentTask, checklist, item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
+                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="checklist.deleteItem(item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
                                                         </p>
                                                         <p class="d-flex form-check-label checklist-item-name" contenteditable="true" *ngIf="item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
                                                             <s>{{item.name}}</s>
-                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="deleteChecklistItem(currentTask, checklist, item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
+                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="checklist.deleteItem(item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
                                                         </p>
                                                     </div>
                                                     
@@ -604,7 +604,7 @@
                             <span class="badge badge-pill badge-secondary label"
                                 *ngFor="let label of currentTask.labels">
                                 {{label.name}}
-                                <span class="delete-label-icon" id="delete-label" (click)="deleteLabel(currentTask, label)"><i class="bi bi-x"></i></span>
+                                <span class="delete-label-icon" id="delete-label" (click)="currentTask.deleteLabel(label)"><i class="bi bi-x"></i></span>
                             </span>
                         </div>
                         
@@ -676,7 +676,7 @@
                                 <div class="about list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#about">About</a>
                                     <div class="collapse" id="about">
-                                        <div class="card card-body about" *ngIf="currentBoard == null" style="max-width:232px">
+                                        <div class="card card-body about" *ngIf="currentBoard == null">
                                             <small>Board Description</small>
                                             <p class="text-wrap">Select a board to see its description</p>
                                         </div>
@@ -690,10 +690,10 @@
                                     </div>                                   
                                 </div>
                                 <!-- notifications -->
-                                <div class="notifications list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar" style="background:yellow">
+                                <div class="notifications list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#notifications">Notifications</a>
                                     <div class="collapse" id="notifications">
-                                        <div class="card card-body notifications" style="max-width:232px">
+                                        <div class="card card-body notifications">
                                             <small>Notifications</small>
                                             <p class="text-wrap">There are no notifications to display</p>
                                         </div>
@@ -703,7 +703,7 @@
                                 <div class="activity list-group border-0 border-bottom d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#activity">Activity</a>
                                     <div class="collapse" id="activity">
-                                        <div class="card card-body activity" style="max-width:232px">
+                                        <div class="card card-body activity">
                                             <small>Activity</small>
                                             <p class="text-wrap">No activity</p>
                                         </div>
@@ -823,7 +823,7 @@
                                                             
                                                             <div class="column-actions d-flex justify-content-center"
                                                                 data-bs-toggle="dropdown"
-                                                                (click)="setCurrentColumn(currentBoard, column)">
+                                                                (click)="setCurrentColumn(column)">
                                                                 <i class="bi bi-three-dots"></i>
                                                             </div> <!-- ellipses icon -->
                                                             
@@ -832,7 +832,7 @@
                                                                 <h6 class="dropdown-header">List Actions</h6>
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item column-action-item"
-                                                                    (click)="addTask(currentBoard, column)">
+                                                                    (click)="column.addTask()">
                                                                     Add Task
                                                                 </a>
                                                                 <!-- (click)="renameColumn(currentBoard, column)"
@@ -846,7 +846,7 @@
                                                                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                                                 <div class="dropdown-divider"></div>
                                                                 <a class="dropdown-item column-action-item"
-                                                                    (click)="deleteColumn(currentBoard, column)">
+                                                                    (click)="currentBoard.deleteColumn(column)">
                                                                     Delete List
                                                                 </a>
                                                             </div> <!-- column actions dropdown -->
@@ -860,17 +860,17 @@
                                                 <div class="tasks-container">
 
                                                     <div class="task"
-                                                        (click)="setCurrentTask(currentBoard, column, task)"
+                                                        (click)="setCurrentTask(task);"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#editTaskModal"
                                                         *ngFor="let task of column.tasks">
                                                         
                                                         <span class="task-name">
-                                                            <small *ngIf="task.labels.length == 1"><i class="bi bi-tag"></i></small>
-                                                            <small *ngIf="task.labels.length > 1"><i class="bi bi-tags"></i></small>
+                                                            <!-- <small *ngIf="task.labels.length == 1"><i class="bi bi-tag"></i></small>
+                                                            <small *ngIf="task.labels.length > 1"><i class="bi bi-tags"></i></small> -->
                                                             {{ task.name }}
                                                             <div class="d-flex justify-content-start align-items-center">
-                                                                <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color" class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center" (mouseover)="taskDateIconToggle(task, 'mouseover')" (mouseout)="taskDateIconToggle(task, 'mouseout')" (click)="completeTask(task)">
+                                                                <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color" class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center" (mouseover)="taskDateIconToggle(task, 'mouseover')" (mouseout)="taskDateIconToggle(task, 'mouseout')" (click)="task.completeTask();">
                                                                     <span style="display:none" id="task-date-square"><i class="d-flex task-date-icon bi bi-square"></i></span>
                                                                     <span style="display:none" id="task-date-check"><i class="d-flex task-date-icon bi bi-check-square"></i></span>
                                                                     <span id="task-date-clock"><i class="d-flex task-date-icon bi bi-clock"></i></span>
@@ -890,12 +890,12 @@
                                                             
                                                         </span>
                                                         
-                                                        <span><i class="delete-task-icon bi bi-trash3" (click)="deleteTask(currentBoard, column, task)"></i></span>
+                                                        <span><i class="delete-task-icon bi bi-trash3" (click)="column.deleteTask(task)"></i></span>
                                                         
                                                         
                                                     </div>
 
-                                                    <div class="task-creator" (click)="addTask(currentBoard, column)">
+                                                    <div class="task-creator" (click)="column.addTask()">
                                                         Add Task
                                                         <span class="add-task-icon"><i class="bi bi-plus"></i></span>
                                                     </div>
@@ -904,7 +904,7 @@
 
                                             </div> <!-- board column -->
 
-                                            <div class="d-flex board-column add-new-list pb-5" (click)="addColumn(currentBoard)">
+                                            <div class="d-flex board-column add-new-list pb-5" (click)="currentBoard.addColumn()">
                                                 <p>Add New List
                                                     <span class="add-task-icon"><i class="bi bi-plus"></i></span>
                                                 </p>

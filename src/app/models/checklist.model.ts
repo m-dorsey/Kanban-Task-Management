@@ -17,6 +17,11 @@ export class Checklist {
         );
     }
 
+    deleteItem(item: ChecklistItem) {
+        var index = this.items.indexOf(item);
+        this.items.splice(index, 1);
+    }
+
     getNumCompleted() {
 
         if (this.items.length < 1) {

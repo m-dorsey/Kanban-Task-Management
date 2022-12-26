@@ -19,23 +19,6 @@ export class MainComponent implements OnInit {
   currentColumn?: Column;
   currentTask?: Task;
 
-  // infoBoard: Board = new Board("Info", [
-  //   new Column("Fun Facts", [
-  //     "Sliced bread was first manufactured by machine and sold in the 1920s by the Chillicothe Baking Company in Missouri",
-  //     "The Four Corners is the only spot in the US where you can stand in four states at once: Utah, Colorado, Arizona and New Mexico.",
-  //     "Bats are the only mammal that can actually fly.",
-  //     "Flamingoes are only pink because of chemicals called carotenoids in the algae and fish (which also eat the algae) they eat.",
-  //   ]),
-  //   new Column("Words of the Day", [
-  //     "Oblivion",
-  //     "Putative",
-  //     "Undulate"
-  //   ]),
-  //   new Column("To Do", ["hi"])
-  // ]);
-
-  // currentBoard: Board = this.infoBoard;
-
   /**
    * modal
    * - refactor: load last board clicked
@@ -47,18 +30,17 @@ export class MainComponent implements OnInit {
    * 
    * refactor
    * - separation of concerns
+   * - stop propagation
+   *   - child elem click != parent event fires
    * - local storage migration
    * - animated background
    */
 
   constructor() {
-    this.initBoards();
-    
+    this.initBoards();  
   }
 
-  ngOnInit(): void {
-      
-  }
+  ngOnInit(): void {}
 
   initBoards() {
 
@@ -70,6 +52,8 @@ export class MainComponent implements OnInit {
     ]);
 
     b.setDescription("hi");
+
+    b.columns[0].tasks[0].setDescription("hi");
 
     b.columns[0].tasks[0].checklists = [
       new Checklist('Checklist')
@@ -85,19 +69,6 @@ export class MainComponent implements OnInit {
     
     this.boards.push(b);
 
-    // show no columns if board not set
-    // if (this.currentBoard == this.infoBoard) {
-
-    //   // info board
-    //   this.boards.push(this.infoBoard);
-
-
-    // } else {
-    //   console.log("SET BOARD", this.currentBoard);
-
-    // }
-
-
   }
 
   adjustSidebar() {
@@ -111,13 +82,15 @@ export class MainComponent implements OnInit {
     //   console.log(sidebar.classList);
     //   if (sidebar.classList.contains('show')) {
 
-    //     (sidebarColumn.classList).remove('col-auto');
-    //     (sidebarColumn.classList).add('col-4');
+    //     // sidebarColumn.style.minWidth = '275px';
+    //     // (sidebarColumn.classList).remove('col-auto');
+    //     // (sidebarColumn.classList).add('col-4');
 
     //   } else {
         
-    //     (sidebarColumn.classList).add('col-auto');
-    //     (sidebarColumn.classList).remove('col-4');
+    //     // sidebarColumn.style.minWidth = '0px';
+    //     // (sidebarColumn.classList).add('col-auto');
+    //     // (sidebarColumn.classList).remove('col-4');
 
     //   }
 
@@ -126,14 +99,14 @@ export class MainComponent implements OnInit {
   }
 
   addNewBoard() {
-    console.log("Add new board");
+
+    // console.log("Add new board");
     var b = new Board("New Board", [
       new Column ("New List", [
-        new Task("Task 1",),
-        new Task("Task 2")
+        // new Task("Task 1",),
+        // new Task("Task 2")
       ])
     ]);
-
     
     this.boards.push(b);
 
@@ -267,8 +240,6 @@ export class MainComponent implements OnInit {
 
   setCurrentBoard(board: Board) {
 
-    console.log("set", board);
-
     // set current board, get DOM
     this.currentBoard = board;
     var elements = <HTMLCollection> (document.getElementById("sidebar-nav")?.children);
@@ -286,7 +257,6 @@ export class MainComponent implements OnInit {
   }
 
   deleteBoard(board: Board) {
-    console.log("delete", board);
 
     var index = (this.boards.indexOf(board));
     (this.boards.splice(index, 1));
@@ -304,19 +274,7 @@ export class MainComponent implements OnInit {
     }
   }
 
-  addTask(board: Board, column: Column) {
-    column.tasks.push(
-      new Task("New Task")
-      );
-  }
-
-  deleteTask(board: Board, column: Column, task: Task) {
-    var index = (column.tasks.indexOf(task));
-    column.tasks.splice(index, 1);
-  }
-
-
-  setCurrentColumn(board: Board, column:Column) {
+  setCurrentColumn(column:Column) {
     this.currentColumn = column;
   }
 
@@ -349,27 +307,14 @@ export class MainComponent implements OnInit {
           saveBtn.classList.remove('disabled');
         }
 
-
         break;
 
     }
 
   }
 
-  addColumn(board: Board) {
-    board.columns.push(
-      new Column ('New List', [])
-    );
-  }
-
-  deleteColumn(board: Board, column: Column) {
-    var index = (board.columns.indexOf(column));
-    board.columns.splice(index, 1);
-  }
-
-  setCurrentTask(board: Board, column: Column, task: Task) {
+  setCurrentTask(task: Task) {
     this.currentTask = task;
-    console.log(task.getChecklistStatus());
   }
 
   editTask(event: string) {
@@ -507,11 +452,6 @@ export class MainComponent implements OnInit {
 
   }
 
-  deleteLabel(task: Task, label: Label) {
-    var index = (task.labels.indexOf(label));
-    task.labels.splice(index, 1);
-  }
-
   addChecklist(task: Task) {
     var input = <HTMLInputElement>document.getElementById('checklist-title-input');
     if (input.value.trim() != "") {
@@ -522,23 +462,6 @@ export class MainComponent implements OnInit {
 
     input.value = '';
   }
-
-  deleteChecklist(task: Task, checklist: Checklist) {
-    var index = (task.checklists.indexOf(checklist));
-    task.checklists.splice(index, 1);
-  }
-
-  // validateChecklistInput() {
-  //   var input = <HTMLInputElement> document.getElementById('checklist-item-input');
-  //   var saveBtn = <HTMLElement> document.getElementById('checklist-item-save');
-
-  //   if (input.value.trim() != '') {
-  //     saveBtn.classList.remove('disabled');
-  //   } else {
-  //     saveBtn.classList.add('disabled');
-  //   }
-
-  // }
 
   addChecklistItem(task: Task, checklist: Checklist) {
 
@@ -551,11 +474,6 @@ export class MainComponent implements OnInit {
     }
     input.value = '';
 
-  }
-
-  deleteChecklistItem(task: Task, checklist: Checklist, item: ChecklistItem) {
-    var index = checklist.items.indexOf(item);
-    checklist.items.splice(index, 1);
   }
 
   updateProgressBar(task: Task, checklist: Checklist) {
@@ -689,23 +607,6 @@ export class MainComponent implements OnInit {
       
     }
 
-  }
-
-  completeTask(task: Task) {
-    if (!task.isComplete) {
-
-      task.completeTask();
-      // let elem = <HTMLElement> document.getElementById('task-date-str');
-      // (elem.classList.add('bg-success'));
-
-    } else {
-
-      task.incompleteTask();
-      // let elem = <HTMLElement>document.getElementById('task-date-str');
-      // (elem.classList.remove('bg-success'));
-      // (elem.style.background = "#f1f1f1");
-
-    }
   }
 
   taskDateIconToggle(task: Task, action: string) {

@@ -9,6 +9,17 @@ export class Board {
         this.description = "";
     }
 
+    addColumn() {
+        this.columns.push(
+            new Column('New List', [])
+        );
+    }
+
+    deleteColumn(column: Column) {
+        var index = this.columns.indexOf(column);
+        this.columns.splice(index, 1);
+    }
+
     setDescription(str: string) {
         this.description = str;
     }
