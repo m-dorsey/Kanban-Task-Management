@@ -624,7 +624,7 @@
 
                     <!-- sidebar navigation col-->
                     <div class="col-auto px-0 menu" id="sidebar-col">
-                        <div id="sidebar" class="show collapse collapse-horizontal border-end">
+                        <div id="sidebar" class="show collapse collapse-horizontal">
                             
                             <div class="menu-header text-nowrap">
                                 Menu <i class="close-sidebar-icon bi bi-x"
@@ -639,7 +639,7 @@
                                 <div class="menu-subheader">Boards</div>
                                 <!-- boards for-->
                                 <a href="#" 
-                                    class="list-group-item border-end-0 d-inline-block text-truncate" 
+                                    class="list-group-item border-bottom-0 d-inline-block text-truncate" 
                                     data-bs-parent="#sidebar"
                                     *ngFor="let board of boards">
                                     
@@ -666,7 +666,7 @@
                                     
                                 </a> <!-- boards for -->
                             
-                                <p class="add-new-board border-end-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
+                                <p class="add-new-board border-bottom-0 d-inline-block" (click)="addNewBoard()">Add New Board</p>
                                 
                                 
 
@@ -676,7 +676,7 @@
                                 <div class="about list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#about">About</a>
                                     <div class="collapse" id="about">
-                                        <div class="card card-body about" *ngIf="currentBoard == null">
+                                        <div class="card card-body about" *ngIf="currentBoard == null" style="max-width:232px">
                                             <small>Board Description</small>
                                             <p class="text-wrap">Select a board to see its description</p>
                                         </div>
@@ -690,20 +690,20 @@
                                     </div>                                   
                                 </div>
                                 <!-- notifications -->
-                                <div class="notifications list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                <div class="notifications list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar" style="background:yellow">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#notifications">Notifications</a>
                                     <div class="collapse" id="notifications">
-                                        <div class="card card-body notifications">
+                                        <div class="card card-body notifications" style="max-width:232px">
                                             <small>Notifications</small>
                                             <p class="text-wrap">There are no notifications to display</p>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- activity -->
-                                <div class="activity list-group border-0 d-inline-block text-truncate" data-bs-parent="#sidebar">
+                                <div class="activity list-group border-0 border-bottom d-inline-block text-truncate" data-bs-parent="#sidebar">
                                     <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#activity">Activity</a>
                                     <div class="collapse" id="activity">
-                                        <div class="card card-body activity">
+                                        <div class="card card-body activity" style="max-width:232px">
                                             <small>Activity</small>
                                             <p class="text-wrap">No activity</p>
                                         </div>

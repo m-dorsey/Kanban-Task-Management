@@ -101,10 +101,28 @@ export class MainComponent implements OnInit {
   }
 
   adjustSidebar() {
-    var sidebarCol = <HTMLElement> (document.getElementById('sidebar-col'));
+
+    var sidebarColumn = <HTMLElement> (document.getElementById('sidebar-col'));
     var sidebar = <HTMLElement> document.getElementById('sidebar');
-    console.log(sidebarCol.classList);
-    console.log(sidebar.classList);
+
+    // setTimeout(() => {
+
+    //   console.log("timeout");
+    //   console.log(sidebar.classList);
+    //   if (sidebar.classList.contains('show')) {
+
+    //     (sidebarColumn.classList).remove('col-auto');
+    //     (sidebarColumn.classList).add('col-4');
+
+    //   } else {
+        
+    //     (sidebarColumn.classList).add('col-auto');
+    //     (sidebarColumn.classList).remove('col-4');
+
+    //   }
+
+    // }, 360);
+    
   }
 
   addNewBoard() {
@@ -135,7 +153,7 @@ export class MainComponent implements OnInit {
 
       var desc = <HTMLInputElement> (document.getElementById('board-description'));
       // console.log(desc.value);
-      this.currentBoard?.setDescription(desc.value);
+      board.setDescription(desc.value);
       // desc.value = "";
 
     } else if (mod == "clear all") {
@@ -144,15 +162,29 @@ export class MainComponent implements OnInit {
 
       switch (delBtnText) {
         case "Delete Tasks":
-          console.log("Delete tasks");
+          // console.log("Delete tasks");
+          for (var col of board.columns) {
+            while (col.tasks.length > 0) {
+              col.tasks.pop();
+            }
+          }
+
           break;
 
         case "Delete Lists":
-          console.log("delete lists");
+          //console.log("delete lists");
+          while (board.columns.length > 0) {
+            board.columns.pop();
+          }
+
           break;
 
         case "Clear All":
-          console.log("clear all");
+          // console.log("clear all");
+          while (board.columns.length > 0) {
+            board.columns.pop();
+          }
+          board.clearDescription();
           break;
 
       }

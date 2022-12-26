@@ -19,5 +19,9 @@ export class Board {
         }
         return false;
     }
+
+    clearDescription() {
+        this.description = "";
+    }
     
 }
