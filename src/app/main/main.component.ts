@@ -80,6 +80,8 @@ export class MainComponent implements OnInit {
       new ChecklistItem('Item 2'),
       new ChecklistItem('Item 3')
     ];
+
+    b.columns[0].tasks[0].setDate(new Date());
     
     this.boards.push(b);
 
@@ -508,6 +510,149 @@ export class MainComponent implements OnInit {
         (task.checklists[i].items[j].name = <string> item.textContent);
 
       }
+
+    }
+
+  }
+
+  addTaskDate(task: Task) {
+
+    var dateInput = <HTMLInputElement> document.getElementById('task-date');
+    var timeInput = <HTMLInputElement> document.getElementById('task-time');
+    
+    if (dateInput.value != '' && timeInput.value != '') {
+
+      // console.log('input format', dateInput.value, timeInput.value);
+
+      let date = (dateInput.value.split('-')); //yy mm dd
+      let time = (timeInput.value.split(':')); // hh mm
+
+      let dateObj = (new Date(
+        parseInt(date[0]), parseInt(date[1])-1, parseInt(date[2]),
+        parseInt(time[0]), parseInt(time[1])
+      ));
+
+      task.setDate(dateObj);
+      // console.log(task.getDate());
+
+    } else if (dateInput.value != '') {
+
+      let date = (dateInput.value.split('-')); //yy mm dd
+      let time = new Date().getTime();
+
+      let dateObj = (new Date(
+        parseInt(date[0]), parseInt(date[1]) - 1, parseInt(date[2]),
+      ));
+      (dateObj.setTime(time));
+
+      task.setDate(dateObj);
+      // console.log(task.getDate());
+
+    } else if (timeInput.value != '') {
+
+      let time = (timeInput.value.split(':')); // hh mm
+      let date = new Date();
+
+      // console.log(date.getMonth()+1, date.getDate(), date.getFullYear());
+
+      let dateObj = (new Date(
+        date.getFullYear(), date.getMonth(), date.getDate(),
+        parseInt(time[0]), parseInt(time[1])
+      ));
+      
+      task.setDate(dateObj);
+      // console.log(task.getDate());
+
+    }
+
+    this.setDateInput(task);
+
+  }
+
+  removeTaskDate(task: Task) {
+    task.removeDate();
+    var dateInput = <HTMLInputElement>document.getElementById('task-date');
+    var timeInput = <HTMLInputElement>document.getElementById('task-time');
+    dateInput.value = '';
+    timeInput.value = '';
+  }
+
+  setDateInput(task: Task) {
+
+    if (task.hasDate()) {
+    
+      var dateInput = <HTMLInputElement>document.getElementById('task-date');
+      var timeInput = <HTMLInputElement>document.getElementById('task-time');
+      // input format 2022-12-25 19:15
+      var date = (task.getDate());
+
+      var dateStr = (`${date?.year}-${(date?.month)?.toString().padStart(2, '0')}-${(date?.date)?.toString().padStart(2, '0')}`);
+      var timeStr = (`${(date?.hour)?.toString().padStart(2, '0')}:${(date?.minute)?.toString().padStart(2, '0')}`);
+      
+
+      dateInput.value = dateStr;
+      timeInput.value = timeStr;
+      
+    }
+
+  }
+
+  completeTask(task: Task) {
+    if (!task.isComplete) {
+
+      task.completeTask();
+      // let elem = <HTMLElement> document.getElementById('task-date-str');
+      // (elem.classList.add('bg-success'));
+
+    } else {
+
+      task.incompleteTask();
+      // let elem = <HTMLElement>document.getElementById('task-date-str');
+      // (elem.classList.remove('bg-success'));
+      // (elem.style.background = "#f1f1f1");
+
+    }
+  }
+
+  taskDateIconToggle(task: Task, action: string) {
+
+    let square = <HTMLElement> document.getElementById('task-date-square');
+    let check = <HTMLElement>document.getElementById('task-date-check');
+    let clock = <HTMLElement>document.getElementById('task-date-clock');
+
+    switch(action) {
+
+      case 'mouseover':
+        
+        if (task.isComplete) {
+
+          // show
+          (check.style.display) = 'inline';
+          // hide
+          (square.style.display) = 'none';
+          (clock.style.display) = 'none';
+
+        } else {
+
+          // show
+          (square.style.display) = 'inline';
+          // hide
+          (check.style.display) = 'none';
+          (clock.style.display) = 'none';
+
+        }
+        
+        break;
+
+      case 'mouseout':
+
+        // show
+        (clock.style.display) = 'inline';
+        // hide
+        (square.style.display) = 'none';
+        (check.style.display) = 'none';
+        
+        break;
 
     }
 

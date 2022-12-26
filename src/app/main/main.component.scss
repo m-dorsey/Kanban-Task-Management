@@ -107,7 +107,8 @@ button:focus {
 .edit-task-x-icon,
 .edit-task-description-icon,
 .edit-task-activity-icon,
-.edit-task-checklist-icon {
+.edit-task-checklist-icon,
+.edit-task-date-icon {
     font-size: 20px;
 }
 
@@ -129,6 +130,19 @@ button:focus {
 .delete-label-icon:hover {
     color: black;
     cursor: pointer;
+}
+
+.task-complete-icon,
+.task-date-container {
+    cursor: pointer;
+}
+
+.task-date-icon {
+    font-size: 10px;
+}
+
+.task-checklist-icon {
+    font-size: 11px;
 }
 
 
@@ -173,11 +187,13 @@ button:focus {
 
     .edit-task-description,
     .edit-task-activity,
-    .edit-task-checklist {
+    .edit-task-checklist,
+    .edit-task-date {
 
         .edit-task-description-title,
         .edit-task-activity-title,
-        .edit-task-checklist-title {
+        .edit-task-checklist-title,
+        .edit-task-date-title {
             font-weight: 500;
             padding-bottom: 10px;
         }
@@ -528,5 +544,15 @@ button:focus {
     }
 
 }
+
+.task-date-container,
+.task-checklist-text {
+    font-size: 13px;
+}
+.task-date-short,
+.task-checklist-text {
+    margin-bottom: 0.5px;
+}
+
 
 

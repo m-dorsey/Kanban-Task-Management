@@ -383,6 +383,25 @@
                                     <!-- left col -->
                                     <div class="col-lg-8">
 
+                                        <div class="d-flex edit-task-date mb-2" *ngIf="currentTask != null && currentTask.date != undefined">
+                                            <div class="edit-task-date-title">
+                                                <span><i class="edit-task-date-icon bi bi-calendar4"></i></span>
+                                                <span> Due Date</span>
+
+                                                <span class="d-inline ml-3" style="font-size:13px">
+                                                    <span *ngIf="!currentTask.isComplete" (click)="completeTask(currentTask)"><i class="task-complete-icon bi bi-square"></i></span>
+                                                    <!-- <span><i class="bi bi-check-square"></i></span> -->
+                                                    <span *ngIf="currentTask.isComplete" (click)="completeTask(currentTask)"><i class="task-complete-icon bi bi-check-square-fill"></i></span>
+                                                    <p id="task-date-str" class="d-inline ml-1 p-1 rounded font-weight-normal" style="background:#f1f1f1; font-size:13px">
+                                                        <span>{{ currentTask.getDateString('long') }}
+                                                            <small class="rounded align-items-start" [style.background]="currentTask.getDateStatus().color" style="padding: 0.5px 3px; font-size: 9px">{{ currentTask.getDateStatus().type }}</small>
+                                                        </span>
+                                                    </p>
+                                                </span>
+                                                
+                                            </div>
+                                        </div>
+
                                         <!-- edit task description -->
                                         <!-- style="background:green" -->
                                         <div class="edit-task-description">
@@ -540,13 +559,29 @@
                                             </div>
                                         </div>
 
-                                        <div class="list-group border-0 rounded-0 text-sm-start">
-                                            <a class="list-group-item disabled" data-bs-toggle="collapse" data-bs-target="#date-assignment">Dates</a>
-                                            <!-- <div class="collapse" id="date-assignment">
-                                                <div class="card card-body date-assignment">
-                                                    ...
+                                        <div class="list-group border-0 rounded-0 text-sm-start" *ngIf="currentTask != null">
+                                            <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#date-assignment" (click)="setDateInput(currentTask)">Date</a>
+                                            <div class="collapse" id="date-assignment">
+                                                <div class="card card-body border date-assignment">
+
+                                                    <small>Due Date</small>
+                                                    <div class="form-group">
+                                                        <form class="form-inline" onsubmit="return false">
+                                                            <div class="form-group">
+                                                                <input class="mt-2 mb-2 form-control form-control-sm" type="date" id='task-date'>
+                                                                <input class="mt-2 mb-2 form-control form-control-sm" type="time" id='task-time'>
+                                                            </div> 
+                                                        </form>
+                                                        <form class="form-inline" onsubmit="return false">
+                                                            <button class="btn btn-sm btn-success" id="task-date-save" (click)="addTaskDate(currentTask)">Save</button>
+                                                            <span style="padding: 5px"></span>
+                                                            <button class="btn btn-sm btn-light" id="task-date-remove" (click)="removeTaskDate(currentTask)">Remove</button>
+                                                        </form>
+                                                    </div>
+                                                    
+
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
 
                                         </div>
@@ -829,14 +864,22 @@
                                                             <small *ngIf="task.labels.length > 1"><i class="bi bi-tags"></i></small>
                                                             {{ task.name }}
                                                             <div class="d-flex justify-content-start align-items-center">
-                                                                <div *ngIf="task.hasDescription()">
+                                                                <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color" class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center" (mouseover)="taskDateIconToggle(task, 'mouseover')" (mouseout)="taskDateIconToggle(task, 'mouseout')" (click)="completeTask(task)">
+                                                                    <span style="display:none" id="task-date-square"><i class="d-flex task-date-icon bi bi-square"></i></span>
+                                                                    <span style="display:none" id="task-date-check"><i class="d-flex task-date-icon bi bi-check-square"></i></span>
+                                                                    <span id="task-date-clock"><i class="d-flex task-date-icon bi bi-clock"></i></span>
+                                                                    <span class="task-date-short ml-1">{{task.getDateString('short')}}</span>
+                                                                </div>
+                                                                <div *ngIf="task.hasDescription()" class="mr-2 pl-1 pr-1">
                                                                     <small><i class="bi bi-justify-left"></i></small>
                                                                 </div>
-                                                                <span style="padding: 4px" *ngIf="task.hasDescription() && task.checklists.length > 0"></span>
-                                                                <div *ngIf="task.checklists.length > 0" style="font-size: 13px">
-                                                                    <span><i class="bi bi-check2-square"></i></span>
-                                                                    <span> {{task.getChecklistStatus().complete}}/{{task.getChecklistStatus().total}}</span>
+                                                                <!-- <span style="padding: 4px" *ngIf="task.hasDescription() && task.checklists.length > 0"></span> -->
+                                                                
+                                                                <div *ngIf="task.checklists.length > 0" class="mr-2 pl-1 pr-1 rounded d-flex align-items-center" [style.background]="task.getChecklistStatus().isCompleteColor">
+                                                                    <span><i class="d-flex task-checklist-icon bi bi-check2-square"></i></span>
+                                                                    <span class="ml-1 d-flex task-checklist-text"> {{task.getChecklistStatus().complete}}/{{task.getChecklistStatus().total}}</span>
                                                                 </div>
+                                                                
                                                             </div>
                                                             
                                                         </span>
