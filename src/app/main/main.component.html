@@ -13,8 +13,8 @@
 
         <div>
 
-            <!-- edit board modal -->
-            <div class="modal fade" id="modifyBoardModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
+            <!-- modify board modal -->
+            <div class="modal fade" id="modify-board-modal" tabindex="-1" role="dialog" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
 
@@ -32,13 +32,6 @@
                         <!-- modal body -->
                         <div class="modal-body">
 
-                            <!-- success alert -->
-                            <!-- <div id="modify-board-success" class="alert alert-success alert-dismissible fade" role="alert">
-                                <i class="bi bi-check2-all"></i>
-                                A simple success alert—check it out!
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                            </div> success alert -->
-
                             <!-- collapsible accordion -->
                             <div id="accordion" *ngIf="currentBoard != null">
 
@@ -54,8 +47,9 @@
                                                 Board Name
                                             </button>
                                         </h5>
-                                    </div>
+                                    </div> <!-- card header -->
                             
+                                    <!-- collapse one -->
                                     <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
 
@@ -310,7 +304,7 @@
 
                     </div> <!-- modal content -->
                 </div> <!-- modal dialog -->
-            </div> <!-- edit board modal -->
+            </div> <!-- modify board modal -->
 
             
 
@@ -654,7 +648,7 @@
                                             (click)="setCurrentBoard(board)"
                                             title="Edit"
                                             data-bs-toggle="modal"
-                                            data-bs-target="#modifyBoardModal"></i>
+                                            data-bs-target="#modify-board-modal"></i>
 
                                         <span style="padding:4px"></span>
 
@@ -859,6 +853,7 @@
                                                 <!-- tasks container -->
                                                 <div class="tasks-container">
 
+                                                    
                                                     <div class="task"
                                                         (click)="setCurrentTask(task);"
                                                         data-bs-toggle="modal"
@@ -866,11 +861,11 @@
                                                         *ngFor="let task of column.tasks">
                                                         
                                                         <span class="task-name">
-                                                            <!-- <small *ngIf="task.labels.length == 1"><i class="bi bi-tag"></i></small>
-                                                            <small *ngIf="task.labels.length > 1"><i class="bi bi-tags"></i></small> -->
+                                                            
                                                             {{ task.name }}
+
                                                             <div class="d-flex justify-content-start align-items-center">
-                                                                <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color" class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center" (mouseover)="taskDateIconToggle(task, 'mouseover')" (mouseout)="taskDateIconToggle(task, 'mouseout')" (click)="task.completeTask();">
+                                                                <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color" class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center" (mouseover)="taskDateIconToggle(task, 'mouseover')" (mouseout)="taskDateIconToggle(task, 'mouseout')" (click)="task.completeTask(); taskDateIconToggle(task, 'mouseover')">
                                                                     <span style="display:none" id="task-date-square"><i class="d-flex task-date-icon bi bi-square"></i></span>
                                                                     <span style="display:none" id="task-date-check"><i class="d-flex task-date-icon bi bi-check-square"></i></span>
                                                                     <span id="task-date-clock"><i class="d-flex task-date-icon bi bi-clock"></i></span>

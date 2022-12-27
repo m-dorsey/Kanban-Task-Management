@@ -30,8 +30,7 @@ export class MainComponent implements OnInit {
    * 
    * refactor
    * - separation of concerns
-   * - stop propagation
-   *   - child elem click != parent event fires
+   * - child elem click != parent event fires
    * - local storage migration
    * - animated background
    */
@@ -69,7 +68,7 @@ export class MainComponent implements OnInit {
     
     this.boards.push(b);
 
-  }
+  } // initBoards
 
   adjustSidebar() {
 
@@ -96,21 +95,18 @@ export class MainComponent implements OnInit {
 
     // }, 360);
     
-  }
+  } // adjustSidebar
 
   addNewBoard() {
 
-    // console.log("Add new board");
     var b = new Board("New Board", [
       new Column ("New List", [
-        // new Task("Task 1",),
-        // new Task("Task 2")
       ])
     ]);
     
     this.boards.push(b);
 
-  }
+  } // addNewBoard
 
   modifyBoard(board: Board, mod: string) {
 
@@ -165,7 +161,7 @@ export class MainComponent implements OnInit {
     }
 
     
-  }
+  } // modifyBoard
 
   modifyBoardToggleValidation(section: string) {
     
@@ -236,7 +232,7 @@ export class MainComponent implements OnInit {
 
     }
 
-  }
+  } // modifyBoardToggleValidation
 
   setCurrentBoard(board: Board) {
 
@@ -254,7 +250,7 @@ export class MainComponent implements OnInit {
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));
 
-  }
+  } // setCurrentBoard
 
   deleteBoard(board: Board) {
 
@@ -265,18 +261,18 @@ export class MainComponent implements OnInit {
       this.currentBoard = undefined;
     }
 
-  }
+  } // deleteBoard
 
   closeModifyBoardModal() {
     var elements = <HTMLCollection> (document.getElementById("accordion")?.children);
     for (let i = 0; i < elements.length; i++) {
       (elements[i].children[1].classList.remove('show'));
     }
-  }
+  } // closeModifyBoardModal
 
   setCurrentColumn(column:Column) {
     this.currentColumn = column;
-  }
+  } // setCurrentColumn
 
   renameColumn(event?: string) {
 
@@ -311,11 +307,11 @@ export class MainComponent implements OnInit {
 
     }
 
-  }
+  } // renameColumn
 
   setCurrentTask(task: Task) {
     this.currentTask = task;
-  }
+  } // setCurrentTask
 
   editTask(event: string) {
 
@@ -376,7 +372,7 @@ export class MainComponent implements OnInit {
 
     }
 
-  }
+  } // editTask
 
   toggleTaskActions(section: string) {
 
@@ -438,7 +434,7 @@ export class MainComponent implements OnInit {
 
     }
 
-  }
+  } // toggleTaskActions
 
   addLabel(task: Task) {
     var input = <HTMLInputElement> document.getElementById('label-input');
@@ -450,7 +446,7 @@ export class MainComponent implements OnInit {
 
     input.value = '';
 
-  }
+  } // addLabel
 
   addChecklist(task: Task) {
     var input = <HTMLInputElement>document.getElementById('checklist-title-input');
@@ -461,7 +457,7 @@ export class MainComponent implements OnInit {
     }
 
     input.value = '';
-  }
+  } // addChecklist
 
   addChecklistItem(task: Task, checklist: Checklist) {
 
@@ -474,7 +470,7 @@ export class MainComponent implements OnInit {
     }
     input.value = '';
 
-  }
+  } // addChecklistItem
 
   updateProgressBar(task: Task, checklist: Checklist) {
     
@@ -497,35 +493,33 @@ export class MainComponent implements OnInit {
     } else {
 
       progress.classList.remove('bg-success');
-      // console.log(completed, total);
       var perc = ( ((completed / total)*100).toFixed(3) + "%" );
-      // console.log(perc);
       progress.style.width = perc;
     }
 
-  }
+  } // updateProgressBar
 
   updateChecklists(task: Task) {
 
     for (let i = 0; i < task.checklists.length; i++) {
-      // console.log("checklist", i);
+      
       var checklistId = (`edit-task-checklist-${i}-title`);
       var checklist = <HTMLElement> document.getElementById(checklistId);
-      // console.log( `\tname: ${checklist.textContent}`);
+      
       (task.checklists[i].name) = <string> checklist.textContent;
 
       for (let j = 0; j < task.checklists[i].items.length; j++) {
-        // console.log("item", j);
+        
         var itemId = (`checklist-${i}-item-${j}-name`);
         var item = <HTMLElement> document.getElementById(itemId);
-        // console.log(`\tname: ${item.textContent}`);
+        
         (task.checklists[i].items[j].name = <string> item.textContent);
 
       }
 
     }
 
-  }
+  } // updateChecklists
 
   addTaskDate(task: Task) {
 
@@ -534,9 +528,7 @@ export class MainComponent implements OnInit {
     
     if (dateInput.value != '' && timeInput.value != '') {
 
-      // console.log('input format', dateInput.value, timeInput.value);
-
-      let date = (dateInput.value.split('-')); //yy mm dd
+      let date = (dateInput.value.split('-')); // yy mm dd
       let time = (timeInput.value.split(':')); // hh mm
 
       let dateObj = (new Date(
@@ -545,11 +537,10 @@ export class MainComponent implements OnInit {
       ));
 
       task.setDate(dateObj);
-      // console.log(task.getDate());
 
     } else if (dateInput.value != '') {
 
-      let date = (dateInput.value.split('-')); //yy mm dd
+      let date = (dateInput.value.split('-')); // yy mm dd
       let time = new Date().getTime();
 
       let dateObj = (new Date(
@@ -558,14 +549,11 @@ export class MainComponent implements OnInit {
       (dateObj.setTime(time));
 
       task.setDate(dateObj);
-      // console.log(task.getDate());
 
     } else if (timeInput.value != '') {
 
       let time = (timeInput.value.split(':')); // hh mm
       let date = new Date();
-
-      // console.log(date.getMonth()+1, date.getDate(), date.getFullYear());
 
       let dateObj = (new Date(
         date.getFullYear(), date.getMonth(), date.getDate(),
@@ -573,13 +561,12 @@ export class MainComponent implements OnInit {
       ));
       
       task.setDate(dateObj);
-      // console.log(task.getDate());
 
     }
 
     this.setDateInput(task);
 
-  }
+  } // addTaskDate
 
   removeTaskDate(task: Task) {
     task.removeDate();
@@ -587,7 +574,7 @@ export class MainComponent implements OnInit {
     var timeInput = <HTMLInputElement>document.getElementById('task-time');
     dateInput.value = '';
     timeInput.value = '';
-  }
+  } // removeTaskDate
 
   setDateInput(task: Task) {
 
@@ -595,19 +582,18 @@ export class MainComponent implements OnInit {
     
       var dateInput = <HTMLInputElement>document.getElementById('task-date');
       var timeInput = <HTMLInputElement>document.getElementById('task-time');
-      // input format 2022-12-25 19:15
+      
       var date = (task.getDate());
 
       var dateStr = (`${date?.year}-${(date?.month)?.toString().padStart(2, '0')}-${(date?.date)?.toString().padStart(2, '0')}`);
       var timeStr = (`${(date?.hour)?.toString().padStart(2, '0')}:${(date?.minute)?.toString().padStart(2, '0')}`);
       
-
       dateInput.value = dateStr;
       timeInput.value = timeStr;
       
     }
 
-  }
+  } // setDateInput
 
   taskDateIconToggle(task: Task, action: string) {
 
@@ -651,7 +637,7 @@ export class MainComponent implements OnInit {
 
     }
 
-  }
+  } // taskDateIconTgggle
   
 
 }
