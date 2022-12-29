@@ -6,6 +6,8 @@ import { Label } from '../models/label.model';
 import { Checklist } from '../models/checklist.model';
 import { ChecklistItem } from '../models/checklistItem.model';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -35,7 +37,7 @@ export class MainComponent implements OnInit {
    * - animated background
    */
 
-  constructor() {
+  constructor(private router: Router) {
     this.initBoards();  
   }
 
@@ -251,6 +253,10 @@ export class MainComponent implements OnInit {
     (boardElem?.classList.add("active"));
 
   } // setCurrentBoard
+
+  getCurrentBoard() {
+    return this.currentBoard;
+  }
 
   deleteBoard(board: Board) {
 

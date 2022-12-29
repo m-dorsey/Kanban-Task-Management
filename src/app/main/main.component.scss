@@ -474,8 +474,9 @@ button:focus {
 
                 &:last-child{
                     background: rgba(white, 0.15);
+                    // background: red;
                     font-size: 20px;
-                    height: 10%;                    
+                    max-height: 10vh;                    
                 }
 
                 &:last-child:hover {

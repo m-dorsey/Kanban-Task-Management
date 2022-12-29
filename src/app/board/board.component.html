@@ -1,0 +1,108 @@
+<!-- board-columns -->
+<div class="board-columns" *ngIf="board != null">
+
+    <div class="board-column" *ngFor="let column of board.columns">
+
+        <!-- column title -->
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- column name -->
+                <div class="col column-title" id="column-title">
+                    {{column.name}}
+                </div> <!-- column name -->
+                <!-- column actions -->
+                <div class="col-auto">
+
+                    <div class="column-actions d-flex justify-content-center" data-bs-toggle="dropdown"
+                        (click)="setCurrentColumn(column)">
+                        <i class="bi bi-three-dots"></i>
+                    </div> <!-- ellipses icon -->
+
+                    <!-- column actions dropdown -->
+                    <div class="dropdown-menu">
+                        <h6 class="dropdown-header">List Actions</h6>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item column-action-item" (click)="column.addTask()">
+                            Add Task
+                        </a>
+                        <!-- (click)="renameColumn(currentBoard, column)"
+                                                                data-toggle="modal"
+                                                                data-target="#renameColumnModal" -->
+                        <a class="dropdown-item column-action-item" data-bs-toggle="modal"
+                            data-bs-target="#renameColumnModal">
+                            Rename
+                        </a>
+                        <!-- <a class="dropdown-item" href="#">Something else here</a> -->
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item column-action-item" (click)="board.deleteColumn(column)">
+                            Delete List
+                        </a>
+                    </div> <!-- column actions dropdown -->
+
+                </div> <!-- column actions -->
+
+            </div> <!-- row -->
+        </div> <!-- column title -->
+
+        <!-- tasks container -->
+        <div class="tasks-container">
+
+
+            <div class="task" (click)="setCurrentTask(task);" data-bs-toggle="modal" data-bs-target="#editTaskModal"
+                *ngFor="let task of column.tasks">
+
+                <span class="task-name">
+
+                    {{ task.name }}
+
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div *ngIf="task.hasDate()" [style.background]="task.getDateStatus().color"
+                            class=" d-flex mr-2 pl-1 pr-1 rounded task-date-container align-items-center"
+                            (mouseover)="taskDateIconToggle(task, 'mouseover')"
+                            (mouseout)="taskDateIconToggle(task, 'mouseout')"
+                            (click)="task.completeTask(); taskDateIconToggle(task, 'mouseover')">
+                            <span style="display:none" id="task-date-square"><i
+                                    class="d-flex task-date-icon bi bi-square"></i></span>
+                            <span style="display:none" id="task-date-check"><i
+                                    class="d-flex task-date-icon bi bi-check-square"></i></span>
+                            <span id="task-date-clock"><i class="d-flex task-date-icon bi bi-clock"></i></span>
+                            <span class="task-date-short ml-1">{{task.getDateString('short')}}</span>
+                        </div>
+                        <div *ngIf="task.hasDescription()" class="mr-2 pl-1 pr-1">
+                            <small><i class="bi bi-justify-left"></i></small>
+                        </div>
+                        <!-- <span style="padding: 4px" *ngIf="task.hasDescription() && task.checklists.length > 0"></span> -->
+
+                        <div *ngIf="task.checklists.length > 0" class="mr-2 pl-1 pr-1 rounded d-flex align-items-center"
+                            [style.background]="task.getChecklistStatus().isCompleteColor">
+                            <span><i class="d-flex task-checklist-icon bi bi-check2-square"></i></span>
+                            <span class="ml-1 d-flex task-checklist-text">
+                                {{task.getChecklistStatus().complete}}/{{task.getChecklistStatus().total}}</span>
+                        </div>
+
+                    </div>
+
+                </span>
+
+                <span><i class="delete-task-icon bi bi-trash3" (click)="column.deleteTask(task)"></i></span>
+
+
+            </div>
+
+            <div class="task-creator" (click)="column.addTask()">
+                Add Task
+                <span class="add-task-icon"><i class="bi bi-plus"></i></span>
+            </div>
+
+        </div> <!-- tasks container -->
+
+    </div> <!-- board column -->
+
+    <div class="d-flex board-column add-new-list pb-5" (click)="board.addColumn()">
+        <p>Add New List
+            <span class="add-task-icon"><i class="bi bi-plus"></i></span>
+        </p>
+    </div>
+
+</div> <!-- board columns -->
