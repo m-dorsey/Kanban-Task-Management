@@ -72,6 +72,12 @@ export class MainComponent implements OnInit {
 
   } // initBoards
 
+  onBoardAdded() {
+    // console.log("update Boards", event);
+    // this.boards.push(event);
+    this.addNewBoard();
+  }
+
   adjustSidebar() {
 
     var sidebarColumn = <HTMLElement> (document.getElementById('sidebar-col'));
@@ -107,6 +113,8 @@ export class MainComponent implements OnInit {
     ]);
     
     this.boards.push(b);
+
+    console.log(this.boards);
 
   } // addNewBoard
 
@@ -240,14 +248,15 @@ export class MainComponent implements OnInit {
 
     // set current board, get DOM
     this.currentBoard = board;
-    var elements = <HTMLCollection> (document.getElementById("sidebar-nav")?.children);
     
-    // remove active from all other children
+    var elements = <HTMLCollection> (document.getElementById("sidebar-nav")?.children);
+    console.log(elements);
+    // // remove active from all other children
     for (let i = 0; i < elements.length; i++) {
       (elements.item(i)?.classList.remove("active"));
     }
 
-    // highlight list item as active
+    // // highlight list item as active
     var index = this.boards.indexOf(board) + 1;
     var boardElem = (elements?.item(index));
     (boardElem?.classList.add("active"));

@@ -14,10 +14,19 @@ import { Router } from '@angular/router';
 })
 export class BoardComponent extends MainComponent implements OnInit {
 
-  @Input() board ?: Board;
+  @Input() board?: Board;
+
+  /**
+   * 
+   * move code from main to board if fitting
+   * column, task components
+   * modals separation
+   * 
+   */
   
   constructor(private route: Router) {
     super(route);
   }
 
+  
 }

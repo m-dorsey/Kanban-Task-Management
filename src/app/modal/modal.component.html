@@ -1,0 +1,61 @@
+<!-- <p (click)="show()" *ngIf="type=='null'">NULL CURRENT BOARD</p> -->
+<p (click)="show()" *ngIf="type=='board'">EDIT BOARD</p>
+<p (click)="show()" *ngIf="type=='column'">COLUMN</p>
+<p (click)="show()" *ngIf="type=='task'">TASK EDITS</p>
+
+<!-- if type == 'null' -->
+<div class="container null-current-board-container d-flex align-items-center justify-content-center mt-4" *ngIf="type == 'null'">
+    <div class="card null-current-board-card">
+        
+        <div class="card-header">
+            <i class="bi bi-kanban"></i> <strong> Kanban</strong>
+        </div>
+
+        
+        <div class="img-container">
+            <img class="card-img-top" src="../assets/idea-lightbulb.jpg" alt="Lightbulb with paperclips and crumbled sticky notes surrounding it - Image by Freepik">
+            <div class="card-overlay-text">
+                Hello!
+            </div>   
+        </div>
+
+        
+        <div class="card-body">
+            <h5 class="card-title">
+                Select a board to continue
+            </h5>
+
+            
+            <p class="card-text">
+                Currently, there is no board selected to display.
+                <span *ngIf="this.boards.length == 0"> Add a new board to your collection to continue.</span>
+                <span *ngIf="this.boards.length != 0"> Add a new board or select an existing one from your collection to continue.</span>
+            </p>
+
+            
+            <div class="text-center">
+
+                <a href="#"
+                    class="btn btn-light"
+                    data-bs-target="#sidebar" 
+                    data-bs-toggle="collapse"
+                    ngDefaultControl
+                    (click)="onNewBoard()">
+                    Add New Board
+                </a>
+                <span style="padding: 5px"></span>
+                <a href="#"
+                    class="btn btn-light"
+                    data-bs-target="#sidebar" 
+                    data-bs-toggle="collapse"
+                    *ngIf="this.boards.length != 0">
+                    Select Existing Board
+                </a>
+
+            </div> 
+
+        </div>
+
+    </div> 
+</div> 
+<!-- if type == 'null' -->

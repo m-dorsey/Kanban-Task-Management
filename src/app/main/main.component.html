@@ -17,7 +17,7 @@
             <div class="modal fade" id="modify-board-modal" tabindex="-1" role="dialog" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-
+            
                         <!-- modal header -->
                         <div class="modal-header">
                             <h5 class="modal-title" *ngIf="currentBoard != null">
@@ -28,220 +28,210 @@
                                 <span><i class="bi bi-x"></i></span>
                             </button>
                         </div> <!-- modal header -->
-
+            
                         <!-- modal body -->
                         <div class="modal-body">
-
+            
                             <!-- collapsible accordion -->
                             <div id="accordion" *ngIf="currentBoard != null">
-
+            
                                 <!-- edit board name -->
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle"
-                                                id="edit-board-name-btn"
-                                                data-bs-toggle="collapse" 
-                                                data-bs-target="#collapseOne"
-                                                (click)="modifyBoardToggleValidation('board name')">
+                                            <button class="btn dropdown-toggle" id="edit-board-name-btn" data-bs-toggle="collapse"
+                                                data-bs-target="#collapseOne" (click)="modifyBoardToggleValidation('board name')">
                                                 Board Name
                                             </button>
                                         </h5>
                                     </div> <!-- card header -->
-                            
+            
                                     <!-- collapse one -->
                                     <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
-
+            
                                             <h5 class="card-title">
                                                 Edit Board Name
                                             </h5>
-
+            
                                             <div class="card">
                                                 <div class="card-body">
-
+            
                                                     <form class="needs-validation">
                                                         <div class="form-group">
                                                             <label for="new-board-name">New Board Name</label>
-                                                            <input type="text" class="form-control" id="new-board-name" placeholder="Enter new board name" (keyup)="modifyBoardToggleValidation('board name')">
-                                                            <small id="board-name-feedback" class="form-text text-muted">This field cannot be left blank</small>
+                                                            <input type="text" class="form-control" id="new-board-name"
+                                                                placeholder="Enter new board name"
+                                                                (keyup)="modifyBoardToggleValidation('board name')">
+                                                            <small id="board-name-feedback" class="form-text text-muted">This field
+                                                                cannot be left blank</small>
                                                         </div>
                                                     </form>
-
+            
                                                 </div> <!-- card body -->
-
+            
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
-                                                    <button type="button"
-                                                        (click)="modifyBoard(currentBoard, 'board name')"
-                                                        class="btn btn-success"
-                                                        id="save-board-name"
-                                                        data-bs-toggle="collapse"
+                                                    <button type="button" (click)="modifyBoard(currentBoard, 'board name')"
+                                                        class="btn btn-success" id="save-board-name" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseOne">
                                                         Update
                                                     </button>
                                                 </div> <!-- card footer -->
-
+            
                                             </div> <!-- card -->
-
+            
                                         </div> <!-- card body -->
                                     </div> <!-- collapse one -->
-
+            
                                 </div> <!-- edit board name -->
-
+            
                                 <!-- edit board description -->
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
                                         <h5 class="mb-0">
-                                            <button class="btn dropdown-toggle collapsed"
-                                                data-bs-toggle="collapse"
+                                            <button class="btn dropdown-toggle collapsed" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseTwo"
                                                 (click)="modifyBoardToggleValidation('board description')">
                                                 Board Description
                                             </button>
                                         </h5>
                                     </div>
-
+            
                                     <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
-
+            
                                             <h5 class="card-title">
                                                 Edit Board Description
                                             </h5>
-
+            
                                             <div class="card">
                                                 <div class="card-body">
-
+            
                                                     <form>
                                                         <div class="form-group">
                                                             <label for="board-description">Board Description</label>
                                                             <span style="padding:5px"></span>
-                                                            <small class="text-right board-description-clear" id="board-description-clear"
+                                                            <small class="text-right board-description-clear"
+                                                                id="board-description-clear"
                                                                 (click)="modifyBoardToggleValidation('clear board description')">clear</small>
-                                                            
+            
                                                             <textarea class="form-control"
                                                                 (keyup)="modifyBoardToggleValidation('board description')"
-                                                                id="board-description"
-                                                                rows="3"
+                                                                id="board-description" rows="3"
                                                                 placeholder="Enter a description of your board"
                                                                 *ngIf="!currentBoard.hasDescription()"></textarea>
-                                                            
-                                                            <textarea class="form-control" 
-                                                                (keyup)="modifyBoardToggleValidation('board description')" 
-                                                                id="board-description"
-                                                                rows="3" 
+            
+                                                            <textarea class="form-control"
+                                                                (keyup)="modifyBoardToggleValidation('board description')"
+                                                                id="board-description" rows="3"
                                                                 placeholder="Enter a description of your board"
                                                                 *ngIf="currentBoard.hasDescription()">{{currentBoard.description}}</textarea>
-                                                        
-                                                            </div>
+            
+                                                        </div>
                                                     </form>
-
+            
                                                 </div> <!-- card body -->
-
+            
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
-                                                    <button type="button"
-                                                        (click)="modifyBoard(currentBoard, 'board description')"
-                                                        class="btn btn-success"
-                                                        id="save-board-description"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseTwo">
+                                                    <button type="button" (click)="modifyBoard(currentBoard, 'board description')"
+                                                        class="btn btn-success" id="save-board-description"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo">
                                                         Save
                                                     </button>
                                                 </div> <!-- card footer -->
-
+            
                                             </div> <!-- card -->
-
+            
                                         </div> <!-- card body -->
                                     </div> <!-- collapse two -->
-
+            
                                 </div> <!-- edit board description -->
-
+            
                                 <!-- edit board template -->
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h5 class="mb-0">
                                             <button class="btn dropdown-toggle collapsed"
-                                                (click)="modifyBoardToggleValidation('board template')"
-                                                data-bs-toggle="collapse"
+                                                (click)="modifyBoardToggleValidation('board template')" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseThree">
                                                 Board Template
                                             </button>
                                         </h5>
                                     </div>
-
+            
                                     <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
                                             <h5 class="card-title">
                                                 Edit Board Template
                                             </h5>
-
+            
                                             <!-- card -->
                                             <div class="card">
-
+            
                                                 <!-- card body -->
                                                 <div class="card-body">
-
+            
                                                 </div> <!-- card body -->
-
+            
                                                 <!-- card footer -->
                                                 <div class="card-footer text-right">
                                                     <!-- install -->
-                                                    <button type="button"
-                                                        (click)="modifyBoard(currentBoard, 'board template')" 
-                                                        class="btn btn-success" 
-                                                        id="install-board-template"
-                                                        data-bs-toggle="collapse" 
-                                                        data-bs-target="#collapseThree">
+                                                    <button type="button" (click)="modifyBoard(currentBoard, 'board template')"
+                                                        class="btn btn-success" id="install-board-template"
+                                                        data-bs-toggle="collapse" data-bs-target="#collapseThree">
                                                         Install
                                                     </button>
                                                 </div> <!-- card footer -->
-
+            
                                             </div> <!-- card -->
-                                        
+            
                                         </div> <!-- card body -->
                                     </div> <!-- collapse three -->
-
+            
                                 </div> <!-- edit board template -->
-
+            
                                 <!-- clear board contents -->
                                 <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
                                             <button class="btn dropdown-toggle collapsed"
-                                                (click)="modifyBoardToggleValidation('clear all')"
-                                                data-bs-toggle="collapse" 
+                                                (click)="modifyBoardToggleValidation('clear all')" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseFour">
                                                 Clear Board Contents
                                             </button>
                                         </h5>
                                     </div>
-
+            
                                     <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
                                         <div class="card-body">
                                             <h5 class="card-title">
                                                 Clear Board Contents
                                             </h5>
-
+            
                                             <div class="card">
                                                 <div class="card-header">
-
+            
                                                     <ul id="clear-board-tabs" class="nav nav-tabs card-header-tabs">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-bs-toggle="tab" href="#clearTasks" (click)="modifyBoardToggleValidation('clear all')">Tasks</a>
+                                                            <a class="nav-link active" data-bs-toggle="tab" href="#clearTasks"
+                                                                (click)="modifyBoardToggleValidation('clear all')">Tasks</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearLists" (click)="modifyBoardToggleValidation('clear all')">Lists</a>
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearLists"
+                                                                (click)="modifyBoardToggleValidation('clear all')">Lists</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearAll" (click)="modifyBoardToggleValidation('clear all')">Clear All</a>
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#clearAll"
+                                                                (click)="modifyBoardToggleValidation('clear all')">Clear All</a>
                                                         </li>
                                                     </ul> <!-- nav tabs -->
-
+            
                                                 </div> <!-- card header -->
-
+            
                                                 <div class="card-body">
-                                                    
+            
                                                     <div class="tab-content d-flex justify-content-center text-center">
                                                         <div id="clearTasks" class="tab-pane active bg-white border-0">
                                                             <p>
@@ -262,350 +252,50 @@
                                                             </p>
                                                         </div> <!-- clear all -->
                                                     </div> <!-- tab content -->
-                                                    
+            
                                                 </div> <!-- card body -->
-
+            
                                                 <!-- card footer -->
                                                 <div class="card-footer text-right">
                                                     <!-- delete -->
-                                                    <button type="button"
-                                                        (click)="modifyBoard(currentBoard, 'clear all')"
-                                                        class="btn btn-danger"
-                                                        id="delete-board-contents"
-                                                        data-bs-toggle="collapse"
+                                                    <button type="button" (click)="modifyBoard(currentBoard, 'clear all')"
+                                                        class="btn btn-danger" id="delete-board-contents" data-bs-toggle="collapse"
                                                         data-bs-target="#collapseFour">
                                                         Delete
                                                     </button>
                                                 </div> <!-- card footer -->
-                                                
+            
                                             </div> <!-- card -->
-
-
-
+            
+            
+            
                                         </div> <!-- card body -->
                                     </div> <!-- collapse four-->
-
+            
                                 </div> <!-- clear board contents -->
-
+            
                             </div> <!-- accordion -->
-
+            
                         </div> <!-- modal body -->
-
+            
                         <!-- modal footer -->
                         <div class="modal-footer">
                             <!-- close -->
-                            <button type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal"
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                                 (click)="closeModifyBoardModal()">
                                 Close
                             </button>
                         </div> <!-- model footer -->
-
+            
                     </div> <!-- modal content -->
                 </div> <!-- modal dialog -->
             </div> <!-- modify board modal -->
 
+
+
             
 
-            <!-- rename column modal -->
-            <div class="modal fade" id="renameColumnModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-                        <!-- modal header -->
-                        <div class="modal-header">
-                            <h5 class="modal-title">Rename Column</h5>
-                            <button type="button" class="close" data-bs-dismiss="modal">
-                                <span><i class="bi bi-x"></i></span>
-                            </button>
-                        </div> <!-- modal header -->
-
-                        <!-- modal body -->
-                        <div class="modal-body" (keyup)="renameColumn()">
-                            <form>
-                                <div class="form-group">
-                                    <label>Enter Column Name</label>
-                                    <input type="text" class="form-control" id="rename-column" placeholder="New List">
-                                    <small id="rename-column-feedback" class="form-text text-muted">This field cannot be blank</small>
-                                </div>
-                            </form>
-                        </div> <!-- modal body -->
-
-                        <!-- modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="rename-column-close" data-bs-dismiss="modal" (click)="renameColumn('close')">Close</button>
-                            <button type="button" class="btn btn-success disabled" id="rename-column-save" data-bs-dismiss="modal" (click)="renameColumn('save')">Save</button>
-                        </div> <!-- modal footer -->
-
-                    </div> <!-- modal content -->
-                </div> <!-- modal dialog -->
-            </div> <!-- rename column modal -->
-
-
-
-            <!-- edit task modal -->
-            <div class="modal fade edit-task-modal" id="editTaskModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        
-                        <!-- modal header -->
-                        <div class="modal-header" *ngIf="currentTask != null">                      
-
-                            <h5 class="modal-title">
-                                <span><i class="bi bi-card-text"></i></span>
-                                <span style="padding: 5px"></span>
-                                <span class="edit-task-title" id="edit-task-title" 
-                                    contenteditable="true">{{currentTask.name}}
-                                </span>
-                            </h5>
-                                                            
-                            <!-- x button -->
-                            <button type="button" class="close" (click)="editTask('name'); updateChecklists(currentTask); toggleTaskActions('all')" data-bs-dismiss="modal">
-                                <i class="bi bi-x"></i>
-                            </button>
-                            
-                        </div> <!-- modal header -->
-
-                        <!-- modal body container -->
-                        <div class="container">                                    
-                            <div class="modal-body">
-
-                                <!-- row -->
-                                <div class="row">
-
-                                    <!-- left col -->
-                                    <div class="col-lg-8">
-
-                                        <div class="d-flex edit-task-date mb-2" *ngIf="currentTask != null && currentTask.date != undefined">
-                                            <div class="edit-task-date-title">
-                                                <span><i class="edit-task-date-icon bi bi-calendar4"></i></span>
-                                                <span> Due Date</span>
-
-                                                <span class="d-inline ml-3" style="font-size:13px">
-                                                    <span *ngIf="!currentTask.isComplete" (click)="currentTask.completeTask()"><i class="task-complete-icon bi bi-square"></i></span>
-                                                    <!-- <span><i class="bi bi-check-square"></i></span> -->
-                                                    <span *ngIf="currentTask.isComplete" (click)="currentTask.completeTask()"><i class="task-complete-icon bi bi-check-square-fill"></i></span>
-                                                    <p id="task-date-str" class="d-inline ml-1 p-1 rounded font-weight-normal" style="background:#f1f1f1; font-size:13px">
-                                                        <span>{{ currentTask.getDateString('long') }}
-                                                            <small class="rounded align-items-start" [style.background]="currentTask.getDateStatus().color" style="padding: 0.5px 3px; font-size: 9px">{{ currentTask.getDateStatus().type }}</small>
-                                                        </span>
-                                                    </p>
-                                                </span>
-                                                
-                                            </div>
-                                        </div>
-
-                                        <!-- edit task description -->
-                                        <!-- style="background:green" -->
-                                        <div class="edit-task-description">
-                                            
-                                            <!-- title -->
-                                            <div class="edit-task-description-title">
-                                                <span><i class="edit-task-description-icon bi bi-justify-left"></i></span>
-                                                <span> Description</span>
-                                                <span style="padding:5px"></span>
-                                                <small class="text-right edit-task-description-clear" id="edit-task-description-clear" (click)="editTask('clear')">clear</small>
-                                            </div> <!-- title -->
-
-                                            <!-- content text area -->
-                                            <div class="edit-task-description-content">
-                                                <div class="form-group" *ngIf="currentTask != null">
-
-                                                    <!-- keyup.Enter="console.log('enter')"
-                                                        keyup.Backspace="console.log('backspace')" -->
-                                                    <textarea class="form-control edit-task-description-input" 
-                                                        id="edit-task-description-input" 
-                                                        placeholder="Add a description"
-                                                        rows="3"
-                                                        (keyup)="editTask('description')"
-                                                        *ngIf="currentTask.description == '' "></textarea>
-                                                   
-                                                    <!-- keyup.Enter="console.log('enter')"
-                                                        keyup.Backspace="console.log('backspace')" -->
-                                                    <textarea class="form-control edit-task-description-input" 
-                                                        id="edit-task-description-input"
-                                                        placeholder="Add a description" 
-                                                        rows="3"
-                                                        (keyup)="editTask('description')"
-                                                        *ngIf="currentTask.description != '' ">{{currentTask.description}}</textarea>
-                                                   
-                                                </div>
-                                                
-                                                <div class="text-right">
-                                                    <button type="button" id="edit-task-description-cancel" (click)="editTask('cancel')" class="btn btn-light">Cancel</button>
-                                                    <span>&nbsp;</span>
-                                                    <button type="button" id="edit-task-description-save" (click)="editTask('save')" class="btn btn-success disabled edit-task-description-save">Save</button>
-                                                </div>
-                                            </div> <!-- content text area -->
-
-                                        </div> <!-- edit-task-description -->
-
-                                        <!-- edit task checklist -->
-                                        <div class="edit-task-checklist" *ngIf="currentTask != null">
-
-                                            <div class="pb-3" id="edit-task-checklist-{{currentTask.checklists.indexOf(checklist)}}" *ngFor="let checklist of currentTask.checklists">
-                                                <!-- title -->
-                                                <div class="edit-task-checklist-title">
-                                                    <span><i class="edit-task-checklist-icon bi bi-list-check"></i></span>
-                                                    <span id="edit-task-checklist-{{currentTask.checklists.indexOf(checklist)}}-title" contenteditable="true"> {{checklist.name}}</span>
-                                                    <span style="padding:5px"></span>
-                                                    <small class="text-right edit-task-checklist-delete" id="edit-task-checklist-delete" (click)="currentTask.deleteChecklist(checklist)">delete</small>
-                                                </div> <!-- title -->
-
-                                                <div class="edit-task-checklist-progress">
-                                                    <div class="progress mb-1" style="height:10px">
-                                                        <div class="progress-bar" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-progress" style="width:0%;"></div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group edit-task-checklist-items m-0" *ngFor="let item of checklist.items">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input checklist-checkbox" type="checkbox" value="" id="complete-checklist-{{currentTask.checklists.indexOf(checklist)}}-item" (click)="item.toggleComplete(); updateProgressBar(currentTask, checklist); updateChecklists(currentTask)">
-                                                        <!-- <span style="display: none" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">{{item.name}}</span> -->
-                                                        <p class="d-flex form-check-label checklist-item-name p-0" contenteditable="true" *ngIf="!item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
-                                                            {{item.name}}
-                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="checklist.deleteItem(item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
-                                                        </p>
-                                                        <p class="d-flex form-check-label checklist-item-name" contenteditable="true" *ngIf="item.isComplete"  id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-{{checklist.items.indexOf(item)}}-name">
-                                                            <s>{{item.name}}</s>
-                                                            <span class="d-flex delete-checklist-item" contenteditable="false" (click)="checklist.deleteItem(item)"><i class="delete-checklist-item-icon bi bi-trash3"></i></span>
-                                                        </p>
-                                                    </div>
-                                                    
-                                                </div>
-                                                
-                                                <div class="form-group edit-task-checklist-new mt-2" id="edit-task-checklist-new">
-                                                    <input class="form-control form-control-sm mb-1 checklist-item-input" id="checklist-{{currentTask.checklists.indexOf(checklist)}}-item-input" placeholder="New Item" (keyup.Enter)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">
-                                                    <button type="button" id="checklist-item-save" class="btn btn-sm btn-success checklist-item-save" (click)="addChecklistItem(currentTask, checklist); updateProgressBar(currentTask, checklist)">Add</button>
-                                                </div>
-                                            </div>
-
-                                            
-                                        </div>
-
-                                        <!-- edit task activity -->
-                                        <!-- <div class="edit-task-activity" style="background:teal">
-                                            
-                                            title
-                                            <div class="edit-task-activity-title">
-                                                <span><i class="edit-task-activity-icon bi bi-card-checklist"></i></span>
-                                                <span> Activity</span>
-                                            </div> title
-
-                                            input
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Write a comment">
-                                                <button type="button" class="btn btn-success">Save</button>
-                                            </div> input
-                                            
-                                        </div> edit task activity -->
-
-                                    </div> <!-- left col -->
-
-                                    <!-- right col-->
-                                    <!-- style="background:red" -->
-                                    <div class="col-lg-4">
-                                        <small>Add to Task</small>
-                                        <!-- accordian -->
-                                        <div id="accordian">
-
-                                            <!-- label -->
-                                            <div class="list-group border-0 rounded-0 text-sm-start" (click)="toggleTaskActions('label')">
-                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#label-assignment">Labels</a>
-                                                <div class="collapse" id="label-assignment">
-                                                    <div class="card card-body label-assignment">
-                                                        <form class="form-inline" onsubmit="return false">
-                                                            <div class="form-group" *ngIf="currentTask != null">
-
-                                                                <!-- <div class="form-check"> -->
-                                                                    <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
-                                                                <input type="text" class="form-control form-control-sm" id="label-input" placeholder="Add Label" (keyup.Enter)="addLabel(currentTask)">
-                                                                <span style="padding:5px"></span>
-                                                                <span (click)="addLabel(currentTask)"><i class="add-label-icon bi bi-check2-circle"></i></span>
-                                                                    <!-- <small><a href='#'>change color</a></small> -->
-                                                                <!-- </div> -->
-
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div> <!-- label -->
-                                        
-                                            <!-- checklist -->
-                                            <div class="list-group border-0 rounded-0 text-sm-start" (click)="toggleTaskActions('checklist')">
-                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#checklist-assignment">Checklist</a>
-                                                <div class="collapse" id="checklist-assignment">
-                                                    <div class="card card-body checklist-assignment">
-                                                        <small>Title</small>
-                                                        <form class="form-inline" onsubmit="return false">
-                                                            <div class="form-group" *ngIf="currentTask != null">
-                                                        
-                                                                <!-- <div class="form-check"> -->
-                                                                <!-- <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"> -->
-                                                                
-                                                                <input type="text" class="form-control form-control-sm" id="checklist-title-input" placeholder="Checklist"
-                                                                    (keyup.Enter)="addChecklist(currentTask)">
-                                                                <span style="padding:5px"></span>
-                                                                <span (click)="addChecklist(currentTask)"><i class="add-checklist-icon bi bi-check2-circle"></i></span>
-                                                                <!-- <small><a href='#'>change color</a></small> -->
-                                                                <!-- </div> -->
-                                                        
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                            </div> <!-- checklist -->
-
-                                            <!-- date -->
-                                            <div class="list-group border-0 rounded-0 text-sm-start" *ngIf="currentTask != null" (click)="toggleTaskActions('date')">
-                                                <a class="list-group-item" data-bs-toggle="collapse" data-bs-target="#date-assignment" (click)="setDateInput(currentTask)">Date</a>
-                                                <div class="collapse" id="date-assignment">
-                                                    <div class="card card-body border date-assignment">
-
-                                                        <small>Due Date</small>
-                                                        <form onsubmit="return false">
-                                                            <div class="form-row">
-                                                                <div class="form-group col-12">
-                                                                    <input class="mt-2 mb-2 form-control form-control-sm" type="date" id='task-date'>
-                                                                    <input class="mt-2 form-control form-control-sm" type="time" id='task-time'>
-                                                                </div>
-                                                                <div class="form-group col-auto">
-                                                                    <button class="btn btn-sm btn-success" id="task-date-save" (click)="addTaskDate(currentTask)">Save</button>
-                                                                    <span style="padding: 5px"></span>
-                                                                    <button class="btn btn-sm btn-light" id="task-date-remove" (click)="removeTaskDate(currentTask)">Remove</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-                                            </div> <!-- date -->
-
-                                        
-                                        </div> <!-- task action accordian -->
-                                        
-                                    </div> <!-- right col -->
-
-                                </div> <!-- row -->
-
-                            </div> <!-- modal body -->
-                        </div> <!-- modal body container -->
-
-                        <!-- modal footer -->
-                        <div class="modal-footer container justify-content-start" *ngIf="currentTask != null">
-                            <span class="badge badge-pill badge-secondary label"
-                                *ngFor="let label of currentTask.labels">
-                                {{label.name}}
-                                <span class="delete-label-icon" id="delete-label" (click)="currentTask.deleteLabel(label)"><i class="bi bi-x"></i></span>
-                            </span>
-                        </div>
-                        
-                        
-                    </div> <!-- modal content -->
-                </div> <!--modal dialog -->
-            </div> <!-- edit task modal -->
+            
 
 
             
@@ -635,7 +325,8 @@
                                 <a  href="#"
                                     class="list-group-item border-bottom-0 d-inline-block text-truncate" 
                                     data-bs-parent="#sidebar"
-                                    *ngFor="let board of boards">
+                                    *ngFor="let board of boards"
+                                    >
                                     
                                     <span class="board-name"
                                         (click)="setCurrentBoard(board)">
@@ -744,61 +435,18 @@
                                 <!-- board wrapper -->
                                 <div class="board-wrapper">
 
-                                    <!-- (CARD) if null current board -->
-                                    <div class="container null-current-board-container d-flex align-items-center justify-content-center" *ngIf="currentBoard == null">
-                                        <div class="card null-current-board-card">
-                                            
-                                            <div class="card-header">
-                                                <i class="bi bi-kanban"></i> <strong> Kanban</strong>
-                                            </div>
-
-                                            <!-- image and overlay text -->
-                                            <div class="img-container">
-                                                <img class="card-img-top" src="../assets/idea-lightbulb.jpg" alt="Lightbulb with paperclips and crumbled sticky notes surrounding it - Image by Freepik">
-                                                <div class="card-overlay-text">
-                                                    Hello!
-                                                </div>   
-                                            </div>
-
-                                            <!-- card body -->
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Select a board to continue
-                                                </h5>
-
-                                                <!-- card text -->
-                                                <p class="card-text">
-                                                    Currently, there is no board selected to display.
-                                                    <span *ngIf="this.boards.length == 0"> Add a new board to your collection to continue.</span>
-                                                    <span *ngIf="this.boards.length != 0"> Add a new board or select an existing one from your collection to continue.</span>
-                                                </p>
-
-                                                <!-- card buttons -->
-                                                <div class="text-center">
-
-                                                    <a href="#"
-                                                        class="btn btn-light"
-                                                        data-bs-target="#sidebar" 
-                                                        data-bs-toggle="collapse"
-                                                        (click)="addNewBoard()">
-                                                        Add New Board
-                                                    </a>
-                                                    <span style="padding: 5px"></span>
-                                                    <a href="#"
-                                                        class="btn btn-light"
-                                                        data-bs-target="#sidebar" 
-                                                        data-bs-toggle="collapse"
-                                                        *ngIf="this.boards.length != 0">
-                                                        Select Existing Board
-                                                    </a>
-
-                                                </div> <!-- card buttons -->
-
-                                            </div> <!-- card body -->
-
-                                        </div> <!-- card -->
-                                    </div> <!-- null current board container -->
                                     
+                                    
+                                    <app-modal (newBoardAdded)="onBoardAdded()"
+                                        [type]="'null'"
+                                        [boardList]="this.boards"
+                                        [board]="currentBoard"
+                                        [column]="currentColumn"
+                                        [task]="currentTask"
+                                        *ngIf="currentBoard == null">
+
+                                    </app-modal>
+
                                     <!-- *ngIf="currentBoard != null"  -->
                                     <app-board [board]="currentBoard"></app-board>
 
