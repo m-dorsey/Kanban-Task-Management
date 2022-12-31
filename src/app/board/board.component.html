@@ -1,43 +1,14 @@
 
 
+<app-modal *ngIf="currentModal=='column'" 
+    [type]="'column'" 
+    [column]="currentColumn"
+    (columnRenamed)="onColumnRenamed($event)">
+
+</app-modal>
 
 
-<!-- rename column modal -->
-<div class="modal fade" id="renameColumnModal" tabindex="-1" role="dialog" data-bs-backdrop="static">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
 
-            <!-- modal header -->
-            <div class="modal-header">
-                <h5 class="modal-title">Rename Column</h5>
-                <button type="button" class="close" data-bs-dismiss="modal">
-                    <span><i class="bi bi-x"></i></span>
-                </button>
-            </div> <!-- modal header -->
-
-            <!-- modal body -->
-            <div class="modal-body" (keyup)="renameColumn()">
-                <form>
-                    <div class="form-group">
-                        <label>Enter Column Name</label>
-                        <input type="text" class="form-control" id="rename-column" placeholder="New List">
-                        <small id="rename-column-feedback" class="form-text text-muted">This field cannot be
-                            blank</small>
-                    </div>
-                </form>
-            </div> <!-- modal body -->
-
-            <!-- modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="rename-column-close" data-bs-dismiss="modal"
-                    (click)="renameColumn('close')">Close</button>
-                <button type="button" class="btn btn-success disabled" id="rename-column-save" data-bs-dismiss="modal"
-                    (click)="renameColumn('save')">Save</button>
-            </div> <!-- modal footer -->
-
-        </div> <!-- modal content -->
-    </div> <!-- modal dialog -->
-</div> <!-- rename column modal -->
 
 
 
@@ -382,8 +353,10 @@
                         <!-- (click)="renameColumn(currentBoard, column)"
                                                                 data-toggle="modal"
                                                                 data-target="#renameColumnModal" -->
-                        <a class="dropdown-item column-action-item" data-bs-toggle="modal"
-                            data-bs-target="#renameColumnModal">
+                        
+                        <!--  data-bs-toggle="modal"
+                            data-bs-target="#renameColumnModal" -->
+                        <a class="dropdown-item column-action-item" (click)="setCurrentModal('column')">
                             Rename
                         </a>
                         <!-- <a class="dropdown-item" href="#">Something else here</a> -->

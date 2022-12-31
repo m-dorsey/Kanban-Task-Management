@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Board } from '../models/board.model';
 import { Column } from '../models/column.model';
 import { Task } from '../models/task.model';
-import { Label } from '../models/label.model';
 import { Checklist } from '../models/checklist.model';
 import { ChecklistItem } from '../models/checklistItem.model';
 
@@ -13,12 +12,11 @@ import { Router } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
   // variables
   boards: Board[] = [];
   currentBoard?: Board;
-  currentColumn?: Column;
   currentTask?: Task;
 
   /**
@@ -40,8 +38,6 @@ export class MainComponent implements OnInit {
   constructor(private router: Router) {
     this.initBoards();  
   }
-
-  ngOnInit(): void {}
 
   initBoards() {
 
@@ -284,45 +280,6 @@ export class MainComponent implements OnInit {
       (elements[i].children[1].classList.remove('show'));
     }
   } // closeModifyBoardModal
-
-  setCurrentColumn(column:Column) {
-    this.currentColumn = column;
-  } // setCurrentColumn
-
-  renameColumn(event?: string) {
-
-    var input = <HTMLInputElement> (document.getElementById('rename-column'));
-    var saveBtn = <HTMLElement> (document.getElementById('rename-column-save'));
-
-    switch(event) {
-
-      case "close":
-          input.value = "";
-        break;
-
-      case "save":
-
-          if (this.currentColumn != null) {
-            this.currentColumn.name = input.value;
-            
-          }
-          input.value = "";
-
-        break;
-
-      default:
-
-        if (input.value == "") {
-          saveBtn.classList.add('disabled');
-        } else {
-          saveBtn.classList.remove('disabled');
-        }
-
-        break;
-
-    }
-
-  } // renameColumn
 
   setCurrentTask(task: Task) {
     this.currentTask = task;

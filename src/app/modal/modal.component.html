@@ -1,7 +1,7 @@
 <!-- <p (click)="show()" *ngIf="type=='null'">NULL CURRENT BOARD</p> -->
-<p (click)="show()" *ngIf="type=='board'">EDIT BOARD</p>
-<p (click)="show()" *ngIf="type=='column'">COLUMN</p>
-<p (click)="show()" *ngIf="type=='task'">TASK EDITS</p>
+<p *ngIf="type=='board'">EDIT BOARD</p>
+<!-- <p (click)="show()" *ngIf="type=='column'">COLUMN</p> -->
+<p *ngIf="type=='task'">TASK EDITS</p>
 
 <!-- if type == 'null' -->
 <div class="container null-current-board-container d-flex align-items-center justify-content-center mt-4" *ngIf="type == 'null'">
@@ -59,3 +59,43 @@
     </div> 
 </div> 
 <!-- if type == 'null' -->
+
+
+
+<!-- if type == 'column' -->
+<div class="modal position-absolute d-block rename-column-modal" id="rename-column-modal" tabindex="-1" role="dialog"  *ngIf="type =='column'">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <!-- modal header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Rename Column</h5>
+                <button type="button" class="close" (click)="toggleModal('rename-column-modal')">
+                    <span><i class="bi bi-x"></i></span>
+                </button>
+            </div> 
+
+            <!-- modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Enter Column Name</label>
+                        <input type="text" class="form-control" id="rename-column" placeholder="New List" (keyup)="onRenameColumn()" (click)="onRenameColumn()">
+                        <small id="rename-column-feedback" class="form-text text-muted">This field cannot be
+                            blank</small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="rename-column-close"
+                    (click)="onRenameColumn('close'); toggleModal('rename-column-modal')">Close</button>
+                <button type="button" class="btn btn-success disabled" id="rename-column-save"
+                    (click)="onRenameColumn('save'); toggleModal('rename-column-modal')">Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- if type == 'column' -->
